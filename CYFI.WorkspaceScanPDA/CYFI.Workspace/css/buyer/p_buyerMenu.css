@@ -1,0 +1,17 @@
+.buyerMenu-box{margin:10px auto;padding:0 10px;}
+.buyerMenu-box .welcomeInfo{backgroud-color:#fff;border:1px solid #eee;background-color:#fff;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;position:relative;z-index:8888;}
+.buyerMenu-box .welcomeInfo .wImg{display:inline-block;vertical-align:middle;padding:5px;}
+.buyerMenu-box .welcomeInfo .wImg img{width:35px;height:35px;}
+.buyerMenu-box .welcomeInfo .wInfo{display:inline-block;vertical-align:middle;padding:0px;color:#666;line-height:35px;}
+.buyerMenu-box .welcomeInfo .wLogout{position:absolute;right:10px;top:10px;}
+.buyerMenu-box .welcomeInfo .logout-btn{width:60px;height:30px;border:0;font-size:1em;padding:8px 0;}
+
+.buyerMenu-box .menu-content{margin:10px 0 0 0;border:1px solid #ccc;background-color:#ccc;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;border-bottom:0px solid;}
+.buyerMenu-box .menu-content .menu-tit{position:relative;z-index:8888;height:40px;background-color:#f9f9f9;border-bottom:1px solid #ccc;}
+.buyerMenu-box .menu-content .menu-tit .mTxt{height:40px;line-height:39px;font-weight:normal;font-size:16px;color:#333;font-family:"Microsoft Yahei",simsun;margin-left:10px;}
+.buyerMenu-box .menu-content .menu-tit s{position:absolute;top:12px;right:10px;width:25px;height:32px;background:url(../../img/m_sprite.png) no-repeat;display:inline-block;width:8px;height:16px;text-indent:-9999px;background-position:-81px -137px;}
+
+.buyerMenu-box .menu-content .menu-info{border-bottom:1px solid #ccc;background-color:#f9f9f9;}
+.buyerMenu-box .menu-content .menu-info .l-m-con{padding:5px 0;}
+.buyerMenu-box .menu-content .menu-info li{float:left;padding:5px 10px 10px;}
+.buyerMenu-box .menu-content .menu-info .l-m-con a{font-size:14px;color:#666;}

@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html class="ui-mobile">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>C/3移动平台</title>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <link href="js/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/genericScript.js"></script>
+    <link href="default.css" rel="stylesheet" />
+    <link href="ivs/viewer.css" rel="stylesheet" />
+    <script src="ivs/viewer.js"></script>
+    <script src="js/genericScript.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Common.CheckUserLogin();
+            try {
+                $('#Gallery').empty();
+                var authorization = localStorage.getItem("authorization");
+                var STToken = localStorage.getItem("STToken");
+                var userr = localStorage.getItem("userr");
+
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Audit/ImageList" + Common.jsNC2(),
+                    data: { 'UserName': userr, "ImagePath": Common.getUrlParam("ImagePath") },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+
+                            $.each(returnValue.FileNames, function (n, item) {
+                                $('#Gallery').append("<li style='height:155px'><img  src='" + item + "' /></li>");
+                                //$('#before').before("<li ><a style='height:150px'  href='" + item + "' rel='external' class='ui-link' style='display: block;'><img  src='" + item + "' rel='external' class='ui-link' style='display: block;' /></a></li>");
+                            });
+
+                            var viewer = new Viewer(document.querySelector('.viewImgs'), {
+                                'navbar': false,
+                                'title': false,
+                                'movable': true,
+                                'fullscreen': true,
+                                toolbar: {
+                                    zoomIn: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    zoomOut: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    reset: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    prev: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    next: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    rotateLeft: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    rotateRight: {
+                                        show: 1,
+                                        size: 'large',
+                                    }
+                                }
+                            });
+
+                            viewer.show();
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            } catch (e) {
+                alert(e);
+            }
+        })
+    </script>
+    <style>
+        .fixclass {
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            background: #00275d;
+        }
+
+        .headerTitle {
+            width: 100%;
+            height: 45px;
+            overflow: hidden;
+            margin: 0 auto;
+            background: #00275d;
+        }
+
+        .goBack {
+            padding: 14px 20px;
+            color: #fff;
+            position: fixed;
+            font-size: 14px;
+            top: 0px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="ui-mobile-viewport ui-overlay-a">
+    <div data-role="page" data-url="">
+        <!--内容-->
+        <div>
+            <div class="headerTitle">
+                <span class="goBack"></span>
+                <p style="text-align: center; margin: 8px 0;color:#fff;font-size:16px;"></p>
+            </div>
+            <div>
+                <ul id="list" data-role="listview" data-icon="false" class="ui-listview">
+                    <li class="ui-first-child ui-last-child">
+                        <a class="ui-btn">
+                            <h3></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="jqm-content">
+                <div class="jqm-block-content">
+                    <ul id="Gallery" class="gallery viewImgs"></ul>
+                </div>
+            </div>
+        </div>
+    </div><div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div>
+</body>
+</html>
+
+

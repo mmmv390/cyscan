@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C/3移动平台</title>
+    <style>
+
+        .bottomHistory {
+            height: calc(100% - 0.75rem);
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+            .bottomHistory::-webkit-scrollbar {
+                display: none;
+            }
+    </style>
+    <link rel="stylesheet" href="css/bx-cover.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/genericScript.js"></script>
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <script type="text/javascript">
+        var localStorage = window.localStorage;
+        function LXWM() {
+            layer.msg('020-62830006');
+        }
+
+        function ZXGX() {
+            //cordova.InAppBrowser.open('http://www.cyerp19.com/download/cyfi.scan.v6.apk', '_system', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
+            console.log("呀");
+        }
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            //localStorage.removeItem("OpenID");
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            localStorage.removeItem("Mudown");
+            localStorage.removeItem("UntOwn");
+            localStorage.removeItem("Prntown");
+            localStorage.removeItem("Caption");
+            window.location.href = "login.html";
+        }
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+
+            var UntOwnlevel = localStorage.getItem("UntOwnlevel");
+
+            if (UntOwnlevel == 1) {
+                window.location.href = "yjreport.html";
+            }
+            else if (UntOwnlevel == 2) {
+                //window.location.href = "report_query.html";
+                window.location.href = "ReportQuery.html";
+            }
+            else if (UntOwnlevel == 3 || UntOwnlevel == 0) {
+                window.location.href = "buyorder.html";
+            }
+            else {
+                layer.msg('首页双击小图标进入模块');
+            }
+
+            //window.location.href = "buyorder.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+    </script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left" id="oTitle">
+                C/3移动平台
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul id="ulpullright">
+                    <li><a href="javascript:QHYG();">重新登录</a></li>
+                    <li><a href="javascript:LXWM();">联系我们</a></li>
+                    <li><a href="javascript:ZXGX();">下载最新版本</a></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="home_nav" style="height:40px"></ul>
+    </header>
+    <div class="home bottomHistory" id="MainMenus">
+
+    </div>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script type="text/javascript">
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        layer.ready(function () {
+            
+            localStorage.setItem("ISLoadImage", "No");
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            if (!authorization || !STToken) {
+                window.location.href = "login.html";
+            }
+            else if (authorization == '' || STToken == '') {
+                window.location.href = "login.html";
+            }
+            else {
+
+            }
+            //var DEVICEUUID = localStorage.getItem("DEVICEUUID");
+            //layer.msg(DEVICEUUID, {
+            //    time: 0
+            //});
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var Mudown = 's075';
+            var ord_cap = '2026扫描管理';
+            OnLoadMenus(userr, Mudown, ord_cap);
+        });
+        function MasterSub(Caption, UntOwn, Sty, Prnt_own, FdMenu, Formnam) {
+            if (Caption == '') {
+                layer.open({
+                    title: [
+                        '操作失败',
+                        'background-color: #F9F900; color:#000000;'
+                    ],
+                    content: '无效模块。'
+                    , btn: '确定'
+                });
+                return;
+            }
+            if (UntOwn == '') {
+                layer.open({
+                    title: [
+                        '操作失败',
+                        'background-color: #F9F900; color:#000000;'
+                    ],
+                    content: '无效模块。'
+                    , btn: '确定'
+                });
+                return;
+            }
+            //alert(UntOwn);
+            //var userr = localStorage.getItem("userr");
+            localStorage.setItem("UntOwn", UntOwn);
+            localStorage.setItem("Caption", Caption);
+            localStorage.setItem("UntOwnlevel", Sty);
+            localStorage.setItem("FdMenu", FdMenu);
+            localStorage.setItem("Prntown", Prnt_own);
+            localStorage.removeItem("QueryCriteria");
+
+            if (Sty == 1) {
+                window.location.href = "yjreport.html";
+            }
+            else if (Sty == 2) {
+                //window.location.href = "report_query.html";
+                window.location.href = "ReportQuery.html";
+            }
+            else if (Sty == 5) {
+                //window.location.href = "report_query.html";
+                window.location.href = "singlesearch.html";
+            }
+            else if (Formnam == 1) {
+                //window.location.href = "report_query.html";
+                window.location.href = "scangrid.html";
+            }
+            else if (Formnam == 2) {
+                //window.location.href = "report_query.html";
+                window.location.href = "scan.html";
+            }
+            else if (Formnam == 30) {
+                //localStorage.setItem("ISSysCheck", false);
+                window.location.href = "report00.html";
+            }
+            else if (Formnam == 31) {
+                //localStorage.setItem("ISSysCheck", false);
+                window.location.href = "report1.html";
+            }
+            else if (Formnam == 32) {
+                //localStorage.setItem("ISSysCheck", false);
+                window.location.href = "report2.html";
+            }
+            else if (Formnam == 33) {
+                //localStorage.setItem("ISSysCheck", false);
+                window.location.href = "report3.html";
+            }
+            else {
+                window.location.href = "buyorder.html";
+            }
+        }
+        function OnLoadMenus(userr, Mudown, ord_cap) {
+            localStorage.setItem("Mudown", Mudown);
+            localStorage.setItem("Ord_cap", ord_cap);
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            $(".home_nav li").each(function () {
+                $(this).removeClass("active");
+            });
+            $("#" + Mudown).addClass("active");
+            var Ordcaps = '';
+            //alert(ord_cap);
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getRemotePort() + "Menu/CustomMenus" + Common.jsNC2(),
+                data: { 'UserName': userr, 'ord_cap': ord_cap },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        Ordcaps = returnValue.Menus;
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+
+            if (!Ordcaps || Ordcaps == '') {
+                layer.msg('模块未设置');
+                return;
+            }
+            //alert(Mudown);
+            //alert(Ordcaps);
+            $.ajax({
+                type: "Get",
+                url: Common.getWeChatRemotePort() + "Menu/MainMenu" + Common.jsNC2(),
+                data: { 'UserName': Common.getDefaultUser(), 'Mudown': Mudown, 'Ordcaps': Ordcaps },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        $("#MainMenus").empty();
+                        var divList = $("<div class=\"home_item\" />");
+                        $.each(returnValue.Menus, function (n, item) {
+                            var divItem = $("<div class=\"item\" />");
+                            var hi = $("<h1 class=\"title\">" + item.Caption + "</h1>");
+                            var ul = $("<ul class=\"ul-3 clearfix\">");
+                            $.each(item.Menus, function (n, item2) {
+                                var li = $("<li><a href=\"javascript:MasterSub('" + item2.Caption + "','" + item2.Unt_own + "','" + item2.Sty + "','" + item2.Prnt_own + "','" + item2.FdMenu + "','" + item2.Formnam + "');\"><img src=\"image/home" + item2.Ico_id + ".png\" alt=\"\"><p>" + item2.Caption + "</p></a></li>");
+                                ul.append(li);
+                            });
+                            divItem.append(hi);
+                            divItem.append(ul);
+                            divList.append(divItem);
+                            //if (isAc) {
+                            //    $("#ClassifyMenu").append(" <li class=\"active\"><a href=\"javascript:;\">" + item.Caption + "</a></li>");
+                            //    isAc = false;
+                            //}
+                            //else {
+                            //$("#ClassifyMenu").append("<li><a href=\"javascript:OnLoadMenus('" + userr + "','" + item.Mud_own + "');\">" + item.Caption + "</a></li>");
+                            //}
+                        });
+
+                        $("#MainMenus").append(divList);
+
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+            //$(this).addClass("active");
+            //$(".home .home_item").eq($(this).index()).show().siblings().hide();
+            //alert(Mudown);
+        }
+    </script>
+</body>
+</html>

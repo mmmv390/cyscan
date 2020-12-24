@@ -1,0 +1,20 @@
+.wlManage-box{margin:0px auto;}
+
+.wl-box{padding:0px 10px;}
+.wl-box .wl-state{border:1px solid #999;margin:10px 0 0 0;}
+
+.wl-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.wl-box .new-txt{font-size:16px;color:#333;}
+.wl-box .new-txt-v1{font-size:16px;color:#f00;}
+.wl-box .state-info{padding:12px;}
+.wl-box .state-info p{font-size:14px;padding:0 0 5px 0;line-height:24px;color:#666;}
+.wl-box .wlInfo span{font-size:16px;font-weight:700;line-height:24px;}
+.wl-box .wlInfo a{font-size:16px;font-weight:700;line-height:24px;color:#36c;}
+
+
+.wl-select-span{display:block;height:40px;}
+.wl-select{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+
+.wlManage-textarea{width:99.9%;height:100px;border:0;font-size:1em;line-height:20px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.wl-box .btn-type{width:30%;padding:10px 0px;margin:10px 10px 0 0;border-radius:5px;background:-webkit-gradient(linear,0 0,0 100%,from(#f60),to(#f30));background:-moz-linear-gradient(top,#f60,#f30);font-size:1em;color:#fff;text-shadow:1px 1px 2px #f30;border:0;font-family:"Microsoft Yahei",simsun;}

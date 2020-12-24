@@ -1,0 +1,38 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+ul,li,a{
+	font-size: initial;
+	}
+
+.bg{
+	background: linear-gradient(to right,#207efb,#2eaafc);
+}
+.main{
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float: right;
+}
+.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.content{
+	position: relative;
+	top: -0.47rem;
+	background: #fff;
+	border-top-left-radius: 0.47rem;
+	border-top-right-radius: 0.47rem;
+	padding: 0 0.2rem;
+}
+html,body{
+	height: 100%;
+}

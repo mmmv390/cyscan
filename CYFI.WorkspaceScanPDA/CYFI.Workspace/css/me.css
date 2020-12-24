@@ -1,0 +1,21 @@
+.buyorder .top ul {
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.buyorder {
+
+    height: calc(100% - 0.85rem);
+}
+
+    .buyorder .bottom {
+        height: calc(100%);
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+        .buyorder .bottom::-webkit-scrollbar {
+            display: none;
+        }
+

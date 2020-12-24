@@ -1,0 +1,158 @@
+﻿<html class="ui-mobile">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>审批</title>
+    <script src="layui/layui.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <link href="js/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/genericScript.js"></script>
+    <link href="default.css" rel="stylesheet" />
+    <link href="ivs/viewer.css" rel="stylesheet" />
+    <script src="ivs/viewer.js"></script>
+    <script type="text/javascript">
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return decodeURI(r[2]); return null;
+        }
+        function jsNC()
+        function goBack() {
+
+            window.location.href = "aph.html?Title=" + Common.getUrlParam("Title")
+                + "&item_st=" + Common.getUrlParam("item_st")
+                + "&itm_wn=" + Common.getUrlParam("itm_wn")
+                + "&gat_wn=" + Common.getUrlParam("gat_wn")
+                + "&itm_mak=" + Common.getUrlParam("itm_mak")
+                + "&item_n=" + Common.getUrlParam("item_n")
+                + "&oth_sql=" + Common.getUrlParam("oth_sql");
+
+            //alert('返回');
+        }
+        $(function () {
+
+            Common.CheckUserLogin();
+            try {
+                var authorization = localStorage.getItem("authorization");
+                var STToken = localStorage.getItem("STToken");
+                var userr = localStorage.getItem("userr");
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Audit/ImageList" + Common.jsNC2(),
+                    data: { 'UserName': userr, "ImagePath": getUrlParam("ImagePath") },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+                            var $text = $("#list").children().children().children();
+                            $text.eq(0).text(getUrlParam("Title"));
+                            //$text.eq(1).text("创建人：" + "张三");
+                            //$text.eq(2).text("创建时间：" + "2017");
+
+                            $.each(returnValue.FileNames, function (n, item) {
+                                $('#Gallery').append("<li style='height:155px'><img  src='" + item + "' /></li>");
+                                //$('#before').before("<li ><a style='height:150px'  href='" + item + "' rel='external' class='ui-link' style='display: block;'><img  src='" + item + "' rel='external' class='ui-link' style='display: block;' /></a></li>");
+                            });
+                            var viewer = new Viewer(document.querySelector('.viewImgs'), {
+                                'navbar': false,
+                                'title': false,
+                                'movable': true,
+                                'fullscreen': true,
+                                toolbar: {
+                                    zoomIn: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    zoomOut: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    reset: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    prev: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    next: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    rotateLeft: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    rotateRight: {
+                                        show: 1,
+                                        size: 'large',
+                                    }
+                                }
+                            });
+                            viewer.show();
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            } catch (e) {
+                alert(e);
+            }
+        })
+    </script>
+    <style>
+        .fixclass {
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            background: #00275d;
+        }
+
+        .headerTitle {
+            width: 100%;
+            height: 40px;
+            overflow: hidden;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body class="ui-mobile-viewport ui-overlay-a">
+    <div data-role="page" data-url="">
+        <!--内容-->
+        <div>
+            <div class="headerTitle">
+                <a href="javascript:goBack()">
+                    <img src="image/order_icon (6).png" alt="">
+                    <b>返回</b>
+                </a>
+            </div>
+            <div>
+                <ul id="list" data-role="listview" data-icon="false" class="ui-listview">
+                    <li class="ui-first-child ui-last-child">
+                        <a class="ui-btn">
+                            <h3></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="jqm-content">
+                <div class="jqm-block-content">
+                    <ul id="Gallery" class="gallery viewImgs"></ul>
+                </div>
+            </div>
+        </div><div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div>
+
+    </div>
+</body>
+</html>

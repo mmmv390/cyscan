@@ -1,0 +1,32 @@
+.integralDetail-box{margin:0px auto;}
+
+.table-box{border:1px solid #999;border-bottom:0px solid #999;margin:10px;}
+.table-box .tbl-head{border-bottom:1px solid #999;text-align:center;font-size:14px;font-weight:700;color:#666;}
+.table-box .tbl-row{border-bottom:1px solid #999;text-align:center;font-size:14px;color:#999;}
+
+.table-box .tDate{border-right:1px solid #999;}
+.table-box .tAmount{border-right:1px solid #999;}
+.table-box .tType{border-right:1px solid #999;}
+.table-box .tDate{}
+
+.table-box .tDate span{display:block;padding:3px 0;}
+.table-box .tDate a{display:block;padding:3px 0;color:#36c;line-height:22px;text-decoration:underline;}
+.table-box .tAmount span{display:block;padding:3px 0;}
+.table-box .tType span{display:block;padding:3px 0;}
+.table-box .tNum span{display:block;padding:3px 0;}
+.table-box .tNum a{display:block;padding:3px 0;color:#36c;line-height:22px;text-decoration:underline;}
+
+
+
+/* report */
+.integralDetail-box{margin:0px auto;}
+.integralDetailReport{padding:0 10px;}
+.integralDetail-box .integralDetail-report{border:1px solid #999;margin:10px 0 0 0;}
+.integralDetail-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.integralDetail-box .new-txt{font-size:16px;color:#333;}
+.integralDetail-box .state-info{padding:12px;}
+.integralDetail-box .state-info p{font-size:14px;line-height:22px;color:#666;}
+
+.integralDetail-box .cart-list{padding:5px 10px;}
+.integralDetail-box .cart-list p{color:#666;line-height:22px;font-size:14px;}
+.integralDetail-box .cart-list a{color:#36c;}

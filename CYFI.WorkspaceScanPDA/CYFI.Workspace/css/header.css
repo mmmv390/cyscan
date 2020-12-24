@@ -1,0 +1,171 @@
+
+nav{
+	background: #fff;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	width: 100%;
+	transform: translateX(-50%);
+	border-top: 1px solid #f4faff;
+	box-shadow: 0px -5px 9px 1px #f4faff;
+	max-width: 1000px;
+}
+nav li{
+	float: left;
+	width: 25%;
+	text-align: center;
+	font-size: initial;
+}
+nav li a{
+	font-size: initial;
+	padding: 0.13rem 0;
+	display: block;
+}
+nav li img{
+	width: 0.4rem;
+}
+nav li p{
+	font-size: 0.24rem;
+	color: #bec7d4;
+	margin-top: 0.1rem;
+}
+nav li.active p{
+	color: #2681fa;
+}
+header .top .pull-left{
+	font-size: 0.36rem;
+	color: #fff;
+	line-height: 0.8rem;
+}
+header .top .pull-right>a{
+	display: block;
+	line-height: 0.8rem;
+	position: relative;
+}
+header .top .pull-right>a img{
+	width: 0.4rem;
+	vertical-align: middle;
+}
+header .top .pull-right ul{
+	display: none;
+	position: absolute;
+	width: 2.6rem;
+	right: 0.2rem;
+	z-index: 5;
+	background: #f0f5fc;
+	border-radius: 0.2rem;
+	padding: 0.1rem 0;
+}
+header .top .pull-right ul li a{
+	display: inline-block;
+	width: 100%;
+	padding: 0 0.15rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height: 0.6rem;
+	color: #818da1;
+	font-size: 0.28rem;
+}
+header>ul{
+	white-space: nowrap;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+header>ul::-webkit-scrollbar {
+        display: none;
+    }
+header>ul li{
+	display: inline-block;
+}
+header{
+	padding: 0 0.15rem ;
+}
+header>ul li:first-child a{
+	padding-left: 0;
+}
+header>ul li a{
+	font-size: 0.28rem;
+	color: #a5c7fd;
+	display: block;
+	padding: 0.3rem 0.2rem 1rem;
+}
+header>ul li.active a{
+	color: #fff;
+	font-size: 0.32rem;
+	position: relative;
+
+}
+header>ul li.active a:after{
+	content: '';
+	width: 0.6rem;
+	height: 0.06rem;
+	background: #fff;
+	position: absolute;
+	bottom: 0.7rem;
+	left: 50%;
+	background: #fff;
+	transform: translateX(-50%);
+}
+.home{
+	position: relative;
+	top: -0.47rem;
+	background: #fff;
+	border-top-left-radius: 0.47rem;
+	border-top-right-radius: 0.47rem;
+	padding: 0 0.15rem;
+	height: calc(100% - 3.25rem);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.home .home_item+.home_item{
+	display: none;
+}
+.title{
+	font-size: 0.3rem;
+	font-weight: bold;
+	color: #4d596e;
+	line-height: 0.8rem;
+}
+.ul-3 li{
+	float: left;
+	width: 33.3%;
+	padding: 0 0.075rem;
+	margin-bottom: 0.15rem;
+}
+.ul-3{
+	margin: 0 -0.075rem;
+}
+.ul-3 li a{
+	display: block;
+	width: 100%;
+	border: 1px solid #ebf0f7;
+	border-radius: 0.25rem;
+	text-align: center;
+	padding: 0.3rem 0
+}
+.ul-3 li a img{
+	width: 0.6rem;
+}
+.ul-3 li a p{
+	margin-top: 0.3rem;
+	font-size: 0.28rem;
+	color: #818da1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 0 0.1rem;
+}
+
+
+
+
+
+
+/*日期插件*/
+.jdate-container *{
+	line-height: inherit;
+}
+.jdate-container header{
+	padding: 0;
+}

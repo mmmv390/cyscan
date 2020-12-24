@@ -1,0 +1,124 @@
+header .search-box{
+	font-size: 0;
+	width: 6.3rem;
+	background: #fff;
+	height: 0.7rem;
+	border-radius: 0.2rem;
+	margin: 0 auto ;
+	padding: 0 0.25rem;
+}
+header{
+	padding-bottom: 0.7rem;
+}
+header .search-box input{
+	font-size: 0.28rem;
+	height: 0.7rem;
+	border: 0;
+	outline: none;
+	vertical-align: top;
+	width: calc(100% - 0.8rem);
+	color: #bec7d4;
+}
+header .search-box input::-moz-placeholder{
+	color: #BEC7D4;
+}
+header .search-box input::-webkit-input-placeholder{
+	color: #BEC7D4;
+}
+header .search-box a{
+	display: inline-block;
+	height: 0.7rem;
+	line-height: 0.7rem;
+	vertical-align: top;
+}
+header .search-box a img{
+	width: 0.28rem;
+	vertical-align: middle;
+	margin-top: -0.05rem;
+}
+.infolist {
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem;
+	height: calc(100% - 3.5rem);
+}
+.infolist .btn{
+	margin-bottom: 0.3rem;
+}
+.infolist .btn li{
+	float: left;
+	width: 33.3%;
+	padding: 0 0.225rem;
+}
+.infolist .btn li a{
+	display: inline-block;
+	width: 100%;
+	line-height: 0.7rem;
+	background: #bec7d4;
+	text-align: center;
+	font-size: 0.28rem;
+	color: #fff;
+	border-radius: 0.18rem;
+}
+.infolist .btn li.active a{
+	background: #2a9efc;
+}
+.list_box{
+	height: calc(100% - 0.75rem);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.list li{
+	display: block;
+	width: 100%;
+	border: 1px solid #e6ebf2;
+	margin-bottom: 0.2rem;
+	border-radius: 0.3rem;
+}
+.list+.list{
+	display: none;
+}
+.list li a{
+	display: block;
+	width: 100%;
+	padding: 0.3rem;
+}
+.list li .name h1{
+	font-size: 0.3rem;
+	color: #4d596e;
+	line-height: 0.4rem;
+}
+.list li .name h1 span{
+	display: inline-block;
+	line-height: 0.3rem;
+	height: 0.3rem;
+	font-size: 0.22rem;
+	border: 1px solid;
+	padding: 0 0.08rem;
+	margin-left: 0.1rem;
+}
+.list li .name span.state1{
+	border-color: #ff961e;
+	color: #ff961e;
+}
+.list li .name span.state2{
+	border-color: #3dd7a2;
+	color: #3dd7a2;
+}
+.list li .name span.state3{
+	border-color: #bec7d4;
+	color: #bec7d4;
+}
+.list li .date{
+	font-size: 0.28rem;
+	color: #bec7d4;
+}
+.list li .num{
+	font-size: 0.28rem;
+	color: #818da1;
+	line-height: 0.5rem;
+}
+.list li .people{
+	font-size: 0.28rem;
+	color: #2a9efc;
+	line-height: 0.4rem;
+}

@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>C/3移动平台</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <script src="js/index.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section class="aui-flexView">
+        <header class="aui-navBar aui-navBar-fixed">
+            <a href="javascript:;" class="aui-navBar-item">
+
+            </a>
+            <div class="aui-center">
+                <span class="aui-center-title"></span>
+            </div>
+            <a href="javascript:;" class="aui-navBar-item">
+                <i class="icon icon-sys"></i>
+            </a>
+        </header>
+        <section class="aui-scrollView">
+            <div class="aui-sign-head">
+
+            </div>
+            <div class="aui-sign-form" style="margin-top:10rem">
+                <div class="aui-flex">
+                    <i class="icon icon-company"></i>
+                    <div class="aui-flex-box">
+                        <input style="margin-left:0.8rem;" type="text" id="Company" autocomplete="off" placeholder="企业标识">
+                    </div>
+                </div>
+                <div class="aui-flex">
+                    <i class="icon icon-phone"></i>
+                    <div class="aui-flex-box">
+                        <input style="margin-left:0.8rem;" type="text" id="UserName" autocomplete="off" placeholder="用户">
+                    </div>
+                </div>
+                <div class="aui-flex">
+                    <i class="icon icon-code"></i>
+                    <div class="aui-flex-box">
+                        <input style="margin-left:0.8rem;" type="password" id="Password" autocomplete="off" placeholder="密码">
+                    </div>
+                    <div class="aui-code" style="display:none">
+                        <input id="btnSendCode1" type="button" class="btn btn-default" value="" onClick="sendMessage1()" />
+                    </div>
+                </div>
+                <button class="aui-sign-login" onClick="Login()">立即登录</button>
+                <div class="aui-flex aui-flex-clear" style="display:none">
+                    <div class="aui-flex-box">
+                        <a href="javascript:;">手机注册</a>
+                    </div>
+                    <div class="aui-links">
+                        <a href="javascript:;">忘记密码</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</body>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="layer.js"></script>
+<script src="js/genericScript.js"></script>
+<script type="text/javascript">
+    var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
+    var count = 60;
+    var InterValObj1;
+    var curCount1;
+    function sendMessage1() {
+        curCount1 = count;
+        var phone = $.trim($('#phone1').val());
+        if (!phoneReg.test(phone)) {
+            alert(" 请输入有效的手机号码");
+            return false;
+        }
+
+        $("#btnSendCode1").attr("disabled", "true");
+        $("#btnSendCode1").val(+ curCount1 + "秒再获取");
+        InterValObj1 = window.setInterval(SetRemainTime1, 1000);
+
+    }
+    function SetRemainTime1() {
+        if (curCount1 == 0) {
+            window.clearInterval(InterValObj1);
+            $("#btnSendCode1").removeAttr("disabled");
+            $("#btnSendCode1").val("重新发送");
+        }
+        else {
+            curCount1--;
+            $("#btnSendCode1").val(+ curCount1 + "秒再获取");
+        }
+    }
+    function Login() {
+
+        //alert(Common.getRemotePort());
+
+        var DEVICEUUID = localStorage.getItem("DEVICEUUID");
+
+        var isA = true;
+        $.ajax({
+            type: "Post",
+            url: Common.getWeChatRemotePort() + "User/DeviceCheck",
+            contentType: "application/x-www-form-urlencoded",
+            data: { 'usr_id': DEVICEUUID, 'sty': "2" },  //sty 1 手机  2 pda 3 平板   4  电视
+            complete: function (res) {
+                layer.close(loadIndex);
+            },
+            success: function (data) {
+                var returnValue = eval(data);
+                if (returnValue.Code == 1) {
+                    isA = true;
+                }
+                else {
+                    layer.open({
+                        title: [
+                            '登录失败',
+                            'background-color: #F9F900; color:#000000;'
+                        ],
+                        content: returnValue.Message
+                        , btn: '确定'
+                        , yes: function (index) {
+                            layer.close(index);
+                        }
+                    });
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer.close(loadIndex);
+                if (textStatus == "error") {
+                    alert("网络异常:" + XMLHttpRequest.status);
+                }
+            }
+        });
+
+        if (!isA) {
+            return;
+        }
+
+
+
+
+        var Company = $("#Company").val();
+        var userName = $("#UserName").val();
+        var password = $("#Password").val();
+        if (Company == '') {
+            layer.open({
+                title: [
+                    '登录失败',
+                    'background-color: #F9F900; color:#000000;'
+                ],
+                content: '请输入企业标识。'
+                , btn: '确定'
+                , yes: function (index) {
+                    $("#Company").focus();
+                    layer.close(index);
+                }
+            });
+            return;
+        }
+        if (userName == '') {
+            layer.open({
+                title: [
+                    '登录失败',
+                    'background-color: #F9F900; color:#000000;'
+                ],
+                content: '请输入用户名。'
+                , btn: '确定'
+                , yes: function (index) {
+                    $("#UserName").focus();
+                    layer.close(index);
+                }
+            });
+
+            return;
+        }
+        if (password == '') {
+            layer.open({
+                title: [
+                    '登录失败',
+                    'background-color: #F9F900; color:#000000;'
+                ],
+                content: '请输入密码。'
+                , btn: '确定'
+                , yes: function (index) {
+                    $("#Password").focus();
+                    layer.close(index);
+                }
+            });
+            return;
+        }
+        var RemotePort = '';
+
+        $.ajax({
+            type: "Get",
+            async: false,
+            url: Common.getWeChatRemotePort() + "BulletinBoard/RemotePort" + Common.jsNC2(),
+            data: { 'ServiceName': Company },
+            success: function (data) {
+                RemotePort = data;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == "error") {
+                    layer.msg("网络异常:" + XMLHttpRequest.status);
+                }
+            }
+        });
+
+        if (!RemotePort || RemotePort == '') {
+            layer.open({
+                title: [
+                    '登录失败',
+                    'background-color: #F9F900; color:#000000;'
+                ],
+                content: '企业标识不正确。'
+                , btn: '确定'
+                , yes: function (index) {
+                    $("#Company").focus();
+                    layer.close(index);
+                }
+            });
+
+            return;
+        } else {
+            localStorage.setItem("EnterCode", Company);
+            localStorage.setItem("GatewayUrl", RemotePort);
+        }
+        var loadIndex = layer.open({
+            type: 2
+            , content: '登录中'
+        });
+
+        var DEVICEUUID = localStorage.getItem("DEVICEUUID");
+        $.ajax({
+            type: "Post",
+            url: RemotePort + "User/UserVLogin",
+            contentType: "application/x-www-form-urlencoded",
+            data: { 'UserName': userName, 'Password': password, 'UniqueCode': DEVICEUUID },
+            complete: function (res) {
+                layer.close(loadIndex);
+            },
+            success: function (data) {
+
+                var returnValue = eval(data);
+                if (returnValue.Code == 1) {
+                    localStorage.setItem("STToken", returnValue.STToken);
+                    localStorage.setItem("authorization", returnValue.Token);
+                    localStorage.setItem("userr", userName);
+                    //$.cookie('STToken', returnValue.STToken, { expires: 7 });
+                    //$.cookie('authorization', returnValue.Token, { expires: 7 });
+                    window.location.href = "index.html";
+                }
+                else {
+                    layer.open({
+                        title: [
+                            '登录失败',
+                            'background-color: #F9F900; color:#000000;'
+                        ],
+                        content: returnValue.Message
+                        , btn: '确定'
+                        , yes: function (index) {
+                            $("#Password").focus();
+                            layer.close(index);
+                        }
+                    });
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer.close(loadIndex);
+                if (textStatus == "error") {
+                    alert("网络异常:" + XMLHttpRequest.status);
+                }
+            }
+        });
+    }
+
+    $(function () {
+        var EnterCode = localStorage.getItem("EnterCode");
+        if (EnterCode) {
+            $("#Company").val(EnterCode);
+            $("#UserName").focus();
+        }
+        else {
+            $("#Company").focus();
+        }
+        //alert(app.deviceVersion());
+    });
+</script>
+</html>

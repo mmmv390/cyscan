@@ -1,0 +1,11 @@
+.search-box{margin:10px auto;overflow:auto;}
+
+.input-icon{padding:10px 0 0 0;text-align:center;}
+.input-icon img{}
+
+.input-area{padding:0px 20px;}
+.input-area .tTitle{padding:10px 10px 5px 0px;line-height:25px;font-size:1.2em;color:#333;}
+.input-area .search-input-span{display:block;height:45px;border:1px solid #ccc;}
+.input-area .search-input{width:99.9%;height:45px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:44px;font-weight:normal;color:#666;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;}
+.input-area .search-btn-span{display:block;height:40px;}
+.input-area .search-btn{width:100%;height:40px;border:0;font-size:1.2em;}

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>单选</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+</head>
+<body>
+    <table id="ListData" lay-filter="ListData"></table>
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" id="layuiadmin-app-form-submit"
+               value="确认添加" />
+    </div>
+    <script type="text/javascript">
+
+        layui.use(['layer', 'form', 'jquery', 'table'], function () {
+            var table = layui.table, $ = layui.$
+                , form = layui.form;
+
+            var TitleName = "";
+
+            var Titles = eval(parent.temArr.paramcols);
+            $.each(Titles, function (n, item) {
+                if (item.field == parent.temArr.fld_key) {
+                    TitleName = parent.temArr.fld_key;
+                }
+            });
+            table.render({
+                elem: '#ListData'
+                , data: eval(parent.temArr.paramlist)
+                , limit: 500
+                , even: true
+                , height: 500
+                , cellMinWidth: 150
+                , cols: [Titles]
+            });
+
+            table.on('row(ListData)', function (obj) {
+                var data = obj.data;
+
+                $.each(data, function (n, itemData) {
+                    var inputs = parent.$("input[type='text']");
+                    inputs.each(function () {
+                        if ($(this).attr("id") == n) {
+                            parent.$("#" + $(this).attr("id")).val(itemData);
+                        }
+                    });
+                });
+
+                //parent.$("#" + parent.temArr.fld_key).val(data[TitleName]);
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            });
+
+            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+                var checkStatus = table.checkStatus('ListData')
+                    , checkData = checkStatus.data; //得到选中的数据
+                if (checkData.length === 0) {
+                    return layer.msg('请选择数据');
+                }
+                
+                //checkData[0].val()
+
+                parent.$("#" + parent.temArr.fld_key).val(checkData[0][TitleName]);
+                //parent.$("#depcode").val(checkData[0].depcode);
+
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            });
+        });
+    </script>
+    <script type="text/html" id="scptMedical">
+        {{#  if(d.IsMedical == "1"){ }}
+        <span style="color:#009688;">是</span>
+        {{#  } else { }}
+        <span style="color:#FF5722;">否</span>
+        {{#  } }}
+    </script>
+    <script type="text/html" id="scptPres">
+        {{#  if(d.IsPres == "1"){ }}
+        <span style="color:#009688;">是</span>
+        {{#  } else { }}
+        <span style="color:#FF5722;">否</span>
+        {{#  } }}
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+.shopCart-box{margin:0px auto;}
+.my-cart{position:relative;min-height:22px;padding:10px;background-color:#e6e6e6;line-height:25px;}
+.my-cart .amountInfo{color:#888;}
+.my-cart .btn-area-rt{position:absolute;top:10px;right:10px;}
+.my-cart .link{color:#888;}
+.my-cart .btn-type{padding:5px 10px;border-radius:0px;outline:0;border:0;}
+
+
+.cart-list{padding:10px;background:#f4f4f4;}
+.list-bg{border-top:1px solid #e6e6e6;border-bottom:1px solid #fff;}
+.cart-list .fl{width:240px;text-align:left;}
+.cart-list .p-img{width:50px;margin:0 10px 0 0;}
+.cart-list .p-img-v1{width:75px;margin-bottom:-9999px;}
+.cart-list .p-img img{width:50px;height:50px;}
+.cart-list .p-img span{display:inline-block;vertical-align:top;}
+
+.cart-list .pay-img{vertical-align:middle;}
+.cart-list .fl-v1,.cart-list .fl-v2{margin-left:85px;}
+.cart-list p{padding:0 0 5px 0;}
+.cart-list .p-name{line-height:21px;}
+.cart-list .p-num{color:#999;}
+.cart-list .p-price-def{text-decoration:line-through;}
+.cart-list .promo-price{display:block;font-size:16px;line-height:25px;padding:0 5px 0 0;color:#7a7a7a;}
+.cart-list .promo-price strong{color:#e4393c;}
+.cart-list .def-price{display:inline-block;font-size:16px;color:#7a7a7a;text-decoration:line-through;line-height:25px;}
+.cart-list .p-amount{color:#7a7a7a;}
+
+.cart-list .p-amount .redu,.cart-list .p-amount .add{display:inline-block;position:relative;top:-1px;text-align:center;font-size:1em;background-color:#fff;border:1px solid #a4a4a4;width:20px;height:21px;line-height:20px;-moz-box-shadow:0 1px 2px #d9d9db inset;-webkit-box-shadow:0 1px 2px #d9d9db inset;box-shadow:0 1px 2px #d9d9db inset;vertical-align:middle;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;color:#494949;}
+
+.cart-list .common-input{font-size:1em;background-color:#fff;border:1px solid #a4a4a4;padding-top:3px;height:18px;line-height:22px;-moz-box-shadow:0 1px 3px #d9d9db inset;-webkit-box-shadow:0 1px 1px #d9d9db inset;box-shadow:0 1px 1px #d9d9db inset;vertical-align:text-top;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;text-align:center;color:#494949;font-size:1.2em;}
+
+.cart-list .btn{display:inline-block;width:100px;height:30px;cursor:pointer;line-height:30px;margin:5px 10px 0 0;text-align:center;color:#3c3c3c;background:#f2f2f3;font-size:1em;border:1px solid #d3d4d4;color:#b5b5b6;}
+.input-chk{padding:0 5px;vertical-align:top;}
+
+
+.pay-tip{margin:15px 10px;padding:10px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.pay-tip p{padding:10px;color:#595757;}
+.pay-tip strong{color:#db2929;font-weight:normal;}
+.common-border{}
+.pay-tip .tTit{color:#595757;}
+
+
+
+.input-info{padding:5px 0px;text-align:center;}
+.input-info span{display:block;padding:10px;font-size:1em;line-height:25px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;}
+
+.pay-btn{padding:0 10px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.pay-btn .sub_btn{display:block;border:none;width:100%;margin:10px auto 0;height:40px;line-height:40px;font-size:1em;font-weight:bold;cursor:pointer;text-align:center;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+
+
+.addressInfo-box{}
+.addressInfo-box .btn{display:inline-block;height:26px;cursor:pointer;line-height:24px;padding:0 8px;text-align:center;color:#3c3c3c;font-size:1em;background:-webkit-gradient(linear,left top,left bottom,from(#05a83b),to(#05a83b));font-size:0.9em;background:-moz-linear-gradient(top,#05a83b,#05a83b);border:0px;color:#fff;font-family:"Microsoft Yahei",simsun;}
+.input-chk{padding:0 5px;vertical-align:top;}
+
+.noAddress-area{margin:0px auto;text-align:center;}
+.noAddress-btn{display:inline-block;width:100%;height:40px;cursor:pointer;line-height:30px;margin:8px 0 0 0;text-align:center;color:#3c3c3c;font-size:1em;border:1px solid #d3d4d4;background-color:#fff;font-family:"Microsoft Yahei",simsun;}
+
+.addressBtn-area{padding:10px 0;}
+
+.addressList-area{padding:10px;}
+.addressList-area .aList{margin:0 0 10px 0;border-bottom:1px solid #dbdbdd;box-shadow:0 1px 0 #f4f4f4;padding:0 0 10px 0;position:relative;}
+.addressList-area .aList .tTit{}
+.addressList-area .aList .tTit .name{display:inline-block;font-size:16px;line-height:28px;margin-right:5px;color:#7a7a7a;}
+.addressList-area .aList .tTit .phone{display:inline-block;line-height:28px;font-weight:700;margin-right:5px;}
+.addressList-area .aList .tTit .default{display:inline-block;line-height:28px;}
+
+.addressList-area .aList .tContent{padding:0 10px 0px 15px;}
+.addressList-area .aList .tContent .address{display:block;color:#999;line-height:25px;overflow:hidden;white-space:normal; word-break:break-all;}
+.addressList-area .aList .tContent .post{display:block;color:#999;line-height:25px;}
+.addressList-area .aList .tContent .operation{display:block;text-align:right;}
+.addressList-area .aList .tContent .operation a{display:inline-block;padding:0 10px;}
+
+.addressList-area .aList .tBtn{position:absolute;top:0px;right:0px;}
+
+.input-chk{padding:0 5px;vertical-align: middle;}
+
+.changeLbtn{padding:5px 10px;cursor:pointer;font-size:16px;color:#000;border:1px solid #d3d4d4;background-color:#fff;font-family:"Microsoft Yahei",simsun;}
+
+.buyBtun{width:100%;border:0;font-family:"Microsoft Yahei",simsun;cursor:pointer;}
+
+
+/* openWin */
+.order-openWin-box{width:100%;height:100%;top:0px;left:0px;position:fixed;filter: Alpha(opacity=20);opacity:0.2; background:#000;z-index:99998;}
+.order-openAlert-box{position:absolute;padding:20px 30px 10px 30px; width:240px; left:50%;top:60px; margin:0 0 0 -150px; background:#fff;border:1px solid #ccc;z-index:99998;text-align:left;border-radius:6px;-webkit-border-radius:6px;-moz-border-radius:6px;}
+
+.alert-area{}
+.alert-area .input-icon{padding:5px 0;text-align:center;}
+.alert-area .input-icon img{}
+
+.alert-area .input-msg{padding:10px 0;text-align:center;}
+.alert-area .input-msg h2{height:28px;}
+.alert-area .input-msg span{display:block;text-align:left;word-break:normal;word-wrap:break-word;line-height: 1.6em;color:#ea5404;}
+
+.alert-area .input-btn{padding:5px 0 10px 0;text-align:center;}
+
+.iconMsg-oc1:before {
+	content: "\e800";
+	font-size: 5em;
+	color:#ea5404;
+}

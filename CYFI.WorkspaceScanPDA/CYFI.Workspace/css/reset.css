@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+/* reset */
+/*html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;font-weight:normal;}
+[hidefocus],summary{outline:0;}
+ol,ul,li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;font-weight:normal;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;content:'';}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,strong,b{font-weight:bold;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{color:#333;outline:0;}
+body{background:#fff;}
+a,a:hover{color:#333;}
+.clearfix:after{content:'\20';display:block;height:0;clear:both}
+.clearfix{zoom:1}*/
+/* CSS Document */
+* { margin: 0; padding: 0;}
+body,form,input{ margin: 0px; padding: 0px; border:0; font-size: 14px; font-weight: normal; font-family:"Microsoft Yahei"; color:#000;}
+ul,ol,li { list-style: none; list-style-type:none; margin:0; padding:0px;}
+p,div,a,h1,h2,h3,h4,h5,h6,span,ul,li,img,form,input,br,dl,dt,dd{ padding:0; margin:0;}
+img {border-style:none; border:0; padding:0; margin:0;}
+a{color:#000; text-decoration:none;}
+a:hover{ text-decoration:none;}
+.clearfix{ clear:both; height:0; display:block;overflow: hidden;}
+h1,h2,h3,h4,h5,h6{ font-weight:normal;}
+em,i,samp,b{ font-style:normal;font-weight: normal; font-family:"Microsoft Yahei";}
+body{background:#fff}
+
+html { -webkit-text-size-adjust:none;overflow-x:hidden;}
+body {min-width:300px;overflow-x:hidden;}
+html, body { width: 100%; }
+.main{width:10.8rem;margin:0 auto;}
+
+
+html, body { width: 100%;font-size:14px;   font-family: "Microsoft Yahei";}
+.main{width:7.2rem;margin:0 auto;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

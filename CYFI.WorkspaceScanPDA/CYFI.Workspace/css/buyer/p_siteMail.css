@@ -1,0 +1,69 @@
+.siteMail-box{margin:0px auto;}
+.siteMailList{padding:8px 10px;}
+
+.siteMailList .tList{margin:10px 0;border:1px solid #999;}
+
+.siteMail-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.siteMail-box .new-txt{font-size:14px;color:#333;}
+.siteMail-box .mailTitle{}
+.siteMail-box .mailTitle .title{font-size:16px;font-weight:700;line-height:22px;}
+.siteMail-box .mailTitle .send{color:#666;line-height:20px;}
+.siteMail-box .mailTitle .time{color:#666;line-height:20px;}
+
+.siteMail-box .state-info{padding:12px;}
+.siteMail-box .state-info p{font-size:14px;line-height:22px;color:#666;}
+
+.siteMail-box .memo-info{padding:12px;background-color:#f3ece5;}
+.siteMail-box .memo-info p{font-size:14px;line-height:22px;color:#666;}
+
+.siteMail-box .cart-list{padding:5px 10px;}
+.siteMail-box .cart-list p{color:#666;line-height:22px;font-size:14px;}
+.siteMail-box .cart-list a{color:#36c;}
+.siteMail-box .cart-list span{display:inline-block;width:25px;height:20px;vertical-align:middle;}
+.siteMail-box .cart-list .newMail{background:url(../../img/buyer/siteMail_icon1.png) no-repeat 9999px 9999px;background-position:0 0;}
+.siteMail-box .cart-list .oldMail{background:url(../../img/buyer/siteMail_icon1.png) no-repeat 9999px 9999px;background-position:-29px 0;}
+.siteMail-box .cart-list .draft{background:url(../../img/buyer/siteMail_icon1.png) no-repeat 9999px 9999px;background-position:-56px 0;}
+
+.siteMail-box .cart-list .mailContent{}
+.siteMail-box .cart-list .mailContent p{line-height:24px;}
+
+.siteMail-box .btn-sendMail{width:30%;padding:10px 0px;margin:10px 10px 0 0;border-radius:5px;font-size:1em;border:0;font-family:"Microsoft Yahei",simsun;}
+
+.siteMailList .btn-area-rt{text-align:right;}
+.siteMailList .btn-area-rt .defBtn{display:inline-block;height:22px;line-height:22px;margin:0px 5px 0 0;padding:0px 10px;text-align:center;font-size:14px;outline:0px;}
+.siteMailList .btn-area-rt .delBtn{height:24px;line-height:22px;margin:5px 5px 0 0;padding:0px 10px;text-align:center;font-size:14px;font-family:"Microsoft Yahei",simsun;}
+
+
+/* siteMail-readMail */
+.siteMailDetail{padding:8px 10px;}
+.siteMailDetail .tList{margin:10px 0;border:1px solid #999;}
+
+.siteMail-readMail{padding:0;}
+.siteMail-btn-box{padding:0px 0px 20px 0px;}
+
+
+/* siteMail-sendMail */
+.siteMail-sendMail{padding:0;}
+.siteMail-sendMail .tTitle{padding:10px 0px 5px 0px;line-height:25px;}
+.siteMail-sendMail .tTitle .tit{font-size:16px;}
+.siteMail-sendMail .tTitle .extra{font-size:14px;}
+
+.input-info{padding:0px;text-align:center;}
+.input-info span{display:block;padding:10px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;font-size:1em;line-height:25px;}
+
+.input-area{padding:0px;}
+.input-area .sendMail-input-span{display:block;height:40px;border:1px solid #ccc;}
+.input-area .sendMail-input{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+.input-area .sendMail-select-span{display:block;height:40px;}
+.input-area .sendMail-select{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+
+.input-area .sendMail-textarea-span{display:block;height:40px;border:1px solid #ccc;}
+.input-area .sendMail-textarea{width:99.9%;height:100px;border:0;font-size:1em;line-height:39px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.input-area .sendMail-code-span{display:block;position:relative;}
+.input-area .sendMail-code{width:140px;height:45px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:44px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+.input-area .sendMail-code-span img{height:44px;border:1px solid #ccc;position:absolute;top:0;right:0;}
+
+
+.sendBtn,.saveBtn,.backBtn,.replyBtn{width:98%;border:0;font-family:"Microsoft Yahei",simsun;cursor:pointer;}

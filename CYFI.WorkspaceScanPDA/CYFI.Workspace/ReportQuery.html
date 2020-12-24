@@ -1,0 +1,601 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C/3移动平台</title>
+    <style>
+        .pull_left_check {
+            width: calc(100% - 1.65rem);
+            display: inline-block;
+            margin: 5px;
+            font-size: 0;
+            height: 0.7rem;
+            border: 0px solid #e6ebf2;
+            vertical-align: middle;
+            padding: 0 0.2rem;
+            border-radius: 0.15rem;
+        }
+        .pull_left_check input {
+                height: 0.55rem;
+                border: none;
+                vertical-align: bottom;
+                width: calc(100% - 4.7rem);
+                outline: none;
+                color: #818da1;
+                font-size: 0.18rem;
+            }
+        .bottomHistory {
+            height: calc(100% - 0.75rem);
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        .bottomHistory::-webkit-scrollbar {
+                display: none;
+            }
+        .bottomHistory {
+            height: calc(100% - 1.75rem);
+        }
+        .checkboxintpu1 {
+            width: calc(100% - 20px);
+            padding-right: 30px;
+            position: absolute;
+            z-index: 1;
+            background: transparent;
+        }
+        .checkboxintpu2 {
+            position: absolute;
+            right: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bx-cover.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/jdate.min.js"></script>
+    <script src="js/touch.min.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script src="js/genericScript.js"></script>
+    <script>
+        String.prototype.endWith = function (s) {
+            if (s == null || s == "" || this.length == 0 || s.length > this.length)
+                return false;
+            if (this.substring(this.length - s.length) == s)
+                return true;
+            else
+                return false;
+            return true;
+        }
+
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            localStorage.removeItem("Mudown");
+            localStorage.removeItem("UntOwn");
+            localStorage.removeItem("Prntown");
+            localStorage.removeItem("Caption");
+            window.location.href = "login.html";
+        }
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+            window.location.href = "ReportQuery.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+        function Reset() {
+            //var UntOwn = localStorage.getItem("UntOwn");
+            location.reload();
+        }
+        function Search() {
+            var viewType = $("input[name='viewType']:checked").val();
+            localStorage.setItem("FileType", viewType);
+
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var Prntown = localStorage.getItem("Prntown");
+            var str = "{";
+            var inputs = $("input");
+            inputs.each(function () {
+                if ($(this).attr("type") != "radio") {
+                    if ($(this).attr("type") == "checkbox") {
+                        var currchecked = $(this).attr("checked");
+                        //var value = $(this).val();
+                        var id = this.id;
+                        id = id.replace(/dategroup1/g, "")
+                        str += "\"" + id + "\":";
+                        if (currchecked == "checked") {
+                            str += "\"1\",";
+                        }
+                        else {
+                            str += "\"0\",";
+                        }
+                    }
+                    else {
+                        var value = $(this).val();
+                        var id = this.id;
+                        id = id.replace(/dategroup1/g, "")
+                        str += "\"" + id + "\":";
+                        str += "\"" + value + "\",";
+                    }
+                }
+            });
+            if (str.endWith(',')) {
+                str = str.substring(0, str.length - 1);
+            }
+            str += "}";
+
+
+            if (viewType == "xls") {
+
+                localStorage.setItem("QueryCondition", str);
+
+                $.ajax({
+                    type: "Get",
+                    url: Common.getWeChatRemotePort() + "Report/TabItems" + Common.jsNC2(),
+                    data: { 'UserName': Common.getDefaultUser(), 'Shwn': Prntown },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    beforeSend: function (request) {
+                        loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                    },
+                    complete: function () {
+                        layer.close(loadIndex);
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 1) {
+                            if (returnValue.RecordCount > 0) {
+                                localStorage.setItem("TabItems", returnValue.JsonList);
+                                window.location.href = "viewtabpage.html";
+                            }
+                            else {
+                                layer.msg("没有配置网格，请联系管理员");
+                            }
+                         
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.close(loadIndex);
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            }
+            else {
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Post",
+                    url: Common.getWeChatRemotePort() + "Report/Report" + Common.jsNC2(),
+                    data: { 'UserName': userr, 'ExName': viewType, 'Param': str, 'Shwn': UntOwn, 'Prntown': Prntown },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    beforeSend: function (request) {
+                        loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                    },
+                    complete: function () {
+                        layer.close(loadIndex);
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+
+                            OpenFile(returnValue.ImagePath, viewType);
+
+                            //localStorage.setItem("BBImagePath", returnValue.ImagePath);
+                            //window.location.href = "viewpage.html";
+
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.close(loadIndex);
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left" id="oTitle">
+
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul>
+                    <li><a href="#">用户参数</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="javascript:QHYG();">重新登录</a></li>
+                    <li><a href="#">升级</a></li>
+                    <li><a href="#">注册信息</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder buyorder2">
+        <div class="top">
+            <ul class="clearfix">
+                <li class="active">
+                    <a href="javascript:Search();">
+                        <img src="image/order_icon1_active.png" alt="">
+                        <p>查询</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="javascript:Reset();">
+                        <img src="image/order_icon1_active.png" alt="">
+                        <p>重置</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <div id="divWhere">
+            </div>
+            <div class="input_box input_radio">
+                <span class="input_name">预览格式</span>
+                <div class="input_right">
+                    <label id="lblxls" class="lab onCheck"><input type="radio" name="viewType" value="xls"><span>网格</span></label>
+                    <label id="lbljpg" class="lab"><input type="radio" name="viewType" value="jpg"><span>图片</span></label>
+                </div>
+                <ul style="margin-top:10px" id="ulViewHistroy"></ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" style="display:none" data-url="">
+        <!--内容-->
+        <div>
+            <div class="headerTitle">
+                <a href="javascript:goBack()">
+                    <img src="image/order_icon (6).png" alt="">
+                    <b>返回</b>
+                </a>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul class="clearfix">
+            <li>
+                <a href="javascript:MUSY();">
+                    <img src="image/nav_icon1.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="javascript:MULB();">
+                    <img src="image/nav_icon2_active.png" alt="">
+                    <p>列表</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUXX();">
+                    <img src="image/nav_icon3.png" alt="">
+                    <p>消息</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUWD();">
+                    <img src="image/nav_icon4.png" alt="">
+                    <p>我的</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <script>
+        var allData = [];
+        var temArr = null;
+        function selectOpen(fld_key) {
+            layui.use(['layer', 'jquery'], function () {
+                temArr = null;
+                for (var i = 0; i < allData.length; i++) {
+                    var a = 0;
+                    if (allData[i].fld_key == fld_key) {
+                        temArr = allData[i];
+                        break;
+                    }
+                }
+                //&& typeof (temArr) != "undefined" && temArr != 0
+                if (!temArr) {
+                    layer.msg('没有结果集');
+                }
+                else {
+                    layer.open({
+                        type: 2
+                        , title: '选择'
+                        , content: ['RadioLim.html', 'no']
+                        , maxmin: false
+                        , area: ['100%', '100%']
+                        , scrollbar: false
+                    });
+                }
+            });
+        }
+        function selectCheckboxOpen(fld_key) {
+            layui.use(['layer', 'jquery'], function () {
+                temArr = null;
+                for (var i = 0; i < allData.length; i++) {
+                    var a = 0;
+                    if (allData[i].fld_key == fld_key) {
+                        temArr = allData[i];
+                        break;
+                    }
+                }
+                //&& typeof (temArr) != "undefined" && temArr != 0
+                if (!temArr) {
+                    layer.msg('没有结果集');
+                }
+                else {
+                    layer.open({
+                        type: 2
+                        , title: '选择'
+                        , content: ['CheckBoxLim.html', 'no']
+                        , maxmin: false
+                        , area: ['100%', '100%']
+                        , scrollbar: false
+                        , btn: ['确定', '取消']
+                        , yes: function (index, layero) {
+                            //点击确认触发 iframe 内容中的按钮提交
+                            var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-submit");
+                            submit.click();
+                        }
+                    });
+                }
+            });
+        }
+
+        $("body").on("click", ".lab", function () {
+            $(this).attr("class", "lab onCheck");
+            $(this).siblings().attr("class", "lab");
+        })
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        function selectDate(id) {
+            new Jdate({
+                el: id,
+                format: 'YYYY-MM-DD',
+                beginYear: 2000,
+                endYear: 2100
+            })
+        }
+        function OpenFile(fileName, fileType) {
+
+            if (fileType.endWith('jpg')) {
+                localStorage.setItem("BBImagePath", fileName);
+                window.location.href = "viewpage.html";
+            }
+            else {
+                localStorage.setItem("BBImagePath", fileName);
+                window.location.href = "viewxlspage.html";
+            }
+
+            //layer.msg(fileName);
+        }
+        layer.ready(function () {
+            $("input:radio[value='xls']").attr('checked', 'true');
+            //$('input:radio:last').attr('checked', 'checked');
+            //return;
+            Common.CheckUserLogin();
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var Caption = localStorage.getItem("Caption");
+            var Prntown = localStorage.getItem("Prntown");
+            $("#oTitle").html(Caption);
+
+            var FileType = localStorage.getItem("FileType");
+            if (!FileType) {
+                FileType = "xls";
+                $('input:radio:first').attr('checked', 'checked');
+                $("#lblxls").attr("class", "lab onCheck");
+                $("#lbljpg").attr("class", "lab");
+                localStorage.setItem("FileType", FileType);
+            }
+            else {
+                if (FileType == "xls") {
+                    $('input:radio:first').attr('checked', 'checked');
+                    $("#lblxls").attr("class", "lab onCheck");
+                    $("#lbljpg").attr("class", "lab");
+                }
+                else {
+                    $('input:radio:last').attr('checked', 'checked');
+                    $("#lblxls").attr("class", "lab");
+                    $("#lbljpg").attr("class", "lab onCheck");
+                }
+            }
+
+            if (!Prntown) {
+                Prntown = '';
+            }
+            $.ajax({
+                type: "Get",
+                url: Common.getWeChatRemotePort() + "Item/ExecItemList" + Common.jsNC2(),
+                async: false,
+                data: { 'UserName': userr, 'Wn': UntOwn, 'Prntown': Prntown },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        $.each(returnValue.items, function (n, item) {
+                            if (item.vis) {
+                                if (item.fld_sty == 1) {
+                                    var divParent = $("<div class=\"input_box clearfix\"></div>");
+                                    var spanChild = $("<span class=\"input_name\">" + item.fld_shw + "</span>");
+                                    var divChild = $("<div class=\"input_right\"></div>");
+                                    var divDate = $("<div class=\"date clearfix pull-left\"></div>");
+                                    var inputChild = $("<input type=\"text\" readonly id=" + "dategroup1" + item.fld_key + "  onfocus=\"selectDate(" + "dategroup1" + item.fld_key + ")\"  name=" + "dategroup1" + item.fld_key + " value=\"\" />");
+                                    var diva = $("<a href=\"#\" class=\"pull-right\"><img src=\"image/ordersearch_icon2.png\" alt=\"\"></a>");
+
+                                    divDate.append(inputChild);
+                                    divDate.append(diva);
+
+                                    divChild.append(divDate);
+                                    divParent.append(spanChild);
+                                    divParent.append(divChild);
+                                    $("#divWhere").append(divParent);
+                                }
+                                else if (item.fld_sty == 4 || item.fld_sty == 5) {
+                                    if (item.checkboxFlg) {
+                                        var divParent = $("<div class=\"input_box clearfix\"></div>");
+                                        var spanChild = $("<span class=\"input_name\">" + item.fld_shw + "</span>");
+                                        var divChild = $("<div class=\"input_right\"></div>");
+                                        var divDate = $("<div onclick=\"selectCheckboxOpen('" + item.fld_key + "')\" class=\"date clearfix pull-left\"></div>");
+                                        var inputChild = $("<input type=\"text\" class=\"checkboxintpu1\" id=" + item.fld_key + " name=" + item.fld_key + " id=" + item.fld_key + " value=\"\" />");
+                                        var diva = $("<a href=\"#\" class=\"checkboxintpu2\" class=\"pull-right\" ><img src=\"img/select.ico\" alt=\"\"></a>");
+
+                                        divDate.append(inputChild);
+                                        divDate.append(diva);
+
+                                        divChild.append(divDate);
+                                        divParent.append(spanChild);
+                                        divParent.append(divChild);
+                                        $("#divWhere").append(divParent);
+                                    }
+                                    else {
+
+                                        var divParent = $("<div class=\"input_box clearfix\"></div>");
+                                        var spanChild = $("<span class=\"input_name\">" + item.fld_shw + "</span>");
+                                        var divChild = $("<div class=\"input_right\"></div>");
+                                        var divDate = $("<div onclick=\"selectOpen('" + item.fld_key + "')\" class=\"date clearfix pull-left\"></div>");
+                                        var inputChild = $("<input type=\"text\" class=\"checkboxintpu1\" id=" + item.fld_key + " name=" + item.fld_key + " id=" + item.fld_key + " value=\"\" />");
+                                        var diva = $("<a href=\"#\" class=\"checkboxintpu2\" class=\"pull-right\" ><img src=\"img/select.ico\" alt=\"\"></a>");
+
+                                        divDate.append(inputChild);
+                                        divDate.append(diva);
+
+                                        divChild.append(divDate);
+                                        divParent.append(spanChild);
+                                        divParent.append(divChild);
+                                        $("#divWhere").append(divParent);
+
+                                    }
+                                    allData.push(item);
+                                }
+                                else if (item.fld_sty == 3) {
+
+                                    var divParent = $("<div class=\"input_box\"></div>");
+                                    var spanChild = $("<span class=\"input_name\">" + item.fld_shw + "</span>");
+                                    var divChild = $("<div class=\"pull_left_check\"></div>");
+
+                                    var inputChild = $("<input  type=\"checkbox\" id=" + item.fld_key + " name=" + item.fld_key + " value=\"\" />");
+
+                                    divChild.append(inputChild);
+                                    divParent.append(spanChild);
+                                    divParent.append(divChild);
+                                    $("#divWhere").append(divParent);
+
+                                    //$("#divWhere").append(Common.CreateInputCheckbox(item.fld_key, item.fld_key, item.fld_shw));
+                                }
+                                else {
+                                    var divParent = $("<div class=\"input_box\"></div>");
+                                    var spanChild = $("<span class=\"input_name\">" + item.fld_shw + "</span>");
+                                    var divChild = $("<div class=\"input_right clearfix\"></div>");
+                                    var inputChild = $("<input  type=\"text\" id=" + item.fld_key + "   name=" + item.fld_key + " value=\"\" />");
+                                    divChild.append(inputChild);
+                                    divParent.append(spanChild);
+                                    divParent.append(divChild);
+                                    $("#divWhere").append(divParent);
+                                }
+                            }
+                            else {
+                                var divParent = $("<div style=\"display:none\"  class=\"input_box\"></div>");
+                                var spanChild = $("<span class=\"input_name\">" + item.fld_shw + "</span>");
+                                var divChild = $("<div class=\"input_right clearfix\"></div>");
+                                var inputChild = $("<input  type=\"text\" id=" + item.fld_key + "   name=" + item.fld_key + " value=\"\" />");
+                                divChild.append(inputChild);
+                                divParent.append(spanChild);
+                                divParent.append(divChild);
+                                $("#divWhere").append(divParent);
+                            }
+                        });
+                        //lay('.laydateinput').each(function () {
+                        //    laydate.render({
+                        //        elem: this
+                        //        , trigger: 'click'
+                        //    });
+                        //});
+                        //form.render();
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+
+            $.ajax({
+                type: "Get",
+                url: Common.getWeChatRemotePort() + "Report/ViewHistory" + Common.jsNC2(),
+                async: false,
+                data: { 'UserName': userr, 'Shwn': Prntown },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        $.each(returnValue.ViewHistorys, function (n, item) {
+                            var liList = $("<li ondblclick=\"OpenFile('" + item.FilePtName + "','" + item.FileExName + "')\" id=" + item.FileType + "></li>");
+                            var aList = $("<a href=\"javascript:;\"></a>");
+                            var hdiv = $("<div  class=\"num clearfix\"></div>");
+                            var ldiv = $("<div class=\"pull-left\">" + item.FileExName + "</div>");
+                            var rdiv = $("<div class=\"pull-right date\">" + item.CreatedTime + "</div>");
+                            hdiv.append(ldiv);
+                            hdiv.append(rdiv);
+                            aList.append(hdiv);
+                            liList.append(aList);
+                            $("#ulViewHistroy").append(liList);
+                        });
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

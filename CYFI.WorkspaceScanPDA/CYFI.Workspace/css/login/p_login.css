@@ -1,0 +1,22 @@
+.login-box{margin:10px auto;overflow:auto;}
+.input-icon{padding:10px 0 0 0;text-align:center;}
+.input-icon img{}
+
+.input-info{padding:5px 10px;text-align:center;}
+.input-info span{display:block;padding:10px;font-size:1em;line-height:25px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;}
+
+.input-area{padding:0px 10px;}
+
+.input-area .login-input-span{margin:10px auto;}
+.input-area .lTit{height:40px;line-height:39px;float:left;padding:0 5px 0 0;width:50px;}
+.input-area .lInput{_float:left;overflow:hidden;border:1px solid #ccc;}
+
+.input-area .login-input{width:99.9%;overflow:hidden;height:40px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:39px;font-weight:normal;color:#666;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;}
+
+
+.input-area .login-btn-span{display:block;height:40px;}
+.input-area .login-btn{width:100%;height:40px;border:0;font-size:1.2em;}
+
+.login-sec{padding:10px;overflow:hidden;}
+.login-sec a{color:#333;display:inline-block;}
+.login-sec a:hover{color:#f60;display:inline-block;}

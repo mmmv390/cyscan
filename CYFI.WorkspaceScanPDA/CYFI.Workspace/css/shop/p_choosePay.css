@@ -1,0 +1,85 @@
+.choosePay-box{margin:0px auto;padding:0 10px;}
+
+.cartList-box{padding:10px;}
+.cartTit{padding:20px 0 10px 0;color:#666;}
+
+
+.cart-list{padding:10px 0;}
+.list-bg{border-bottom:1px solid #ccc;box-shadow:0 0 0 1px #fff inset;}
+.cart-list .fl{width:240px;text-align:left;}
+.cart-list .p-img{width:50px;margin:0 0 0 10px;}
+.cart-list .p-img-v1{width:60px;margin-bottom:-9999px;}
+.cart-list .p-img img{width:50px;height:50px;}
+.cart-list .pay-img{vertical-align:middle;}
+.cart-list .fl-v1,.cart-list .fl-v2{margin-left:70px;}
+.cart-list p{padding:0 0 5px 0;}
+.cart-list .p-name,.cart-list .p-price{line-height:20px;color:#999;font-size:14px;}
+.cart-list .p-num{color:#999;}
+.cart-list .nameHref{}
+.cart-list .pd{padding:5px;}
+
+.cart-list .common-input{font-size:1em;background-color:#F4F4F4;border:1px solid #a4a4a4;padding-left:8px;padding-top:3px;height:18px;line-height:18px;-moz-box-shadow:0 1px 3px #c8c8c8 inset;-webkit-box-shadow:0 1px 3px #c8c8c8 inset;box-shadow:0 1px 3px #c8c8c8 inset;vertical-align:text-top;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.cart-list .btn{display:inline-block;width:30%;height:30px;cursor:pointer;line-height:30px;margin:10px 10px 0 0;text-align:center;color:#3c3c3c;font-size:1em;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#e2d7c5));background:-moz-linear-gradient(top,#fff,#e2d7c5);border:1px solid #baac9d;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+
+.input-chk{padding:0 5px;}
+
+.buyerInfo-box{padding:10px 10px 0 10px;}
+.buyerInfo-box .tTit{}
+
+.remarkInfo-box{padding:0 10px;}
+
+.info-warp{margin:15px 0 0 0;padding:10px;background:#fffdf7;border:1px solid #cdc2b0;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.info-warp .tTit{display:block;line-height:30px;}
+.info-warp p{font-size:14px;line-height:22px;color:#555;}
+.info-warp .remark-textarea{width:99.9%;height:40px;border:0;font-size:1em;line-height:20px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.pay-tip{margin:15px 0px;padding:10px;}
+.pay-tip p{padding:10px 0;}
+.pay-tip strong{color:#db2929;font-weight:normal;}
+
+.pay-tip .refreshLbtn{display:block;position:absolute;right:10px;top:16px;height:30px;border:0px;outline:0px;background:none;font-family:"Microsoft Yahei",simsun;border:1px solid #949495;color:#949495;padding:5px 10px;}
+
+.total{padding:10px 20px}
+.total p{font-size:14px;line-height:22px;}
+
+.common-border{}
+
+.pay-tip .cTit{display:block;padding:5px 10px 10px 0px;font-weight:700;color:#3e3a39;}
+.pay-tip .tChoose{padding:10px;}
+.pay-tip .tl{display:inline-block;margin-right:15px;}
+
+.buyBtun{width:100%;border:0;font-family:"Microsoft Yahei",simsun;cursor:pointer;}
+
+.choosePay-box .sub_btn{display:block;border:none;width:90%;margin:10px auto 0;height:40px;line-height:40px;font-size:1em;font-weight:bold;cursor:pointer;text-align:center;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+
+
+.payChooseBox .extra-area{margin:10px auto;}
+.payChooseBox .extra-area span{display:inline-block;text-align:center;}
+.payChooseBox .wxBtnBox{width:50%;text-align:left;display:block;}
+.payChooseBox .zfbBtnBox{width:50%;text-align:center;display:block;}
+.payChooseBox .btnDefault{border:1px solid #d5d5d6;}
+
+
+.payChooseBox .wxBtnBox .btnBrd{display:block;margin:0 10px 0 0;padding:5px 0;}
+.payChooseBox .zfbBtnBox .btnBrd{display:block;margin:0 10px 0 0;padding:5px 0;}
+.payChooseBox .hdfqBtnBox .btnBrd{display:block;margin:0;padding:5px 0;}
+
+.payChooseBox .btnIcon{display:inline-block;vertical-align:middle;color:#7c7c7c;}
+.payChooseBox .btnTxt{font-size:1.2em;line-height:1.6em;display:inline-block;vertical-align:middle;color:#7c7c7c;}
+
+.payChooseBox .btnHover{border:1px solid #00a73c;}
+.payChooseBox .btnHover .btnIcon,.payChooseBox .btnHover .btnTxt{color:#00a73c;}
+
+.iconLoveWng-oc1:before {
+	font-size:1.6em;
+	display:inline-block;
+	content: "\e703";
+}
+
+
+.choosePay-openWin-box{width:100%;height:100%;top:0px;left:0px;position:fixed;filter: Alpha(opacity=20);opacity:0.2; background:#000;z-index:99998;}
+.choosePay-openComplate-box{position:absolute;padding:20px 30px 10px 30px; width:240px; left:50%;top:60px; margin:0 0 0 -150px; background:#fff;border:1px solid #ccc;z-index:99998;text-align:left;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.choosePay-openComplate-box img{display:block;margin:10px auto;padding:10px 0 20px 0;}
+
+
+

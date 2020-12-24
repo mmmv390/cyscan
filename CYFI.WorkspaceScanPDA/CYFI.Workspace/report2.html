@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>成型产量查询</title>
+    <link rel="stylesheet" type="text/css" href="css/bx-covero.css">
+    <link rel="stylesheet" type="text/css" href="css/baseo.css">
+    <link rel="stylesheet" type="text/css" href="css/headero.css">
+    <link rel="stylesheet" type="text/css" href="css/me.css">
+    <link rel="stylesheet" type="text/css" href="css/weui.css" />
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <style>
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .weui-tab__panel tr:nth-child(1n) {
+            background: #dddddd;
+        }
+
+        .weui-tab__panel tr:nth-child(2n) {
+            background: #0094ff;
+            /*background: #0094ff;*/
+        }
+
+        td {
+            border: 1px solid #000000;
+            text-align: center;
+            height: 0.7rem;
+            padding: 2px;
+            font-size: 0.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body {
+            --weui-BRAND: #ffffff;
+            --weui-BG-COLOR-ACTIVE: #0094ff;
+        }
+
+        .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+            color: #ffffff;
+            color: var(--weui-BRAND);
+        }
+
+        .weui-navbar__item.weui-bar__item_on {
+            color: #ffffff;
+            background-color: #ffffff;
+            background-color: var(--weui-BG-COLOR-ACTIVE);
+        }
+
+    </style>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left">
+                <a href="#" onclick="javascript :history.back(-1);"><img width="28" style="margin-top:-0.08rem" height="28" src="image/reback200.png" /></a>
+            </div>
+            <div class="pull-left">
+                &nbsp;成型产量查询
+            </div>
+            <div id="showDatePicker" class="pull-right">
+                <a href="#"><img src="image/header_tr2.png" alt=""></a>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder" style="padding:0.05rem">
+        <div class="bottom">
+            <div class="page">
+                <div class="page__bd" style="height: 100%;margin-top:0.11rem;">
+                    <div class="weui-tab">
+                        <div class="weui-navbar" style="border:1px solid #0026ff">
+                            <div class="weui-navbar__item weui-bar__item_on">
+                                一厂
+                            </div>
+                            <div class="weui-navbar__item">
+                                二厂
+                            </div>
+                            <div class="weui-navbar__item">
+                                三厂
+                            </div>
+                            <div class="weui-navbar__item">
+                                六厂
+                            </div>
+                        </div>
+                        <div class="weui-tab__panel">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="page__bd" style="height: 100%;margin-top:0.15rem;">
+                    <div class="weui-tab">
+                        <div class="weui-navbar" style="border:1px solid #0026ff">
+                            <div class="weui-navbar__item weui-bar__item_on">
+                                时常量
+                            </div>
+                            <div class="weui-navbar__item">
+                                日入库
+                            </div>
+                            <div class="weui-navbar__item">
+                                月入库
+                            </div>
+                        </div>
+                        <div class="weui-tab__panel" style="padding-top:0.1rem">
+                            <table>
+
+                                <tr style=" background-color: #0a0989;color:#fff;"><td><b>线别</b></td><td><b>今日目标数</b></td><td><b>今日实际数</b></td><td><b>今日达成率</b></td><td><b>本月目标数</b></td><td><b>本月实际数</b></td><td><b>本月达成率</b></td></tr>
+                                <tr><td>一厂A</td><td>2745</td><td>2077</td><td style="color:red">75%</td><td>66232</td><td>67772</td><td style="color:red">90%</td></tr>
+                                <tr><td>一厂B</td><td>2745</td><td>1526</td><td style="color:red">82%</td><td>78903</td><td>67892</td><td style="color:red">30%</td></tr>
+                                <tr><td>一厂C</td><td>2668</td><td>2150</td><td style="color:red">68%</td><td>24567</td><td>23467</td><td style="color:red">99%</td></tr>
+                                <tr><td>一厂D</td><td>2528</td><td>2232</td><td style="color:red">93%</td><td>65323</td><td>43654</td><td style="color:red">101%</td></tr>
+                                <tr style=" background-color: #ffd800; "><td><b>合计</b></td><td><b>2528</b></td><td><b>2528</b></td><td><b style="color:red">93%</b></td><td><b>2528</b></td><td><b>2528</b></td><td><b style="color:red">101%</b></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.weui-navbar__item').on('click', function () {
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            });
+        });
+    </script>
+</body>
+</html>

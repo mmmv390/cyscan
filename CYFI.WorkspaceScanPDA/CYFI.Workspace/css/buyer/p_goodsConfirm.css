@@ -1,0 +1,54 @@
+.goodsConfirm-box{margin:0px auto;}
+
+.order-box{padding:0px 10px;}
+.order-box .order-state,.order-box .buyer-info,.order-box .order{border:1px solid #999;margin:10px 0 0 0;}
+
+.order-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.order-box .new-txt{font-size:14px;color:#333;}
+.order-box .state-info{padding:12px;}
+.order-box .state-info p{font-size:14px;line-height:22px;color:#666;}
+
+.order-box .memo-info{padding:12px;background-color:#f3ece5;}
+.order-box .memo-info p{font-size:14px;line-height:22px;color:#666;}
+
+
+
+.order-box .tList{border:1px solid #999;margin:10px 0 0 0;}
+.order-box .tList .new-tit{padding:12px 5px;border-bottom:1px solid #999;font-size:14px;}
+.order-box .tList .new-txt{font-size:14px;color:#6e6e6e;}
+.order-box .btn-area-rt{position:absolute;top:12px;right:10px;}
+
+
+.order-box .fl{width:240px;text-align:left;}
+.order-box .p-img{width:50px;margin:10px;}
+.order-box .p-img-v1{width:65px;margin-bottom:-9999px;}
+.order-box .p-img img{width:50px;height:50px;}
+.order-box .pay-img{vertical-align:middle;}
+.order-box .fl-v1,.order .fl-v2{margin-left:75px;padding:5px;}
+.order-box p{padding:0 0 6px 0;font-size:14px;}
+.order-box .p-name{line-height:21px;font-size:14px;}
+.order-box .p-num{color:#999;}
+.order-box .pd-list{padding:5px 0;}
+.order-box .pd-bd{border-bottom:1px solid #ccc;}
+.order-box .cart-list{padding:5px 10px;}
+.order-box .cart-list p{color:#666;}
+.order-box .cart-list .pd{margin:0 0 10px 0;}
+.order-box .cart-list .total{border-top:1px solid #ccc;padding:5px 0;}
+
+
+.input-info{padding:10px 0px;}
+.input-info .tit{font-size:16px;font-weight:700;display:block;padding:5px 0;}
+
+.goodsConfirm-input-span{display:block;height:30px;position:relative;}
+
+.goodsConfirm-input{width:160px;height:30px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:29px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+
+.goodsConfirm-input-span .input-aBtn{padding:0 10px;height:25px;line-height:25px;border:0px;font-family:"Microsoft Yahei",simsun;color:#03c;text-decoration:underline;}
+
+.input-chk{padding:0 5px;vertical-align:top;}
+
+.orderManage-textarea{width:99.9%;height:50px;border:0;font-size:1em;line-height:20px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.goodsConfirm-box .btn{display:inline-block;height:26px;cursor:pointer;line-height:26px;margin:10px 5px 0 5px;padding:0px 10px;text-align:center;font-size:1em;font-size:14px;}
+.goodsConfirm-box .btn-type{padding:10px 20px;margin:10px 10px 0 0;font-size:1em;border:0;font-family:"Microsoft Yahei",simsun;font-size:14px;}
+.goodsConfirm-box .buyer-btn-type{padding:3px 10px;margin:10px 10px 0 0;font-size:1em;border:0;font-family:"Microsoft Yahei",simsun;font-size:14px;}

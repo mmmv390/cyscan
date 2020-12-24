@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>成型产量达成情况</title>
+    <link rel="stylesheet" type="text/css" href="css/bx-covero.css">
+    <link rel="stylesheet" type="text/css" href="css/baseo.css">
+    <link rel="stylesheet" type="text/css" href="css/headero.css">
+    <link rel="stylesheet" type="text/css" href="css/me.css">
+    <link rel="stylesheet" type="text/css" href="css/weui.css" />
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <style>
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .weui-tab__panel tr:nth-child(1n) {
+            background: #dddddd;
+        }
+
+        .weui-tab__panel tr:nth-child(2n) {
+            background: #0094ff;
+            /*background: #0094ff;*/
+        }
+
+        td {
+            border: 1px solid #000000;
+            text-align: center;
+            height: 0.7rem;
+            padding: 2px;
+            font-size: 0.2rem;
+            overflow: hidden;
+            /*white-space: nowrap;*/
+            text-overflow: ellipsis;
+        }
+
+        body {
+            --weui-BRAND: #ffffff;
+            --weui-BG-COLOR-ACTIVE: #0094ff;
+        }
+
+
+        .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+            color: #ffffff;
+            color: var(--weui-BRAND);
+        }
+
+        .weui-navbar__item.weui-bar__item_on {
+            color: #ffffff;
+            background-color: #ffffff;
+            background-color: var(--weui-BG-COLOR-ACTIVE);
+        }
+    </style>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left">
+                <a href="#" onclick="javascript :history.back(-1);"><img width="28" style="margin-top:-0.08rem" height="28" src="image/reback200.png" /></a>
+            </div>
+            <div class="pull-left">
+                &nbsp;成型产量达成情况
+            </div>
+            <div id="showDatePicker" class="pull-right">
+                <a href="#"><img src="image/header_tr2.png" alt=""></a>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder" style="padding:0.05rem">
+        <div class="bottom">
+            <div class="page">
+                <div class="page__bd" style="height: 100%; margin-top:0.15rem;">
+                    <div class="weui-tab">
+                        <div class="weui-navbar" style="border:1px solid #0026ff">
+                            <div class="weui-navbar__item weui-bar__item_on">
+                                今日
+                            </div>
+                            <div class="weui-navbar__item">
+                                本月
+                            </div>
+                        </div>
+                        <div class="weui-tab__panel" style="padding-top:0.1rem">
+                            <table>
+
+                                <tr style=" background-color: #0a0989;color:#fff;"><td><b>事业部</b></td><td><b>厂区</b></td><td><b>今日目标</b></td><td><b>今日实际数</b></td><td><b>达成率</b></td></tr>
+                                <tr><td>一事业部</td><td>一厂</td><td>2077</td><td>66232</td><td style="color:red">75%</td></tr>
+                                <tr><td>二事业部</td><td>二厂</td><td>1526</td><td>78903</td><td style="color:red">82%</td></tr>
+                                <tr><td>三事业部</td><td>三厂</td><td>2150</td><td>24567</td><td style="color:red">68%</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main" class="bottom_input" style="width: 100%;height:7rem;margin-top:0.5rem"></div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: ''
+            },
+            color: ['#ff0000', '#3bcec6'],
+            tooltip: {},
+            legend: {
+                data: ['今日达成率', '本月累计达成率']
+            },
+            xAxis: {
+                data: ["一厂", "二厂", "三厂"]
+            },
+            yAxis: {
+                type: 'value'
+                , axisLabel: {
+                    formatter: '{value} %'
+                }
+            },
+            series: [{
+                name: '今日达成率',
+                type: 'bar',
+                //barWidth: '50%',
+                data: [56, 20, 36],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            textStyle: {
+                                fontWeight: 'bolder',
+                                fontSize: '12',
+                                fontFamily: '微软雅黑'
+                            },
+                            position: 'top',
+                            formatter: function (val) {
+                                return val.value + '%';
+                            }
+
+                        }
+                    }
+                }
+            },
+            {
+                name: '本月累计达成率',
+                type: 'bar',
+                //barWidth: '50%',
+                data: [77, 50, 86],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            textStyle: {
+                                fontWeight: 'bolder',
+                                fontSize: '12',
+                                fontFamily: '微软雅黑'
+                            },
+                            position: 'top',
+                            formatter: function (val) {
+                                return val.value + '%';
+                            }
+
+                        }
+                    }
+                }
+            }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.weui-navbar__item').on('click', function () {
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            });
+        });
+    </script>
+</body>
+</html>

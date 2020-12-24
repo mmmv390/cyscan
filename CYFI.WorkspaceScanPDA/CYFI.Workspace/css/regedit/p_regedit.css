@@ -1,0 +1,52 @@
+.regedit-box{margin:10px auto;overflow:auto;}
+
+/* regedit */
+.input-info{margin:0 0 10px 0;padding:0px 10px;text-align:center;}
+.input-info span{display:block;padding:10px;font-size:1em;line-height:25px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;}
+
+.input-area{padding:0px 10px;}
+
+.input-area .regedit-input-span{margin:10px auto;}
+
+.input-area .lTit{height:40px;line-height:39px;float:left;padding:0 5px 0 0;width:65px;}
+.input-area .lInput{_float:left;overflow:hidden;border:1px solid #ccc;}
+
+.input-area .regedit-input{width:99.9%;overflow:hidden;height:40px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:39px;font-weight:normal;color:#666;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;}
+
+.input-area .regedit-input-bdr{width:99.9%;overflow:hidden;height:40px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:39px;font-weight:normal;color:#666;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;border:1px solid #ccc;}
+
+
+.input-area .regedit-code-span{display:block;position:relative;border:0;}
+.input-area .regedit-code{width:105px;height:40px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:40px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+.input-area .regedit-code-span img{height:40px;border:1px solid #ccc;position:absolute;top:0;right:0;}
+
+.input-area .regedit-btn-span{display:block;height:40px;}
+.input-area .regedit-btn{width:100%;height:40px;border:0;font-size:1.2em;}
+
+.input-area .mChk{vertical-align:middle;display:inline;margin-right:3px;}
+
+.regedit-sec{padding:10px;overflow:hidden;}
+.regedit-sec .secTxt{color:#333;}
+.regedit-sec a{color:#333;display:inline-block;}
+.regedit-sec a:hover{color:#f60;display:inline-block;}
+.regedit-sec .mChk{vertical-align:middle;display:inline;margin-right:3px;}
+
+
+/* mobile */
+.input-area .regedit-active-span{display:block;height:40px;position:relative;}
+.input-area .regedit-active{width:160px;height:40px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+.input-area .regedit-active-span .active-aBtn{height:25px;border:0px;outline:0px;background:none;position:absolute;bottom:0;right:0;font-family:"Microsoft Yahei",simsun;cursor:pointer;color:#03c;border-bottom:1px solid;}
+.input-area .regedit-active-span .active-aBtn:hover{color:#f00;text-decoration:none;border-bottom:1px solid #f1f1f1;}
+
+
+/* active mobile */
+
+
+
+
+/* complate */
+.input-icon{padding:10px 0 0 0;text-align:center;}
+.input-icon img{}
+
+.input-msg{padding:30px;text-align:center;}
+.input-msg h2{height:28px;}

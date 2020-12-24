@@ -1,0 +1,98 @@
+.refund-box{margin:0px auto;}
+
+/* refundApply */
+.refundApply-box,.refundIng-box,.refundComplate-box{padding:0px 10px;}
+
+.refund-box .refund-state{border:1px solid #999;margin:10px 0 0 0;}
+.refund-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.refund-box .new-txt{font-size:16px;color:#333;}
+.refund-box .new-txt-v1{font-size:16px;color:#f00;}
+.refund-box .state-info{padding:12px;}
+.refund-box .state-info p{font-size:14px;padding:0 0 5px 0;line-height:24px;color:#666;}
+.refund-box .state-info .seller,.refund-box .state-info .buyer{font-size:16px;font-weight:700;}
+
+.state-info .tTitle-fir{padding:10px 10px 0px 10px;font-size:20px;line-height:25px;font-weight:700;color:#333;}
+.state-info .tTitle{padding:5px 4px;line-height:25px;}
+.state-info .sImg{vertical-align:top;}
+.state-info .sImg a{display:inline-block;padding:0 5px;}
+.state-info .sImg img{width:80px;height:80px;}
+
+.img-area{padding:0 5px 0 75px;}
+.img-area .iList{margin:5px 0 0 0;}
+.img-area .iList .tImg{display:inline-block;margin-right:5px;}
+.img-area .iList .tImg img{width:100px;height:100px;}
+
+.img-area .iList .tHref{display:inline-block;vertical-align:top;}
+.img-area .iList .tHref a{display:block;line-height:35px;color:#03f;text-decoration:underline;vertical-align:top;}
+
+.input-area{padding:0px 5px;}
+
+.input-info{padding:5px 0;text-align:center;}
+.input-info span{display:block;padding:10px;font-size:1em;line-height:25px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;}
+
+.refund-input-span{display:block;height:40px;border:1px solid #ccc;}
+.refund-input{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+.refund-select-span{display:block;height:40px;}
+.refund-select{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+
+.refund-btn-span{display:block;height:40px;}
+.refund-btn{width:100%;height:40px;border:0;font-size:1.2em;}
+
+.refund-textarea{width:99.9%;height:100px;border:0;font-size:1em;line-height:20px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+.input-chk{padding:0 5px;vertical-align:top;}
+
+
+
+.unloadImg-area{margin:10px auto;text-align:left;}
+.unloadImg-area .cartInfo-bg{border-radius:6px;width:300px;}
+.unloadImg-area .error-bg{}
+.unloadImg-area .tInfo{margin:10px 10px 0 10px;padding: 0 0 5px 0;}
+.unloadImg-area .cartInfo-bg .cImg{display:inline-block;vertical-align:middle;}
+.unloadImg-area .cartInfo-bg .cTxt{vertical-align:middle;}
+.unloadImg-area .cartInfo-bg .cTxt p{line-height:22px;color:#333;}
+.unloadImg-area .msgInfo{padding:10px;text-align:center;line-height:22px;font-size:14px;}
+
+.unloadImg-area .tBtn{padding:0 10px 20px 65px;}
+.unloadImg-area a{display:inline-block;margin-left:10px;margin-right:30px;}
+
+.img-input-span{display:block;height:30px;border:1px solid #ccc;}
+.img-input{width:99.9%;height:30px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:29px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+.unloadImgLbtn{margin:10px auto;height:20px;border:0px;outline:0px;background:none;font-family:"Microsoft Yahei",simsun;cursor:pointer;color:#03c;border-bottom:1px solid;}
+
+
+
+.rufund-info{margin:10px 0 0 0;padding:20px 20px 0 20px;}
+.cart-list{padding:10px 0;}
+.list-bg{}
+.cart-list .fl{width:240px;text-align:left;}
+.cart-list .p-img{width:50px;margin:0 0 0 10px;}
+.cart-list .p-img-v1{width:60px;margin-bottom:-9999px;}
+.cart-list .p-img img{width:50px;height:50px;}
+.cart-list .pay-img{vertical-align:middle;}
+.cart-list .fl-v1,.cart-list .fl-v2{margin-left:70px;}
+.cart-list p{padding:0 0 5px 0;}
+.cart-list .p-name,.cart-list .p-price{line-height:20px;color:#999;font-size:14px;}
+.cart-list .p-num{color:#999;}
+.cart-list .nameHref{}
+.cart-list .pd{padding:5px;}
+
+
+
+
+
+.refund-box .btn{display:inline-block;width:30%;height:30px;cursor:pointer;line-height:30px;margin:10px 10px 0 0;text-align:center;font-size:1em;}
+
+.refund-box .unloadImgbtn{padding:0px 10px;cursor:pointer;line-height:30px;text-align:center;font-size:1em;font-family:"Microsoft Yahei",simsun;}
+
+.refund-box .btn-type{padding:10px 30px;margin:10px 10px 0 0;font-size:1em;border:0;font-family:"Microsoft Yahei",simsun;}
+
+
+
+/* ing */
+.ingInfo{display:block;color:#090;font-size:18px;line-height:30px;}
+
+
+/* complate */
+.complateInfo{display:block;color:#090;font-size:18px;line-height:30px;}

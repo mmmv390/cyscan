@@ -1,0 +1,535 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>C/3移动平台</title>
+    <style>
+        .stateOrder {
+            border-color: #ff961e;
+            color: #ff961e;
+            font-size: 0.28rem;
+        }
+
+        .buttonSome {
+            height: calc(100% - 0.75rem);
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .nameh1 {
+            font-size: 0.3rem;
+            color: #4d596e;
+            line-height: 0.4rem;
+        }
+
+        .namespan {
+            display: inline-block;
+            line-height: 0.3rem;
+            height: 0.3rem;
+            font-size: 0.22rem;
+            border: 1px solid;
+            padding: 0 0.08rem;
+            margin-left: 0.1rem;
+        }
+
+        spanstate1 {
+            border-color: #ff961e;
+            color: #ff961e;
+        }
+
+        .fixclass {
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            background: #00275d;
+        }
+
+        .headerTitle {
+            width: 100%;
+            height: 40px;
+            overflow: hidden;
+            margin: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <link href="js/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/genericScript.js"></script>
+    <link href="default.css" rel="stylesheet" />
+    <link href="ivs/viewer.css" rel="stylesheet" />
+    <script src="ivs/viewer.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script type="text/javascript">
+        //var localStorage = window.localStorage;
+        function goBack() {
+
+            window.location.href = "infolist.html";
+
+            //alert('返回');
+        }
+
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            localStorage.removeItem("Mudown");
+            localStorage.removeItem("UntOwn");
+            localStorage.removeItem("Prntown");
+            localStorage.removeItem("Caption");
+            window.location.href = "login.html";
+        }
+
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+            window.location.href = "buyorder.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+    </script>
+</head>
+<body class="ui-mobile-viewport ui-overlay-a">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left" id="oTitle">
+                审批
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul>
+                    <li><a href="#">用户参数</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="javascript:QHYG();">重新登录</a></li>
+                    <li><a href="#">升级</a></li>
+                    <li><a href="#">注册信息</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder order_mode">
+        <div class="bottom">
+            <div class="bottom_input">
+                <div class="input_box input_list">
+                    <div class="input_right clearfix top">
+                        <ul>
+                            <li>
+                                <a href="javascript:goBack()">
+                                    <img src="image/order_icon (6).png" alt="">
+                                    <p>返回</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:OrderDetail();">
+                                    <img src="image/order_icon (7).png" alt="">
+                                    <p>单据</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:OrderImage();">
+                                    <img src="image/order_icon (1).png" alt="">
+                                    <p>详情</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="input_box input_text2">
+                        <span class="input_name">单据类型:</span>
+                        <div class="input_right clearfix" id="itemtype"></div>
+                    </div>
+                    <div class="input_box input_text2">
+                        <span class="input_name">单号:</span>
+                        <div class="input_right clearfix" style="border-color: #2a9efc;color: #2a9efc;font-size: 0.28rem;" id="itemno"></div>
+                    </div>
+                    <div class="input_box input_text2">
+                        <span class="input_name">状态:</span>
+                        <div class="input_right clearfix" style="border-color: #ff961e;color: #ff961e;font-size: 0.28rem;" id="itemstate"></div>
+                    </div>
+                    <div class="input_box input_text2">
+                        <span class="input_name">接单日期:</span>
+                        <div class="input_right clearfix" id="oth_sql"></div>
+                    </div>
+                    <div class="input_box input_text2">
+                        <span class="input_name">提交人:</span>
+                        <div class="input_right clearfix" id="userName"></div>
+                    </div>
+                </div>
+                <div class="input_box input_text" style="display:none">
+                    <span class="input_name">审批意见:</span>
+                    <div class="input_right clearfix">
+                        <input type="text" name="" id="txtRemarks" value="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail">
+            <span class="input_name" style="margin-top:0px;">审批流程:</span>
+            <ul class="layui-timeline" style="margin-left:10px;margin-top:10px" id="ulTimeLine"></ul>
+        </div>
+    </div>
+    <nav>
+        <ul class="clearfix">
+            <li>
+                <a href="javascript:MUSY();">
+                    <img src="image/nav_icon1_active.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MULB();">
+                    <img src="image/nav_icon3.png" alt="">
+                    <p>列表</p>
+                </a>
+            </li>
+            <li  class="active">
+                <a href="javascript:MUXX();">
+                    <img src="image/nav_icon2.png" alt="">
+                    <p>消息</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUWD();">
+                    <img src="image/nav_icon4.png" alt="">
+                    <p>我的</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div data-role="page" style="display:none" data-url="">
+        <!--内容-->
+        <div>
+            <div class="headerTitle">
+                <a href="javascript:goBack()">
+                    <img src="image/order_icon (6).png" alt="">
+                    <b>返回</b>
+                </a>
+            </div>
+            <div>
+            </div>
+            <div class="jqm-content">
+                <div class="jqm-block-content">
+                    <ul id="Gallery" class="gallery viewImgs"></ul>
+                </div>
+            </div>
+        </div><div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div>
+
+    </div>
+    <script type="text/javascript">
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        function OrderDetail() {
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            localStorage.setItem("UntOwn", Common.getUrlParam("itm_wn"));
+            localStorage.setItem("Prntown", Common.getUrlParam("gat_wn"));
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getRemotePort() + "OrderList/OrderStruct" + Common.jsNC2(),
+                data: { 'UserName': userr, 'Untown': Common.getUrlParam("itm_wn") },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        localStorage.setItem("UnitItems", returnValue.JsonList);
+                        localStorage.setItem("TabName", returnValue.TabName);
+                        localStorage.setItem("IndexCol", returnValue.IndexCol);
+                        localStorage.setItem("IndexColValue", Common.getUrlParam("item_n"));
+                        localStorage.setItem("Itemno", Common.getUrlParam("item_n"));
+
+                        window.location.href = "order_change.html";
+                        //var ListData = eval(returnValue.ListJson);
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+            //layer.msg('订单详情');
+        }
+
+        function LoadImage(ImagePath) {
+            localStorage.setItem("ISLoadImage", "No");
+            try {
+                $('#Gallery').empty();
+                var authorization = localStorage.getItem("authorization");
+                var STToken = localStorage.getItem("STToken");
+                var userr = localStorage.getItem("userr");
+
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Audit/ImageList" + Common.jsNC2(),
+                    data: { 'UserName': userr, "ImagePath": ImagePath },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+             
+                            // var $text = $("#list").children().children().children();
+                            //$text.eq(0).text(Common.getUrlParam("Title"));
+                            //$text.eq(1).text("创建人：" + "张三");
+                            //$text.eq(2).text("创建时间：" + "2017");
+
+                            $.each(returnValue.FileNames, function (n, item) {
+                                $('#Gallery').append("<li style='height:155px'><img  src='" + item + "' /></li>");
+                                //$('#before').before("<li ><a style='height:150px'  href='" + item + "' rel='external' class='ui-link' style='display: block;'><img  src='" + item + "' rel='external' class='ui-link' style='display: block;' /></a></li>");
+                            });
+
+                            //if (viewer) {
+
+                            //    viewer.Destroy();
+                            //}
+
+                            var viewer = new Viewer(document.querySelector('.viewImgs'), {
+                                'navbar': false,
+                                'title': false,
+                                'movable': true,
+                                'fullscreen': true,
+                                toolbar: {
+                                    zoomIn: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    zoomOut: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    reset: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    prev: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    next: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    rotateLeft: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    rotateRight: {
+                                        show: 1,
+                                        size: 'large',
+                                    }
+                                }
+                            });
+                            
+                            viewer.show();
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            } catch (e) {
+                alert(e);
+            }
+        }
+
+        function OrderImage() {
+
+            var ImagePathURL = localStorage.getItem(Common.getUrlParam("item_n"));
+
+            if (ImagePathURL) {
+                localStorage.setItem("ISLoadImage", "Yes");
+                location.reload();
+                return;
+            }
+
+            var Prntown = Common.getUrlParam("gat_wn");
+            if (!Prntown || Prntown == '') {
+                layer.msg('请联系管理员，未设置打印格式。');
+                return;
+            }
+
+    
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+
+            $("#itemstate").html();
+            $("#oth_sql").html(decodeURIComponent(Common.getUrlParam("oth_sql")));
+            $("#userName").html(Common.getUrlParam("itm_mak"));
+
+            var loadIndex = -1;
+            $.ajax({
+                type: "Get",
+                url: Common.getRemotePort() + "Audit/ReportImage" + Common.jsNC2(),
+                data: { 'UserName': userr, 'Param': Common.getUrlParam("item_n"), 'Shwn': Prntown},
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                beforeSend: function (request) {
+                    loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                },
+                complete: function () {
+                    layer.close(loadIndex);
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 0) {
+
+                        localStorage.setItem(Common.getUrlParam("item_n"), returnValue.ImagePath);
+                        LoadImage(returnValue.ImagePath);
+                        //window.location.href = "ah.html?ImagePath=" + encodeURIComponent(returnValue.ImagePath)
+                            //+ "&Title=" + Common.getUrlParam("Title")
+                            //+ "&item_st=" + Common.getUrlParam("item_st")
+                            //+ "&itm_wn=" + Common.getUrlParam("itm_wn")
+                            //+ "&gat_wn=" + Common.getUrlParam("gat_wn")
+                            //+ "&item_n=" + Common.getUrlParam("item_n")
+                            //+ "&itm_mak=" + Common.getUrlParam("itm_mak")
+                            //+ "&oth_sql=" + Common.getUrlParam("oth_sql");
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                    layer.close(loadIndex);
+                }
+            });
+        }
+        function SubmitOrder() {
+
+            //layer.msg(itm_n);
+            //window.location.href = "audit.html"
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var loadIndex = -1;
+
+            $.ajax({
+                type: "Post",
+                url: Common.getRemotePort() + "Audit/AuditOrder" + Common.jsNC2(),
+                contentType: "application/x-www-form-urlencoded",
+                data: { 'UserName': userr, 'Param': Common.getUrlParam("item_n"), 'Shwn': Common.getUrlParam("gat_wn"), 'Othpm': Common.getUrlParam("item_st"), 'Detail': $("#txtRemarks").val() },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        layer.msg(returnValue.Message);
+                    }
+                    else {
+                        layer.msg("执行失败：" + returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                    layer.close(loadIndex);
+                }
+            });
+            //layer.msg('订单提交 ');
+        }
+
+        layer.ready(function () {
+            Common.CheckUserLogin();
+            $("#itemtype").html(decodeURIComponent(Common.getUrlParam("Title")));
+            $("#itemno").html(Common.getUrlParam("item_n"));
+            $("#itemstate").html(decodeURIComponent(Common.getUrlParam("item_st")));
+            $("#oth_sql").html(decodeURIComponent(Common.getUrlParam("oth_sql")));
+            $("#userName").html(Common.getUrlParam("itm_mak"));
+
+
+            localStorage.setItem("Caption", Common.getUrlParam("Title"));
+
+            $("#btnSubmit").html(Common.getUrlParam("item_st"));
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getRemotePort() + "Audit/OrderHistoryItems" + Common.jsNC2(),
+                data: { 'UserName': userr, 'ItemNo': Common.getUrlParam("item_n") },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+
+                    var returnValue = eval(data);
+
+                    $.each(returnValue, function (n, item) {
+                        var liItem = $("<li class=\"layui-timeline-item\"></li>");
+                        var iItem = $("<i class=\"layui-icon layui-timeline-axis\"></i>");
+                        var divItem = $("<div class=\"layui-timeline-content layui-text\"></div>");
+                        var h3Item = $("<h4 class=\"layui-timeline-title\" >" + item.Tdate + "" + "[" + item.Act_cap + " ]" + "</h4>")
+
+                        var ulItem = $("<ul><li>操作人：" + item.Ussernam + "</li><li>意见：" + item.Oldvalues + "</li></ul>");
+
+                        var pItem = $("<p></p>");
+                        divItem.append(h3Item);
+                        divItem.append(pItem);
+                        divItem.append(ulItem);
+                        liItem.append(iItem);
+                        liItem.append(divItem);
+                        $("#ulTimeLine").append(liItem);
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+
+            var ImagePathURL = localStorage.getItem(Common.getUrlParam("item_n"));
+            var ISLoadImage = localStorage.getItem("ISLoadImage");
+            if (ImagePathURL && ISLoadImage == "Yes") {
+                LoadImage(ImagePathURL);
+                return;
+            }
+
+            //$("#itemotype").html(Common.getUrlParam("itm_cap"));
+            //layer.msg(Common.getUrlParam(""));
+        });
+    </script>
+</body>
+</html>

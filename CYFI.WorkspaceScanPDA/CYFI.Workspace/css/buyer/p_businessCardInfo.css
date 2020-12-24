@@ -1,0 +1,89 @@
+.businessCardInfoManage-box{margin:10px auto;padding:0px;}
+
+/* list */
+.businessCardInfoManageList{padding:0 10px;}
+.businessCardInfoManageList .aList{border:1px solid #ccc;margin:0 0 10px 0;}
+.businessCardInfoManageList .aList .tTit{padding:10px;border-bottom:1px solid #ccc;}
+.businessCardInfoManageList .aList .tTit .name{display:inline-block;font-size:18px;line-height:40px;margin-right:5px;color:#333;}
+.businessCardInfoManageList .aList .tTit .phone{display:inline-block;line-height:40px;font-weight:700;margin-right:5px;}
+.businessCardInfoManageList .aList .tTit .default{display:inline-block;line-height:40px;}
+
+.businessCardInfoManageList .aList .tContent{padding:10px;}
+.businessCardInfoManageList .aList .tContent .address{display:block;color:#999;line-height:25px;}
+.businessCardInfoManageList .aList .tContent .post{display:block;color:#999;line-height:25px;}
+.businessCardInfoManageList .aList .tContent .operation{display:block;text-align:right;}
+.businessCardInfoManageList .aList .tContent .operation a{display:inline-block;padding:0 10px;}
+
+.input-area,.input-info{padding:10px;}
+
+.input-area .businessCardInfo-input-span{margin:10px auto;}
+.input-area .lTit{height:40px;line-height:39px;float:left;padding:0 5px 0 0;width:90px;}
+.input-area .lTit-textArea{float:left;padding:0 5px 0 0;width:90px;}
+.input-area .lTit-textArea span{display:block;}
+.input-area .lTit-text{float:left;padding:0 5px 0 0;width:90px;line-height:30px;}
+
+.input-area .lTit-textArea .extra{padding:5px 0 0 0;font-size:0.9em;font-weight:normal;line-height:19px;color:#bbb;}
+.input-area .lInput{_float:left;overflow:hidden;border:1px solid #ccc;}
+.input-area .lText{_float:left;overflow:hidden;line-height:30px;text-align:left;color:#999;white-space:normal;word-break:break-all;}
+
+
+.input-area .lTit-long{float:left;padding:0 5px 0 0;line-height:22px;width:90px;}
+.input-area .lText-long{_float:left;overflow:hidden;line-height:22px;text-align:left;color:#999;white-space:normal;word-break:break-all;}
+
+.input-area .businessCardInfo-input{width:99.9%;overflow:hidden;height:40px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:39px;font-weight:normal;color:#666;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;}
+.input-area .businessCardInfo-input-bdr{width:99.9%;overflow:hidden;height:40px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:39px;font-weight:normal;color:#666;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;border:1px solid #ccc;}
+
+.input-area .businessCardInfo-text-span{display:block;height:30px;}
+.input-area .businessCardInfo-text-span-long{display:block;padding:10px 0;}
+
+.input-area .businessCardInfo-img-span{display:block;}
+.input-area .businessCardInfo-img-span img{width:120px;height:120px;}
+
+.input-area .businessCardInfo-select-span{display:block;height:40px;}
+.input-area .businessCardInfo-select{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+.input-area .businessCardInfo-textarea-span{display:block;}
+.input-area .businessCardInfo-textarea{width:99%;height:120px;border:0;font-size:1em;line-height:19px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.input-area .businessCardInfo-btn-span{display:block;height:40px;margin:10px 0 0 0;}
+.input-area .businessCardInfo-btn{width:100%;height:40px;border:0;font-size:1.2em;}
+
+.input-info span{display:block;padding:10px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;font-size:1em;line-height:25px;}
+
+.input-area .mChk{vertical-align:middle;display:inline;margin-right:3px;}
+.input-area .secTxt{color:#666;font-size:0.9em;}
+
+
+.unloadBtn{padding:0px 10px;cursor:pointer;line-height:35px;text-align:center;color:#3c3c3c;font-size:1em;color:#000;border:1px solid #d3d4d4;background-color:#fff;font-size:16px;font-family:"Microsoft Yahei",simsun;}
+.optionBtn{display:inline-block;padding:0px 10px;cursor:pointer;line-height:35px;text-align:center;color:#3c3c3c;font-size:1em;color:#000;border:1px solid #d3d4d4;background-color:#fff;font-size:16px;font-family:"Microsoft Yahei",simsun;}
+
+.businessCardInfoManage-chk-span{display:inline-block;height:28px;line-height:28px;}
+.businessCardInfoManage-chk-span .mChk{vertical-align:middle;display:inline;margin-right:3px;}
+
+
+.addressDelLbtn{margin:0 0 0 10px;height:20px;border:0px;outline:0px;background:none;font-family:"Microsoft Yahei",simsun;cursor:pointer;font-size:16px;color:#000;}
+
+
+.businessCard-openWin-box{width:100%;height:100%;top:0px;left:0px;position:absolute;filter: Alpha(opacity=20);opacity:0.2; background:#000;z-index:99998;}
+.businessCard-openComplate-box{position:absolute;padding:20px 30px 10px 30px; width:240px; left:50%;top:30%; margin:0 0 0 -150px; background:#fff;border:1px solid #ccc;z-index:99998;text-align:left;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.businessCard-openComplate-box img{display:block;margin:10px auto;padding:10px 0 20px 0;}
+
+
+
+/* share */
+.businessCardInfoShare{padding:0 10px;}
+.logo-box{margin:0 auto;text-align:center;}
+
+.title-box{background:#3eb034;text-align:center;margin:10px auto;padding:10px;}
+.title-box span{color:#fff;font-size:1.2em;}
+
+.content-box{margin:10px auto;}
+.content-box .tIntro{color:#3bb02e;font-size:1.2em;line-height:1.8em;padding:0 0 0 5px;}
+
+.content-box .tTitle{background:#e6e6e8;margin:10px auto;}
+
+.content-box .tNum-bg{background:#fff;border-radius:0 30px 30px 0;-webkit-border-radius:0 30px 30px 0;-mos-border-radius:0 30px 30px 0;width:30px;height:30px;display:inline-block;text-align:center;}
+.content-box .tNum{background:#e70012;border-radius:30px;-webkit-border-radius:30px;-mos-border-radius:30px;color:#fff;width:26px;height:26px;margin:2px auto;font-family:"Microsoft Yahei",simsun;display:inline-block;line-height:26px;}
+.content-box .tTxt{color:#5a5a5a;display:inline-block;}
+.content-box .tImg{text-align:center;margin:0 auto;}
+.content-box .tImg img{max-width:100%;}

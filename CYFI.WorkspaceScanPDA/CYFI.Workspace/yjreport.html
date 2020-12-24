@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C/3移动平台</title>
+    <link rel="stylesheet" href="css/bx-cover.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/jdate.min.js"></script>
+    <script src="js/touch.min.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script src="js/genericScript.js"></script>
+    <link href="default.css" rel="stylesheet" />
+    <link href="ivs/viewer.css" rel="stylesheet" />
+    <script src="ivs/viewer.js"></script>
+    <script>
+
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            localStorage.removeItem("Mudown");
+            localStorage.removeItem("UntOwn");
+            localStorage.removeItem("Prntown");
+            localStorage.removeItem("Caption");
+            window.location.href = "login.html";
+        }
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+            window.location.href = "yjreport.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+        function LoadImage() {
+
+            var UntOwn = localStorage.getItem("UntOwn");
+            var YJImagePath = localStorage.getItem("YJImagePath" + UntOwn);
+
+
+            try {
+                $('#Gallery').empty();
+                var authorization = localStorage.getItem("authorization");
+                var STToken = localStorage.getItem("STToken");
+                var userr = localStorage.getItem("userr");
+
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Audit/ImageList" + Common.jsNC2(),
+                    data: { 'UserName': userr, "ImagePath": YJImagePath },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+
+                            // var $text = $("#list").children().children().children();
+                            //$text.eq(0).text(Common.getUrlParam("Title"));
+                            //$text.eq(1).text("创建人：" + "张三");
+                            //$text.eq(2).text("创建时间：" + "2017");
+
+                            $.each(returnValue.FileNames, function (n, item) {
+                                $('#Gallery').append("<li style='height:155px'><img  src='" + item + "' /></li>");
+                                //$('#before').before("<li ><a style='height:150px'  href='" + item + "' rel='external' class='ui-link' style='display: block;'><img  src='" + item + "' rel='external' class='ui-link' style='display: block;' /></a></li>");
+                            });
+
+                            //if (viewer) {
+
+                            //    viewer.Destroy();
+                            //}
+
+                            var viewer = new Viewer(document.querySelector('.viewImgs'), {
+                                'navbar': false,
+                                'title': false,
+                                'movable': true,
+                                'fullscreen': true,
+                                toolbar: {
+                                    zoomIn: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    zoomOut: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    reset: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    prev: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    next: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    rotateLeft: {
+                                        show: 1,
+                                        size: 'large',
+                                    },
+                                    rotateRight: {
+                                        show: 1,
+                                        size: 'large',
+                                    }
+                                }
+                            });
+
+                            viewer.show();
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            } catch (e) {
+                alert(e);
+            }
+        }
+    </script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left" id="oTitle">
+
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul>
+                    <li><a href="#">用户参数</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="javascript:QHYG();">重新登录</a></li>
+                    <li><a href="#">升级</a></li>
+                    <li><a href="#">注册信息</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder">
+        <div class="top">
+            <ul class="clearfix">
+                <li class="active">
+                   
+                </li>
+            </ul>
+        </div>
+        <div class="bottom" id="divWhere">
+        </div>
+    </div>
+
+
+    <div data-role="page" style="display:none" data-url="">
+        <!--内容-->
+        <div>
+            <div class="headerTitle">
+                <a href="javascript:goBack()">
+                    <img src="image/order_icon (6).png" alt="">
+                    <b>返回</b>
+                </a>
+            </div>
+            <div>
+            </div>
+            <div class="jqm-content">
+                <div class="jqm-block-content">
+                    <ul id="Gallery" class="gallery viewImgs"></ul>
+                </div>
+            </div>
+        </div><div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div>
+
+    </div>
+
+    <nav>
+        <ul class="clearfix">
+            <li>
+                <a href="javascript:MUSY();">
+                    <img src="image/nav_icon1.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="javascript:MULB();">
+                    <img src="image/nav_icon2_active.png" alt="">
+                    <p>列表</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUXX();">
+                    <img src="image/nav_icon3.png" alt="">
+                    <p>消息</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUWD();">
+                    <img src="image/nav_icon4.png" alt="">
+                    <p>我的</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        layer.ready(function () {
+            Common.CheckUserLogin();
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var YJImagePath = localStorage.getItem("YJImagePath" + UntOwn);
+            var Caption = localStorage.getItem("Caption");
+            $("#oTitle").html(Caption);
+            if (YJImagePath) {
+                LoadImage();
+            }
+            else {
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Report/YJReport" + Common.jsNC2(),
+                    data: { 'UserName': userr, 'Param': "", 'Shwn': UntOwn },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    beforeSend: function (request) {
+                        loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                    },
+                    complete: function () {
+                        layer.close(loadIndex);
+                    },
+                    success: function (data) {
+
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+                            localStorage.setItem("YJImagePath" + UntOwn, returnValue.ImagePath);
+                            LoadImage();
+                            //window.location.href = "/ImageViewer.html?ImagePath=" + encodeURIComponent(returnValue.ImagePath)
+                            //   + "&Title=" + Common.getUrlParam("cap");
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.close(loadIndex);
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

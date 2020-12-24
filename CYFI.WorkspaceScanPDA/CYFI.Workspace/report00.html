@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="EnterName"></title>
+    <link rel="stylesheet" type="text/css" href="css/bx-covero.css">
+    <link rel="stylesheet" type="text/css" href="css/baseo.css">
+    <link rel="stylesheet" type="text/css" href="css/headero.css">
+    <link rel="stylesheet" type="text/css" href="css/me.css">
+    <link rel="stylesheet" type="text/css" href="css/weui.css" />
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <style>
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .weui-tab__panel tr:nth-child(1n) {
+            background: #dddddd;
+        }
+
+        .weui-tab__panel tr:nth-child(2n) {
+            background: #0094ff;
+            /*background: #0094ff;*/
+        }
+
+        td {
+            border: 1px solid #000000;
+            text-align: center;
+            height: 0.7rem;
+            padding: 2px;
+            font-size: 0.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body {
+            --weui-BRAND: #ffffff;
+            --weui-BG-COLOR-ACTIVE: #0094ff;
+        }
+
+        .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+            color: #ffffff;
+            color: var(--weui-BRAND);
+        }
+
+        .weui-navbar__item.weui-bar__item_on {
+            color: #ffffff;
+            background-color: #ffffff;
+            background-color: var(--weui-BG-COLOR-ACTIVE);
+        }
+    </style>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="layui/layui.all.js"></script>
+    <script src="js/genericScript.js"></script>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left">
+                <a href="#" onclick="javascript :history.back(-1);"><img width="28" style="margin-top:-0.08rem" height="28" src="image/reback200.png" /></a>
+            </div>
+
+            <div class="pull-left" id="oTitle">
+
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder" style="padding:0.05rem">
+
+        <div class="page">
+            <div class="page__bd" style="height: 100%; margin-top:0.11rem;">
+                <div class="weui-tab">
+                    <div class="weui-navbar" style="border:1px solid #0026ff" id="divUnits">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom" style="height:calc(100% - 0.8rem);">
+            <div class="weui-tab__panel" style="padding-top:0.1rem">
+                <table id="tableData"></table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function UnitsChange(Owner, SqlString, Caption, Capstring, StortedSet, Size_fld, Size_cmd, is_grid, Tfieldnam, Dataset) {
+            $(".weui-navbar div").each(function () {
+                $(this).removeClass("weui-bar__item_on");
+            });
+            $("#" + Owner).addClass("weui-bar__item_on");
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var loadIndex;
+            var Fields;
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getWeChatRemotePort() + "OrderDetail/ReportFields" + Common.jsNC2(),
+                data: { 'UserName': Common.getDefaultUser(), 'Owner': Owner },
+                beforeSend: function (request) {
+                    loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+
+                        Fields = returnValue.Fields;
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+            $("#tableData").empty();
+            $.ajax({
+                type: "Post",
+                url: Common.getRemotePort() + "OrderDetail/ReportDetail" + Common.jsNC2(),
+                data: { 'UserName': userr, 'Owner': Owner, 'SqlString': SqlString, 'Storted_set': StortedSet, 'Caption': Caption, 'Capstring': Capstring, 'Fields': Fields, 'Tfieldnam': Tfieldnam, 'Dataset': Dataset },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                complete: function () {
+                    layer.close(loadIndex);
+                },
+                success: function (data) {
+
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        $("#tableData").append(returnValue.ReturnTable);
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.close(loadIndex);
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+            //alert(Owner + "," + Tfieldnam);
+        }
+        function GetMainUnit() {
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getWeChatRemotePort() + "Unit/MainUnit" + Common.jsNC2(),
+                data: { 'UserName': Common.getDefaultUser(), 'Untown': UntOwn },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        localStorage.setItem("UnitItems", returnValue.JsonList);
+                        //var ListData = eval(returnValue.ListJson);
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+        }
+        layer.ready(function () {
+
+            Common.CheckUserLogin();
+            var EnterName = localStorage.getItem("EnterName");
+            $("#EnterName").html(EnterName);
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var Caption = localStorage.getItem("Caption");
+            $("#oTitle").html("&nbsp;" + Caption);
+            
+            GetMainUnit();
+
+            var Storted_set;
+            var SqlString;
+            var DataSetName;
+            var Capstring;
+            var ParentOwn;
+            var Dataset;
+            var Tfieldnam;
+            var Size_fld;
+            var Size_cmd;
+            var Is_grid;
+            var Owner;
+            $("#divUnits").empty();
+            var units = eval(localStorage.getItem("UnitItems"));
+            if (units != undefined && units != null && units != '') {
+                var divUnit;
+                $.each(units, function (n, item) {
+                    if (n == 0) {
+                        Owner = item.Owner;
+                        Storted_set = item.Storted_set;
+                        SqlString = item.SqlString;
+                        DataSetName = item.Caption;
+                        Capstring = item.Capstring;
+                        ParentOwn = item.Owner;
+                        Dataset = item.Dataset;
+                        Tfieldnam = item.Tfieldnam;
+                        Size_fld = item.Size_fld;
+                        Is_grid = item.Is_grid;
+                        Size_cmd = encodeURIComponent(item.Size_cmd);
+                    }
+                    divUnit = $("<div id='" + item.Owner + "' class=\"weui-navbar__item\" onclick=\"UnitsChange('" + item.Owner + "','" + item.SqlString + "','" + item.Caption + "','" + item.Capstring + "','" + item.Storted_set + "','" + item.Size_fld + "','" + encodeURIComponent(item.Size_cmd) + "','" + item.Is_grid + "','" + item.Tfieldnam + "','" + item.Dataset + "')\">" + item.DisplayName + "</div>");
+                    $("#divUnits").append(divUnit);
+                });
+                UnitsChange(Owner, SqlString, DataSetName, Capstring, Storted_set, Size_fld, Size_cmd, Is_grid, Tfieldnam, Dataset);
+            }
+        });
+    </script>
+</body>
+</html>

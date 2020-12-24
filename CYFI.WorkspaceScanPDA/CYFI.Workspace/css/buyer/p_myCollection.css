@@ -1,0 +1,24 @@
+.myCollectiont-box{margin:0px auto;}
+.myCollectiontList{padding:8px 10px;}
+
+.myCollectiontList .tList{margin:10px 0;border:1px solid #999;}
+
+.myCollectiont-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.myCollectiont-box .new-txt{font-size:14px;color:#333;}
+.myCollectiont-box .state-info{padding:12px;}
+.myCollectiont-box .state-info p{font-size:14px;line-height:22px;color:#666;}
+
+.myCollectiont-box .memo-info{padding:12px;background-color:#f3ece5;}
+.myCollectiont-box .memo-info p{font-size:14px;line-height:22px;color:#666;}
+
+.myCollectiont-box .cart-list{padding:5px 10px;}
+.myCollectiont-box .cart-list p{color:#666;line-height:22px;font-size:14px;}
+.myCollectiont-box .cart-list a{color:#36c;}
+
+.myCollectiont-box .cart-list .p-img{width:50px;margin:10px;}
+.myCollectiont-box .cart-list .p-img-v1{width:65px;margin-bottom:-9999px;}
+.myCollectiont-box .cart-list .p-img img{width:60px;height:60px;}
+
+.myCollectiont-box .fl-v1,.myCollectiont-box .fl-v2{margin-left:75px;padding:5px;}
+
+.detailBtn{display:block;position:absolute;top:5px;right:10px;height:30px;outline:0px;padding:5px 10px;cursor:pointer;font-size:16px;color:#000;border:1px solid #d3d4d4;background-color:#fff;font-family:"Microsoft Yahei",simsun; }

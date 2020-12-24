@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <title>C/3移动平台</title>
+    <style>
+        .order_change .top2 ul {
+            white-space: nowrap;
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bx-cover.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left" id="oTitle">
+
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul>
+                    <li><a href="#">用户参数</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="javascript:QHYG();">重新登录</a></li>
+                    <li><a href="#">升级</a></li>
+                    <li><a href="#">注册信息</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder order_change">
+        <div class="top">
+            <ul>
+                <li>
+                    <a href="order_change.html">
+                        <img src="image/order_icon%20(3).png" alt="">
+                        <p>返回</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="image/save.png" alt="">
+                        <p>保存</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <div class="bottom_input">
+                <div class="input_box input_search" style="display:none">
+                    <span class="input_name">款号</span>
+                    <div class="input_right clearfix">
+                        <span>19316-06</span>
+                        <a href="javascript:;" class="pull-right"><img src="image/ordersearch.png" alt=""></a>
+                        <a href="javascript:;" class="pull-right down"><img src="image/ordersearch_icon3.png"></a>
+                        <ul>
+                            <li class="active"><a href="javascript:;">19316-06</a></li>
+                            <li><a href="javascript:;">sl1372-Z23A</a></li>
+                            <li><a href="javascript:;">K2019001-1</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="input_box2" id="divPeima" style="display:none">
+                    <div class="input_left">
+                        <p class="input_name">配码</p>
+                        <p class="input_name">数量</p>
+                    </div>
+                    <div class="input_right">
+                        <table>
+                            <tr id="trTitles"></tr>
+                            <tr id="trValues"></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="img_box" id="ShoesDiv">
+                    <img src="image/xie.png" alt="#" id="ShoesImg" style="display:none">
+                </div>
+                <br />
+                <div class="bottom_input" id="QueryItems">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul class="clearfix">
+            <li>
+                <a href="javascript:MUSY();">
+                    <img src="image/nav_icon1.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="javascript:MULB();">
+                    <img src="image/nav_icon2_active.png" alt="">
+                    <p>列表</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUXX();">
+                    <img src="image/nav_icon3.png" alt="">
+                    <p>消息</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUWD();">
+                    <img src="image/nav_icon4.png" alt="">
+                    <p>我的</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <script src="js/jdate.min.js"></script>
+    <script src="js/touch.min.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script src="js/genericScript.js"></script>
+    <script>
+        function selectDate(id) {
+            new Jdate({
+                el: id,
+                format: 'YYYY/MM/DD',
+                beginYear: 2000,
+                endYear: 2100
+            })
+        }
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            window.location.href = "login.html";
+        }
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        layer.ready(function () {
+            Common.CheckUserLogin();
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var Itemno = localStorage.getItem("Itemno");
+            var Caption0 = localStorage.getItem("Caption");
+            var ParentUnitOwner = localStorage.getItem("ParentUnitOwner");
+            $("#oTitle").html(Caption0 + '-修改');
+            var SqlString = decodeURIComponent(Common.getUrlParam("SqlString"));
+            var Storted_set = Common.getUrlParam("Storted_set");
+            var Caption = Common.getUrlParam("Caption");
+            var UnitOwner = Common.getUrlParam("UnitOwner");
+            var IndexCol = Common.getUrlParam("IndexCol");
+            var IndexColValue = Common.getUrlParam("IndexColValue");
+            var Size_fld = Common.getUrlParam("Size_fld");
+            var Size_cmd = Common.getUrlParam("Size_cmd");
+            var TEMPParentSQL = '';
+            var Fields = '';
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getWeChatRemotePort() + "OrderDetail/ChildDetailFields" + Common.jsNC2(),
+                data: { 'UserName': Common.getDefaultUser(), 'Datasetown': UnitOwner, 'UntOwn': UntOwn, 'ItemNo': Itemno },
+                success: function (data) {
+     
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        TEMPParentSQL = returnValue.ParentSQL;
+                        Fields = returnValue.Fields;
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+            $.ajax({
+ 
+                type: "Post",
+                url: Common.getRemotePort() + "OrderDetail/OrderChildData" + Common.jsNC2(),
+                data: { 'UserName': userr, 'Datasetown': UnitOwner, 'UntOwn': UntOwn, 'SqlString': SqlString, 'Storted_set': Storted_set, 'Caption': Caption, 'Itemno': Itemno, 'IndexCol': IndexCol, 'IndexColValue': IndexColValue, 'Size_fld': Size_fld, 'Size_cmd': Size_cmd, 'Fields': Fields},
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    debugger;
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        if (returnValue.Imgs != "") {
+                            if (returnValue.Imgs.length > 0) {
+                                $.each(returnValue.Imgs, function (n, item) {
+                                    var divImg = $("<img src=\"" + Common.getRemotePort() + "OrderDetail/Image?ImageID=" + item + "\" alt=\"\">");
+                                    $("#ShoesDiv").append(divImg);
+                                });
+                            }
+                        }
+                        $("#divPeima").css('display', 'none');
+                        if (Size_fld != "") {
+                            //$("#ShoesImg").css('display', 'none');
+                            $("#divPeima").css('display', 'block');
+                            $.each(returnValue.Peinums, function (n, item) {
+                                var tdTitle = $("<td><a href=\"javscript:;\"><p>" + item.Name + "</p></a></td>");
+                                var tdValue = $("<td><input type=\"number\" value=\"" + item.Value + "\" class=\"number\"></td>");
+                                $("#trTitles").append(tdTitle);
+                                $("#trValues").append(tdValue);
+                            });
+                        }
+                        $.each(returnValue.UnitFields, function (n, item) {
+
+                            var divParent = $("<div class=\"input_box\"></div>");
+                            var spanChild = $("<span class=\"input_name\">" + item.Fld_cap + "</span>");
+                            var divChild = $("<div class=\"input_right clearfix\"></div>");
+
+                            var inputChild = $("<input type=\"text\" id=" + item.Fieldnam + " value='" + item.Value + "' />");
+                            divChild.append(inputChild);
+                            divParent.append(spanChild);
+                            divParent.append(divChild);
+                            $("#QueryItems").append(divParent);
+                        });
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+        });
+
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+            window.location.href = "buyorder.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+.complaint-box{margin:0px auto;}
+
+.complaint-box .complaint-state,.complaint-box .buyer-info,.complaint-box .productList,.complaint-box .complaint-content,.complaint-box .complaint-msg,.complaint-box .complaint-img,.complaint-box .complaint-unLoadimg,.complaintList .tList{border:1px solid #999;margin:10px 0 0 0;}
+.complaint-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.complaint-box .new-txt{font-size:16px;color:#333;}
+.complaint-box .state-info{padding:12px;}
+.complaint-box .state-info p{font-size:14px;line-height:22px;color:#666;}
+
+
+.complaint-box .memo-info{padding:12px;background-color:#f3ece5;}
+.complaint-box .memo-info p{font-size:14px;line-height:22px;color:#666;}
+
+.complaint-box .cart-list{padding:5px 10px;}
+.complaint-box .cart-list p{color:#666;line-height:22px;font-size:14px;}
+.complaint-box .cart-list a{color:#36c;}
+
+.productList .tList{border:1px solid #999;margin:10px 0 0 0;}
+.productList .tList .new-tit{padding:12px 5px;border-bottom:1px solid #999;font-size:14px;}
+.productList .tList .new-txt{font-size:14px;color:#6e6e6e;}
+.productList .btn-area-rt{position:absolute;top:12px;right:10px;}
+
+
+.productList .fl{width:240px;text-align:left;}
+.productList .p-img{width:50px;margin:10px;}
+.productList .p-img-v1{width:65px;margin-bottom:-9999px;}
+.productList .p-img img{width:50px;height:50px;}
+.productList .pay-img{vertical-align:middle;}
+.productList .fl-v1,.productList .fl-v2{margin-left:75px;padding:5px;}
+.productList p{padding:0 0 6px 0;font-size:14px;}
+.productList .p-name{line-height:21px;font-size:16px;}
+.productList .p-num{color:#999;}
+.productList .pd-list{padding:5px 0;}
+.productList .pd-bd{border-bottom:1px solid #ccc;}
+
+
+.input-info{padding:5px 0px;text-align:center;}
+.input-info span{display:block;padding:10px;font-size:1em;line-height:25px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;}
+
+.input-area{padding:10px 0;}
+.input-area .complaint-input-span{display:block;height:40px;border:1px solid #ccc;}
+.input-area .complaint-input{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+.input-area .complaint-select-span{display:block;height:40px;}
+.input-area .complaint-select{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+
+.input-area .complaint-textarea-span{display:block;height:40px;border:1px solid #ccc;}
+.input-area .complaint-textarea{width:99.9%;height:100px;border:0;font-size:1em;line-height:39px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.input-area .complaint-chk-span{display:inline-block;height:28px;line-height:28px;font-size:14px;color:#666;}
+.input-area .complaint-chk-span .mChk{vertical-align:middle;display:inline;margin-right:3px;}
+
+.input-area .complaint-btn-span{display:block;height:45px;}
+.input-area .complaint-btn{width:100%;height:45px;border:0;font-size:1.2em;line-height:44px;}
+
+.input-icon{padding:10px 0 0 0;text-align:center;}
+.input-icon img{}
+
+.input-msg{padding:30px;text-align:center;}
+.input-msg h2{height:28px;line-height:28px;}
+
+.img-area{padding:10px;}
+.img-area .iList{padding:10px 5px;border-bottom:1px solid #ddd;}
+.img-area .iList .tIcon{display:inline-block;width:20px;}
+.img-area .iList .tImg{display:inline-block;margin-right:5px;}
+.img-area .iList .tImg img{width:100px;height:100px;}
+
+.img-area .iList .tHref{display:inline-block;vertical-align:top;}
+.img-area .iList .tHref a{display:block;line-height:35px;color:#03f;text-decoration:underline;vertical-align:top;}
+.img-area .iList .tHref p{color:#666;font-size:14px;line-height:22px;}
+
+.unloadImgLbtn{margin:10px auto;height:20px;border:0px;outline:0px;background:none;font-family:"Microsoft Yahei",simsun;cursor:pointer;color:#03c;border-bottom:1px solid;}
+
+
+.complaint-textarea{width:99.9%;height:50px;border:0;font-size:1em;line-height:20px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.complaint-box .btn-type{padding:10px 30px;margin:10px 10px 0 0;font-size:1em;border:0;font-family:"Microsoft Yahei",simsun;font-size:14px;}
+.complaint-box .btn{display:inline-block;height:26px;cursor:pointer;line-height:26px;margin:10px 5px 0 0;padding:0px 10px;text-align:center;font-size:1em;font-size:14px;}
+
+.input-chk{padding:0 5px;vertical-align:top;}
+
+
+/* complaintBegin */
+.complaintBegin{padding:0px;}
+.complaintBegin .begin-tit{padding:12px;font-size:14px;}
+.complaintBegin .begin-txt{font-size:16px;color:#333;}
+
+.complaintBegin .begin-content{padding:0 10px;}
+
+
+.complaintBegin .tList{position:relative;z-index:8888;height:45px;margin:0 0 10px 0;}
+.complaintBegin .first-bg{border:1px solid #ccc;}
+
+.complaintBegin .tList .beginHref{height:45px;line-height:44px;font-weight:normal;font-size:16px;color:#666;font-family:"Microsoft Yahei",simsun;margin-left:10px;}
+.complaintBegin .tList s{position:absolute;top:12px;right:10px;width:25px;height:32px;background:url(../../img/m_sprite.png) no-repeat;display:inline-block;width:8px;height:16px;text-indent:-9999px;background-position:-81px -137px;}
+
+
+.uploadImgBtn{display:block;position:absolute;top:1px;right:10px;height:26px;line-height:24px;margin:5px 5px 0 0;padding:0px 10px;text-align:center;font-size:14px;font-family:"Microsoft Yahei",simsun;cursor:pointer;}
+
+.detailBtn{display:block;position:absolute;top:1px;right:10px;height:26px;line-height:26px;margin:5px 5px 0 0;padding:0px 10px;text-align:center;font-size:14px;}
+
+.beginBtn{display:block;position:absolute;top:5px;right:10px;height:28px;line-height:26px;margin:5px 5px 0 0;padding:0px 10px;text-align:center;font-size:14px;font-family:"Microsoft Yahei",simsun;cursor:pointer;}
+
+.goBtn,.prevBtn,.backBtn{width:99%;border:0;font-family:"Microsoft Yahei",simsun;cursor:pointer;}
+
+
+/* complaintBegin */
+.complaintApply{padding:0px 10px;}
+.applyState{}
+
+
+/* order-box */
+.order-box{padding:0px 10px;}
+.order-apply-box{padding:0px;}
+
+/* complaint-box */
+.complaint-btn-box{padding:0px 10px 20px 10px;}
+
+
+/* complaint-img */
+.complaint-img{}
+.complaint-img img{display:inline-block;width:100px;height:100px;padding:5px;}
+
+
+
+/* uploadImg */
+.complaintUploadImg{padding:0px 10px;}
+
+.unloadImg-area{margin:10px auto;text-align:left;}
+.unloadImg-area .cartInfo-bg{background-color:#fff;border-radius:6px;}
+.unloadImg-area .error-bg{background-color:#fff;border:1px solid #c53535;box-shadow:inset 0 0 6px #c53535;border-radius:6px;}
+.unloadImg-area .tInfo{margin:10px 10px 0 10px;padding: 0 0 5px 0;}
+.unloadImg-area .cartInfo-bg .cImg{display:inline-block;vertical-align:middle;}
+.unloadImg-area .cartInfo-bg .cTxt{vertical-align:middle;}
+.unloadImg-area .cartInfo-bg .cTxt p{line-height:22px;color:#333;}
+.unloadImg-area .msgInfo{padding:10px;text-align:center;line-height:22px;font-size:14px;}
+
+
+.unloadImg-area .tBtn{padding:0 10px 20px 10px;}
+.unloadImg-area a{display:inline-block;margin-left:10px;margin-right:30px;}
+.unloadImg-area .unloadBtn{padding:0px 10px;cursor:pointer;line-height:26px;text-align:center;color:#3c3c3c;font-size:1em;color:#000;border:1px solid #d3d4d4;background-color:#fff;font-size:14px;font-family:"Microsoft Yahei",simsun;}
+
+.img-input-span{display:block;height:30px;border:1px solid #ccc;}
+.img-input{width:99.9%;height:30px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:29px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+
+/* complate */
+.complateHerf{color:#03f;text-decoration:underline;}
+
+
+/*cancel-state*/
+.cancelState{margin:10px;border:1px solid #999;}
+
+
+/* customerService */
+.customerService{padding:0px 10px;}
+
+
+/* complaint-msg */
+.complaint-msg .cTxt{}
+.complaint-msg .cImg{}
+.complaint-msg .cImg img{width:250px;}
+
+
+/* complateState */
+.complateState{padding:0px 10px;}
+
+
+/* complaintList */
+.complaintList{padding:8px 10px;}
+
+.tab-lst{display:table;width:100%;border-bottom:1px solid #fff;}
+.tab-lst li{display:table-cell;width:25%;text-align:center;}
+.tab-lst li a{border-bottom:1px solid #d1ccc8;}
+.tab-lst li a.on{border-bottom:1px solid #eb4f4f;color:#eb4f4f;}
+.tab-lst li a{display:block;padding:10px 0;color:#b8b4b2;font-size:1em;text-shadow:1px 1px 1px rgba(255,255,255,.2);}
+.tab-lst li .bar{float:left;width:1px;height:18px;margin-top:2px;background-color:#ded6c9;vertical-align:middle;}
+
+.complaintList .tList{margin:0 0 10px 0;}

@@ -1,0 +1,44 @@
+.changeBaseInfo-box{margin:10px auto;padding:0px;}
+
+/* changeBaseInfo */
+.changeBaseInfo{}
+
+.input-info{padding:0px 10px;text-align:center;}
+.input-info span{display:block;padding:10px;font-size:1em;line-height:25px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;}
+
+.changeBaseInfo .baseInfo{margin:10px 0 0 0;}
+.changeBaseInfo .baseInfo .tTitle-fir{padding:10px 10px 5px 10px;font-size:20px;line-height:25px;font-weight:700;color:#333;}
+.changeBaseInfo .baseInfo .tTitle{padding:10px 10px 5px 10px;line-height:25px;}
+.changeBaseInfo .baseInfo .tTitle .tit{font-size:16px;}
+.changeBaseInfo .baseInfo .tTitle .extra{font-size:14px;}
+
+.changeBaseInfo .sexInfo{}
+.changeBaseInfo .sexInfo .tTitle-fir{padding:15px 10px 0px 10px;}
+.changeBaseInfo .sexInfo .tTitle-fir .tit{font-size:20px;line-height:25px;font-weight:700;color:#333;}
+
+.changeBaseInfo-chk-span{display:inline-block;height:28px;line-height:28px;}
+.changeBaseInfo-chk-span table{height:28px;line-height:28px;margin:5px 0 0 0}
+.changeBaseInfo-chk-span input[type="radio"]{vertical-align:middle;display:inline;margin-left:10px;margin-right:3px;}
+
+
+.changeBaseInfo .birthdayInfo{}
+.changeBaseInfo .birthdayInfo .tTitle-fir{padding:10px 10px 0px 10px;font-size:20px;line-height:25px;font-weight:700;color:#333;}
+.changeBaseInfo .birthdayInfo .tTitle{padding:10px 10px 5px 10px;line-height:25px;}
+
+.changeBaseInfo .residenceInfo{}
+.changeBaseInfo .residenceInfo .tTitle-fir{padding:10px 10px 0px 10px;font-size:20px;line-height:25px;font-weight:700;color:#333;}
+.changeBaseInfo .residenceInfo .tTitle{padding:10px 10px 5px 10px;line-height:25px;}
+
+.input-area{padding:0px 10px;}
+.input-area .changeBaseInfo-input-span{display:block;height:40px;border:1px solid #ccc;}
+.input-area .changeBaseInfo-input{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+.input-area .changeBaseInfo-select-span{display:block;height:40px;}
+.input-area .changeBaseInfo-select{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+
+.input-area .changeBaseInfo-textarea-span{display:block;height:40px;border:1px solid #ccc;}
+.input-area .changeBaseInfo-textarea{width:99.9%;height:100px;border:0;font-size:1em;line-height:39px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.input-area .changeBaseInfo-btn-span{display:block;height:40px;}
+.input-area .changeBaseInfo-btn{width:100%;height:40px;border:0;font-size:1.2em;}
+

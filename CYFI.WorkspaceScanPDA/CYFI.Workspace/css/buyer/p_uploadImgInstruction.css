@@ -1,0 +1,15 @@
+.uploadImgInstruction-box{margin:0px auto;padding:0 10px;}
+
+.uploadImgInstruction-box .Instruction-info{border:1px solid #ccc;margin:10px 0 0 0;}
+.uploadImgInstruction-box .new-tit{padding:12px;font-size:14px;}
+.uploadImgInstruction-box .new-txt{font-size:16px;color:#333;}
+
+.uploadImgInstruction-box .cart-list{padding:5px 10px;border-top:1px solid #ccc;}
+.uploadImgInstruction-box .cart-list p{color:#666;line-height:22px;font-size:14px;text-indent:2em}
+.uploadImgInstruction-box .cart-list a{color:#36c;}
+
+.uploadImgInstruction-box .tList{border:1px solid #ccc;margin:10px 0 0 0;}
+.uploadImgInstruction-box .tList .new-tit{padding:12px 5px;border-bottom:1px solid #ccc;font-size:14px;}
+.uploadImgInstruction-box .tList .new-txt{font-size:14px;color:#6e6e6e;}
+.uploadImgInstruction-box .btn-area-rt{position:absolute;top:12px;right:10px;}
+

@@ -1,0 +1,13 @@
+/* report */
+.agentSaleRelation-box{margin:0px auto;}
+.agentSaleRelationReport{padding:0 10px;}
+.agentSaleRelation-box .tList{margin:0 0 10px 0;}
+.agentSaleRelation-box .agentSaleRelation-report{border:1px solid #999;margin:10px 0 0 0;}
+.agentSaleRelation-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.agentSaleRelation-box .new-txt{font-size:16px;color:#333;}
+.agentSaleRelation-box .state-info{padding:12px;}
+.agentSaleRelation-box .state-info p{font-size:14px;line-height:22px;color:#666;}
+
+.agentSaleRelation-box .cart-list{padding:5px 10px;}
+.agentSaleRelation-box .cart-list p{color:#666;line-height:22px;font-size:14px;}
+.agentSaleRelation-box .cart-list a{color:#36c;}

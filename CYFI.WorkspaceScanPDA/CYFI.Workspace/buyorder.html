@@ -1,0 +1,481 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C/3移动平台</title>
+    <link rel="stylesheet" href="css/bx-cover.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <style>
+        .makesth {
+            font-weight: bold;
+            color: #4d596e;
+        }
+
+        .date {
+            font-size: 0.28rem;
+            color: #bec7d4;
+        }
+
+        .num {
+            font-size: 0.28rem;
+            color: #818da1;
+        }
+
+        .numValue {
+            color: #57adfc;
+        }
+
+        .text {
+            font-size: 0.28rem;
+            color: #818da1;
+        }
+    </style>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left" id="oTitle">
+
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul>
+                    <li><a href="#">用户参数</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="javascript:QHYG();">重新登录</a></li>
+                    <li><a href="#">升级</a></li>
+                    <li><a href="#">注册信息</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder buyorder2">
+        <div class="top">
+            <ul class="clearfix">
+                <li>
+                    <a href="javascript:CYCK();">
+                        <img src="image/order_icon%20(1).png" alt="">
+                        <p>查询</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:YHTS();">
+                        <img src="image/order_icon%20(2).png" alt="">
+                        <p>添加</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:OrderEdit();">
+                        <img src="image/order_icon%20(3).png" alt="">
+                        <p>修改</p>
+                    </a>
+                </li>
+                <li style="display:none">
+                    <a href="javascript:YHTS();">
+                        <img src="image/order_icon%20(5).png" alt="">
+                        <p>提交</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:YHTS();">
+                        <img src="image/order_icon%20(6).png" alt="">
+                        <p>撤销</p>
+                    </a>
+                </li>
+                <li id="liBtnSC">
+                    <a href="javascript:SubmitSC();">
+                        <img src="image/order_icon (7).png" alt="">
+                        <p>收藏</p>
+                    </a>
+                </li>
+                <li id="liBtnQXSC">
+                    <a href="javascript:SubmitQXSC();">
+                        <img src="image/order_icon (7).png" alt="">
+                        <p>取消收藏</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <ul id="ulList"></ul>
+        </div>
+        <div class="count clearfix bottom-fixed" id="divTotal">
+
+        </div>
+    </div>
+    <nav>
+        <ul class="clearfix">
+            <li>
+                <a href="javascript:MUSY();">
+                    <img src="image/nav_icon1.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="javascript:MULB();">
+                    <img src="image/nav_icon2_active.png" alt="">
+                    <p>列表</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUXX();">
+                    <img src="image/nav_icon3.png" alt="">
+                    <p>消息</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUWD();">
+                    <img src="image/nav_icon4.png" alt="">
+                    <p>我的</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <script src="js/jdate.min.js"></script>
+    <script src="js/touch.min.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script src="js/genericScript.js"></script>
+    <script>
+
+        function SubmitQXSC() {
+
+            //layer.msg(itm_n);
+            //window.location.href = "audit.html"
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var loadIndex = -1;
+
+            $.ajax({
+                type: "Post",
+                url: Common.getRemotePort() + "Menu/SaveMenu" + Common.jsNC2(),
+                contentType: "application/x-www-form-urlencoded",
+                data: { 'userr': userr, 'unit_own': UntOwn, 'opsty': 2 },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue) {
+                        //var rtData = eval(returnValue.Message);
+
+                        localStorage.setItem("FdMenu", false);
+                        layer.msg('取消收藏成功。');
+                        $("#liBtnQXSC").hide();// = "";
+                        $("#liBtnSC").show();// = "none";
+                    }
+                    else {
+                        layer.msg("取消收藏失败。");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                    layer.close(loadIndex);
+                }
+            });
+            //layer.msg('订单提交 ');
+        }
+
+        function SubmitSC() {
+
+            //layer.msg(itm_n);
+            //window.location.href = "audit.html"
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var loadIndex = -1;
+
+            $.ajax({
+                type: "Post",
+                url: Common.getRemotePort() + "Menu/SaveMenu" + Common.jsNC2(),
+                contentType: "application/x-www-form-urlencoded",
+                data: { 'userr': userr, 'unit_own': UntOwn, 'opsty': 1 },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue) {
+                        //var rtData = eval(returnValue.Message);
+
+                        layer.msg('收藏成功。');
+                        localStorage.setItem("FdMenu", true);
+                        $("#liBtnQXSC").show();
+                        $("#liBtnSC").hide();
+                    }
+                    else {
+                        layer.msg("收藏失败。");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                    layer.close(loadIndex);
+                }
+            });
+            //layer.msg('订单提交 ');
+        }
+
+        function GetMainUnit() {
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            //var Caption = localStorage.getItem("Caption");
+            //var queryCriteria = localStorage.getItem("QueryCriteria");
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getWeChatRemotePort() + "Unit/MainUnit" + Common.jsNC2(),
+                data: { 'UserName': Common.getDefaultUser(), 'Untown': UntOwn },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        localStorage.setItem("UnitItems", returnValue.JsonList);
+                        //var ListData = eval(returnValue.ListJson);
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+        }
+        function OrderAppend() {
+            //GetMainUnit();
+            window.location.href = "order_add.html";
+            //layer.msg('append');
+        }
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            window.location.href = "login.html";
+        }
+
+        function CYCK() {
+            window.location.href = "order_search.html";
+        }
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+            window.location.href = "buyorder.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+        function YHTS() {
+            layer.msg('您没有权限访问，请与管理员联系。');
+        }
+        function OrderEdit() {
+
+            var TabName = localStorage.getItem("TabName");
+            var IndexCol = localStorage.getItem("IndexCol");
+            var IndexColValue = localStorage.getItem("IndexColValue");
+            var Itemno = localStorage.getItem("Itemno");
+            if (!TabName || !IndexColValue || !IndexCol || !Itemno) {
+                layer.msg('请选择数据。');
+                return;
+            }
+            window.location.href = "order_change.html";
+            //layer.msg(Itemno);
+        }
+        function changeLiActive(TabName, IndexCol, IndexColValue) {
+            localStorage.setItem("TabName", TabName);
+            localStorage.setItem("IndexCol", IndexCol);
+            localStorage.setItem("IndexColValue", IndexColValue);
+            localStorage.setItem("Itemno", IndexColValue);
+
+            //layer.msg(TabName + ':' + itemno);
+            $("#ulList li").each(function () {
+                $(this).removeClass("active");
+            });
+            $("#" + IndexColValue).addClass("active");
+        }
+        function GTDETAIL(TabName, IndexCol, IndexColValue) {
+
+            if (!TabName || !IndexCol || !IndexColValue) {
+                layer.msg('单据没有索引，请与管理员联系。');
+                return;
+            }
+
+            localStorage.setItem("Itemno", IndexColValue);
+            localStorage.setItem("TabName", TabName);
+            localStorage.setItem("IndexCol", IndexCol);
+            localStorage.setItem("IndexColValue", IndexColValue);
+
+            window.location.href = "order_change.html";
+            //layer.msg(TabName + ':' + itemno);
+        }
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        layer.ready(function () {
+            localStorage.setItem("ISLoadImage", "No");
+            Common.CheckUserLogin();
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var Caption = localStorage.getItem("Caption");
+            var FdMenu = localStorage.getItem("FdMenu");
+            if (FdMenu == "true") {
+                $("#liBtnQXSC").show();// = "";
+                $("#liBtnSC").hide();// = "none";
+            }
+            else {
+                $("#liBtnQXSC").hide();// = "none";
+                $("#liBtnSC").show(); //= "";
+            }
+            $("#oTitle").html(Caption);
+            var queryCriteria = localStorage.getItem("QueryCriteria");
+            localStorage.removeItem("TabName");
+            localStorage.removeItem("IndexCol");
+            localStorage.removeItem("IndexColValue");
+            localStorage.removeItem("Itemno");
+            localStorage.removeItem("UnitItems");
+            GetMainUnit();
+            var Storted_set;
+            var SqlString;
+            var ParentOwn;
+            var Capstring;
+            var units = eval(localStorage.getItem("UnitItems"));
+            if (units != undefined && units != null && units != '') {
+                var loadIndex = -1;
+                $.each(units, function (n, item) {
+                    if (item.Caption == "parenttab") {
+                        Storted_set = item.Storted_set;
+                        SqlString = item.SqlString;
+                        Capstring = item.Capstring;
+                        ParentOwn = item.Owner;
+                    }
+                });
+                var Syllables = '';
+                var indexCol = '';
+                $.ajax({
+                    type: "Get",
+                    async: false,
+                    url: Common.getWeChatRemotePort() + "OrderList/Syllable" + Common.jsNC2(),
+                    data: { 'UserName': Common.getDefaultUser(), 'Untown': UntOwn },
+                    beforeSend: function (request) {
+                        loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                    },
+                    complete: function () {
+                        layer.close(loadIndex);
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 1) {
+                            Syllables = returnValue.Syllable;
+                            indexCol = returnValue.IndexCol;
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.close(loadIndex);
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "OrderList/ListData" + Common.jsNC2(),
+                    data: { 'UserName': userr, 'Untown': UntOwn, 'SqlString': SqlString, 'Capstring': Capstring, 'Storted_set': Storted_set, 'QueryCriteria': queryCriteria, 'indexCol': indexCol, 'Syllables': Syllables },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    beforeSend: function (request) {
+                        loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                    },
+                    complete: function () {
+                        layer.close(loadIndex);
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 1) {
+                            var ListData = eval(returnValue.ListJson);
+                            var ColTitles = eval(returnValue.ColTitles);
+                            var TabName = returnValue.TabName;
+                            $("#divTotal").append(returnValue.ColTotals);
+                            $("#ulList").empty();
+                            $.each(ListData, function (n, item) {
+                                var liList = $("<li ondblclick=\"GTDETAIL('" + TabName + "','" + returnValue.IndexCol + "','" + item[returnValue.IndexCol] + "')\" onclick=\"changeLiActive('" + TabName + "','" + returnValue.IndexCol + "','" + item[returnValue.IndexCol] + "')\" id=" + item[returnValue.IndexCol] + "></li>");
+                                var aList = $("<a href=\"javascript:;\"></a>");
+                                var divList;
+                                $.each(ColTitles, function (m, itemTitle) {
+                                    if (m % 2 == 0) {
+                                        divList = $("<div class=\"num clearfix\"></div>")
+                                        var divItemList = $("<div class=\"pull-left " + itemTitle.Style + "\" style=\"text-overflow: ellipsis;width: 3.1rem;white-space: nowrap;overflow: hidden\">" + itemTitle.DisplayName + "：" + item[itemTitle.Name] + "</div>")
+                                        divList.append(divItemList);
+                                    }
+                                    else {
+                                        var divItemList = $("<div class=\"pull-right " + itemTitle.Style + "\" style=\"text-overflow: ellipsis;width: 3.1rem;white-space: nowrap;overflow: hidden\">" + itemTitle.DisplayName + "：" + item[itemTitle.Name] + "</div>")
+                                        divList.append(divItemList);
+                                        //aList.append(divList);
+                                    }
+                                    if (m % 2 == 0 || ColTitles.length - 1 == m) {
+                                        aList.append(divList);
+                                    }
+                                });
+                                liList.append(aList);
+                                $("#ulList").append(liList);
+                            });
+
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.close(loadIndex);
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+                if (queryCriteria && queryCriteria != null && queryCriteria.length > 2 && queryCriteria != "{}") {
+                    //var a = 1;
+                }
+                else {
+
+                }
+            }
+            else {
+                layer.msg('请联系管理员，没有找到模块');
+            }
+        });
+    </script>
+</body>
+</html>

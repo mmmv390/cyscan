@@ -1,0 +1,49 @@
+.addBtn-box{margin:10px auto;padding:0 10px;}
+.addBtn-box .extra-area span{display:inline-block;text-align:center;}
+
+.addBtn-box .btnDefault{border:1px solid #00a73c;display:block;margin:0 10px 0 0;padding:5px 0;text-align:center;}
+.addBtn-box .noMar{display:block;margin:0;padding:5px 0;}
+.addBtn-box .addBtn-input{border:0px;outline:0;background-color:#fff;font-family:"Microsoft Yahei",simsun;line-height:25px;color:#00a73c;}
+
+.detailBtn{height:28px;line-height:26px;margin:5px 5px 0 0;padding:0px 10px;text-align:center;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;font-size:14px;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#e2d7c5));background:-moz-linear-gradient(top,#fff,#e2d7c5);border:1px solid #baac9d;font-family:"Microsoft Yahei",simsun;color:#764633;}
+
+
+.addList-box{margin:0px auto;padding:0 10px;}
+.addList-box .tList{border:1px solid #999;margin:10px 0 0 0;}
+.addList-box .new-tit{padding:10px 12px;border-bottom:1px solid #999;font-size:14px;}
+
+.addList-box .cart-list{padding:5px 10px;}
+.addList-box .cart-list p{color:#666;line-height:22px;font-size:14px;}
+.addList-box .cart-list a{color:#36c;}
+
+.addList-box .cart-list .pbtn{text-align:right;}
+.addList-box .cart-list .pbtn b{color:#764633;font-weight:normal;}
+
+.addList-box .cart-list .bdr-bottom{border-bottom:1px dashed #ccc;padding:0 0 10px 0;}
+
+
+
+/* addBank */
+.addBank-box{margin:10px auto;padding:0px;}
+.addBankChange{}
+
+.addBankChange .baseInfo{margin:10px 0 0 0;}
+.addBankChange .baseInfo .tTitle{padding:10px 10px 5px 10px;line-height:25px;}
+.addBankChange .baseInfo .tTitle .tit{font-size:16px;}
+.addBankChange .baseInfo .tTitle .extra{font-size:14px;}
+
+.input-info{padding:0px 10px;text-align:center;}
+.input-info span{display:block;padding:10px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;font-size:1em;line-height:25px;}
+
+.input-area{padding:0px 10px;}
+.input-area .addressManage-input-span{display:block;height:38px;border:1px solid #ccc;}
+.input-area .addressManage-input{width:99.9%;height:38px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+.input-area .addressManage-select-span{display:block;height:40px;}
+.input-area .addressManage-select{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+
+.input-area .addressManage-textarea-span{display:block;height:40px;border:1px solid #ccc;}
+.input-area .addressManage-textarea{width:99.9%;height:100px;border:0;font-size:1em;line-height:39px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.input-area .addressManage-btn-span{display:block;height:40px;}
+.input-area .addressManage-btn{width:100%;height:40px;border:0;font-size:1.2em;}

@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <title></title>
+    <style>
+        .order_change .top2 {
+            margin-top: 0.2rem;
+        }
+
+        .order_change .top2 ul {
+            white-space: nowrap;
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
+
+        .buyorder .top2 ul li {
+            display: inline-block;
+            padding: 0 0.2rem;
+        }
+
+        .order_change ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bx-cover.css">
+    <link rel="stylesheet" href="css/fixed-table.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <link rel="stylesheet" href="css/list-scroll.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/fixed-table.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+</head>
+
+<body class="main" style="overflow-x: hidden;overflow-y: hidden;white-space: nowrap;height:100%">
+    <div class="content buyorder order_change" style="height:100%">
+        <div class="top2">
+            <ul class="clearfix" id="ulOrderData"></ul>
+        </div>
+        <div class="bottom" style="height:99%">
+            <div class="bottom_input bottom_input2 bottom-list-scroll">
+                <div class="list list-scroll">
+                    <div style="height: 100%;">
+                        <div class="fixed-table-box row-col-fixed">
+                            <div class="fixed-table_header-wraper">
+                                <table class="fixed-table_header" id="tableTitle1" cellspacing="0" cellpadding="0" border="0">
+                                    <thead>
+                                        <tr id="thTitles"></tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="fixed-table_body-wraper">
+                                <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0">
+                                    <tbody id="tbodyData"></tbody>
+                                </table>
+                            </div>
+                            <div class="fixed-table_fixed fixed-table_fixed-left" style="height: 284px;">
+                                <div class="fixed-table_header-wraper">
+                                    <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
+                                        <thead>
+                                            <tr>
+                                                <th class="w-50">
+                                                    <div class="table-cell">序号</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="fixed-table_body-wraper">
+                                    <table class="fixed-table_body" id="tableTitle2" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody id="tbodyNo"></tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table_header-wraper fixed-table_bottom_left-wraper">
+                                    <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
+                                        <thead>
+                                            <tr>
+                                                <th class="w-50">
+                                                    <div class="table-cell">合计行</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="fixed-table_header-wraper fixed-table_bottom-wraper">
+                                <table class="fixed-table_header" id="tableTitle3" cellspacing="0" cellpadding="0" border="0">
+                                    <thead>
+                                        <tr id="trSum"></tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="fixed-table-box_fixed-right-patch"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jdate.min.js"></script>
+    <script src="js/touch.min.js"></script>
+    <script src="js/genericScript.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script>
+
+        function dbClickT() {
+            $(this).parent().find(".hover-text").show();
+
+        }
+
+        function changeActiveTab(Owner, dset_sql) {
+            $("#thTitles").empty();
+            $("#tbodyNo").empty();
+            $("#tbodyData").empty();
+            $("#trSum").empty();
+            $("#tableTitle1").css("width", "0px");
+            $("#tableTitle2").css("width", "0px");
+            $("#tableTitle3").css("width", "0px");
+            $("#tbodyNo").css("width", "0px");
+
+
+            $(".order_change .top2 li ").each(function () {
+                $(this).removeClass("active");
+            });
+            $("#" + Owner).addClass("active");
+            var userr = localStorage.getItem("userr");
+            var Prntown = localStorage.getItem("Prntown");
+            var str = localStorage.getItem("QueryCondition");
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var loadIndex = -1;
+            $.ajax({
+                type: "Post",
+                url: Common.getWeChatRemotePort() + "Report/TabData" + Common.jsNC2(),
+                data: { 'UserName': userr, 'Shwn': Prntown, 'QueryCondition': str, 'DsetWn': Owner, 'Dset_sql': dset_sql },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                beforeSend: function (request) {
+                    loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                },
+                complete: function () {
+                    layer.close(loadIndex);
+                },
+                success: function (data) {
+
+                    var returnValue = data;
+                    if (returnValue.Code == 1) {
+
+                        var liParentX = $("<th data-fixed=\"true\" class=\"w-50\"><div class=\"table-cell\">序号</div></th>");
+                        $("#thTitles").append(liParentX);
+
+                        var trParentSum = $("<th class=\"w-50\" data-fixed=\"true\"><div class=\"table-cell\"></div></th>");
+                        $("#trSum").append(trParentSum);
+
+                        $.each(returnValue.Cols, function (n, item) {
+                            var liParent = $("<th class=\"w-" + item.Width + "\"><div class=\"table-cell\">" + item.ColumnCNName + "</div></th>");
+                            $("#thTitles").append(liParent);
+
+                            var liParentSum = $("<th class=\"w-" + item.Width + " border-right-0\"><div class=\"table-cell\">" + item.Sum + "</div></th>");
+                            $("#trSum").append(liParentSum);
+                        });
+
+                        var dataList = eval(returnValue.JsonList);
+                        // alert(dataList.length);
+                        for (var i = 0; i < dataList.length; i++) {
+                            var trData = $("<tr></tr>");
+                            var tdDataFirst = $("<td class=\"w-50\"><div class=\"table-cell\">" + (i + 1) + "</div></td>");
+
+                            trData.append(tdDataFirst);
+
+                            var trDataNo = $("<tr></tr>");
+                            var tdDataFirstNo = $("<td class=\"w-50\"><div class=\"table-cell\">" + (i + 1) + "</div></td>");
+
+                            trDataNo.append(tdDataFirstNo);
+                            $("#tbodyNo").append(trDataNo);
+
+                            $.each(returnValue.Cols, function (m, itemData) {
+                                var tdData = $("<td  class=\"w-" + itemData.Width + " hover-main\"><div class=\"table-cell\">" + dataList[i][itemData.ColumnName] + "</div></td>");
+                                trData.append(tdData);
+                            });
+
+                            $("#tbodyData").append(trData);
+                        }
+
+                        $(".fixed-table-box").fixedTable();
+                        $("body").on("click", ".lab", function () {
+                            $(this).attr("class", "lab onCheck");
+                            $(this).siblings().attr("class", "lab");
+                        })
+                        touch.on(".order_change .bottom_input2 .list li", 'tap', function () {
+                            $(this).parents("li").addClass("active");
+                            $(this).parents("li").siblings().removeClass("active");
+                        })
+                        touch.on(".order_change .bottom_input2 .list li", 'doubletap', function () {
+                            window.location.href = "order_mode.html";
+                        });
+                        touch.on(".hover-main div:first-child", 'doubletap', function () {
+                            $(this).parent().find(".hover-text").show();
+                        });
+                        var strNum = 10;
+                        $(".hover-main").each(function () {
+                            var str = $(this).find("div").text().trim();
+                            if (str.length > strNum) {
+                                $(this).find("div").text(str.slice(0, 10) + "...");
+                                $(this).append(`
+                                        <div class="hover-text" style="z-index:2;">
+                                            <p>${str}</p>
+                                            <a href="javascript:;" class="hover-close"></a>
+                                        </div>
+                                        `);
+                                $(this).find("a.hover-close").click(function () {
+                                    $(this).parent().hide();
+                                })
+                            };
+                        })
+                    }
+                    else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.close(loadIndex);
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+            //alert(dset_sql);
+        }
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        layer.ready(function () {
+
+            Common.CheckUserLogin();
+
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var Caption = localStorage.getItem("Caption");
+
+            document.title = Caption;
+            var Dset_own;
+            var Dset_sql;
+
+            var Tabs = eval(localStorage.getItem("TabItems"));
+            if (Tabs != undefined && Tabs != null && Tabs != '') {
+
+                $.each(Tabs, function (n, item) {
+
+                    if (n == 0) {
+                        Dset_own = item.dset_own;
+                        Dset_sql = item.dset_sql;
+                    }
+
+                    var liParent = $("<li id=" + item.dset_own + " onclick=\"changeActiveTab('" + item.dset_own + "','" + item.dset_sql + "');\" data-nav=\"false\"><a href=\"#\">" + item.ctr_caption + "</a></li>")
+                    $("#ulOrderData").append(liParent);
+
+                });
+
+                changeActiveTab(Dset_own, Dset_sql);
+            }
+            else {
+                layer.msg('请联系管理员，没有找到模块');
+            }
+        });
+    </script>
+</body>
+
+</html>

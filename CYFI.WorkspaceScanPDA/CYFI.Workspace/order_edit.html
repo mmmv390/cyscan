@@ -1,0 +1,925 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <title>C/3移动平台</title>
+    <link rel="stylesheet" href="css/bx-cover.css">
+    <link rel="stylesheet" href="css/fixed-table.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <link rel="stylesheet" href="css/list-scroll.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="css/fixed-table.css">
+    <link rel="stylesheet" href="css/list-scroll.css">
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>-->
+    <script src="js/genericScript.js"></script>
+    <link href="default.css" rel="stylesheet" />
+    <link href="ivs/viewer.css" rel="stylesheet" />
+    <script src="ivs/viewer.js"></script>
+    <script src="js/jdate.min.js"></script>
+    <script src="js/touch.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <link href="need/layer.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <style>
+        .order_change .top2 {
+            margin-top: 0.3rem;
+        }
+
+            .order_change .top2 ul {
+                white-space: nowrap;
+                overflow-x: scroll;
+                overflow-y: hidden;
+            }
+
+                .order_change .top2 ul li {
+                    display: inline-block;
+                    padding: 0 0.1rem;
+                }
+
+        .order_change ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left" id="oTitle">
+
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul>
+                    <li><a href="#">用户参数</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="javascript:QHYG();">重新登录</a></li>
+                    <li><a href="#">升级</a></li>
+                    <li><a href="#">注册信息</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder order_change" style="height: calc(100% - 0.9rem);">
+        <div class="top">
+            <ul class="clearfix">
+                <li>
+                    <a href="javascript:YHTS();">
+                        <img src="image/order_icon%20(4).png" alt="">
+                        <p>作废</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:YHTS();">
+                        <img src="image/order_icon%20(5).png" alt="">
+                        <p>提交</p>
+                    </a>
+                </li>
+                <li id="liAudit" style="display:none">
+                    <a href="javascript:YHSHS();">
+                        <img src="image/order_icon%20(5).png" alt="">
+                        <p id="pAudit"></p>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:YHTS();">
+                        <img src="image/order_icon%20(6).png" alt="">
+                        <p>撤销</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:BBDY();">
+                        <img src="image/order_icon (7).png" alt="">
+                        <p>报表</p>
+                    </a>
+                </li>
+                <li class="active" id="liaJZ">
+                    <a href="javascript:JZXS();">
+                        <img src="image/order_icon (7).png" alt="">
+                        <p>矩阵</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="top2">
+            <ul class="clearfix" id="ulOrderData"></ul>
+        </div>
+        <div class="bottom" style="height: calc(100% - 2.2rem);">
+            <div style="height: calc(100% - 0.6rem);" class="bottom_input bottom_input2 bottom-list-scroll" id="QueryItems">
+
+
+            </div>
+        </div>
+    </div>
+    <div data-role="page" style="display:none" data-url="">
+        <!--内容-->
+        <div>
+            <div class="headerTitle">
+                <a href="javascript:goBack()">
+                    <img src="image/order_icon (6).png" alt="">
+                    <b>返回</b>
+                </a>
+            </div>
+            <div>
+            </div>
+            <div class="jqm-content">
+                <div class="jqm-block-content">
+                    <ul id="Gallery" class="gallery viewImgs"></ul>
+                </div>
+            </div>
+        </div><div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div>
+    </div>
+    <script>
+        var localStorage = window.localStorage;
+        $(function () {
+            Common.CheckUserLogin();
+        });
+        function LoadImageWait(ImagePath) {
+            localStorage.setItem("ISLoadImage", "No");
+            try {
+                $('#Gallery').empty();
+                var authorization = localStorage.getItem("authorization");
+                var STToken = localStorage.getItem("STToken");
+                var userr = localStorage.getItem("userr");
+
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Audit/ImageListWait" + Common.jsNC2(),
+                    data: { 'UserName': userr, "ImagePath": ImagePath },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    beforeSend: function (request) {
+                        loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                    },
+                    complete: function () {
+                        layer.close(loadIndex);
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+                            if (returnValue.FileNames == null) {
+                                layer.confirm('文件正在生成中...您是否继续等待？', {
+                                    btn: ['是的', '取消'] //按钮
+                                }, function () {
+                                    layer.msg('努力加载中...', { time: 200 });
+                                    LoadImageWait(ImagePath);
+                                }, function () {
+
+                                });
+                            }
+                            else {
+                                $.each(returnValue.FileNames, function (n, item) {
+                                    $('#Gallery').append("<li style='height:155px'><img  src='" + item + "' /></li>");
+                                });
+                                var viewer = new Viewer(document.querySelector('.viewImgs'), {
+                                    'navbar': false,
+                                    'title': false,
+                                    'movable': true,
+                                    'fullscreen': true,
+                                    toolbar: {
+                                        zoomIn: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        zoomOut: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        reset: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        prev: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        next: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        rotateLeft: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        rotateRight: {
+                                            show: 1,
+                                            size: 'large',
+                                        }
+                                    }
+                                });
+                                viewer.show();
+
+                            }
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function LoadImage(ImagePath) {
+            localStorage.setItem("ISLoadImage", "No");
+            try {
+                $('#Gallery').empty();
+                var authorization = localStorage.getItem("authorization");
+                var STToken = localStorage.getItem("STToken");
+                var userr = localStorage.getItem("userr");
+
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Audit/ImageList" + Common.jsNC2(),
+                    data: { 'UserName': userr, "ImagePath": ImagePath },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    beforeSend: function (request) {
+                        loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                    },
+                    complete: function () {
+                        layer.close(loadIndex);
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+                            if (returnValue.FileNames == null) {
+                                layer.confirm('文件正在生成中...您是否继续等待？', {
+                                    btn: ['是的', '取消'] //按钮
+                                }, function () {
+                                    layer.msg('努力加载中...', { time: 200 });
+                                    LoadImageWait(ImagePath);
+                                }, function () {
+
+                                });
+                            }
+                            else {
+                                $.each(returnValue.FileNames, function (n, item) {
+                                    $('#Gallery').append("<li style='height:155px'><img  src='" + item + "' /></li>");
+                                });
+                                var viewer = new Viewer(document.querySelector('.viewImgs'), {
+                                    'navbar': false,
+                                    'title': false,
+                                    'movable': true,
+                                    'fullscreen': true,
+                                    toolbar: {
+                                        zoomIn: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        zoomOut: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        reset: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        prev: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        next: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        rotateLeft: {
+                                            show: 1,
+                                            size: 'large',
+                                        },
+                                        rotateRight: {
+                                            show: 1,
+                                            size: 'large',
+                                        }
+                                    }
+                                });
+                                viewer.show();
+
+                            }
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+            window.location.href = "buyorder.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+        function JZXS() {
+            if ($("#liaJZ").attr("class") == "active") {
+                $("#liaJZ").removeClass("active");
+            }
+            else {
+                $("#liaJZ").addClass("active");
+            }
+        }
+        function YHSHS() {
+
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var loadIndex = -1;
+            var gt_wn = localStorage.getItem("v_gt_wn");
+            var itm_n = localStorage.getItem("v_itm_n");
+            var itm_st = localStorage.getItem("v_itm_st");
+            var returnValue = localStorage.getItem("AuditObject");
+
+            $.ajax({
+                type: "Post",
+                url: Common.getRemotePort() + "Audit/AuditOrder" + Common.jsNC2(),
+                contentType: "application/x-www-form-urlencoded",
+                data: { 'UserName': userr, 'Param': itm_n, 'Shwn': gt_wn, 'Othpm': itm_st, 'Detail': "" },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        //var rtData = eval(returnValue.Message);
+                        $("#liAudit").hide();
+                        layer.msg(returnValue.Message);
+                    }
+                    else {
+                        layer.msg("执行失败：" + returnValue.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                    layer.close(loadIndex);
+                }
+            });
+        }
+        function selectDate(id) {
+            new Jdate({
+                el: id,
+                format: 'YYYY/MM/DD',
+                beginYear: 2000,
+                endYear: 2100
+            })
+        }
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        function YHTS() {
+            layer.msg('您没有权限访问，请与管理员联系。');
+        }
+        function changeActiveTab(Owner, SqlString, Caption, StortedSet, Size_fld, Size_cmd, is_grid) {
+            $(".order_change .top2 li ").each(function () {
+                $(this).removeClass("active");
+            });
+            $("#" + Owner).addClass("active");
+
+            //layer.msg(is_grid);
+
+            AppendContent(Owner, SqlString, Caption, StortedSet, Size_fld, Size_cmd, is_grid);
+        }
+        function SYS() {
+            $.ajax({
+                type: "GET",
+                url: Common.getWeChatRemotePort() + "WeChat/WeChatSignature" + Common.jsNC2(),
+                data: {
+                    Url: window.location.href   //获取网站的地址转给函数url参数
+                },
+                datatype: "text/plain",
+                success: function (data) {
+                    var jsonobj = eval(data);
+                    wx.config({
+                        debug: false,
+                        appId: jsonobj.corpId,
+                        timestamp: jsonobj.timestamp,
+                        nonceStr: jsonobj.noncestr,
+                        signature: jsonobj.signature,
+                        jsApiList: [
+                            'scanQRCode'
+                        ]
+                    });
+                    wx.error(function (res) {
+                        layer.msg(res.errMsg);
+                    });
+                    //layer.msg(jsonobj.corpId);
+                    //wx.ready(function () {
+                    //
+                    //});
+                    //wx.error(function (res) {
+                    //    alert(res.errMsg);
+                    //});
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        alert("网络异常:" + XMLHttpRequest.status);
+                    }
+                },
+            });
+            //layer.msg('扫描');
+            wx.ready(function () {
+                wx.scanQRCode({
+                    needResult: 1,
+                    scanType: ["qrCode", "barCode"],
+                    success: function (res) {
+                        //$('#btnSys').attr('class', "search-btn ms-btn-org");
+                        //var barcodes = unescape(res.resultStr);
+                        //var b1 = [];
+                        //b1 = barcodes.split(',');
+                        layer.open({
+                            title: [
+                                '扫描成功',
+                                'background-color: #0080FF; color:#000000;'
+                            ],
+                            content: res.resultStr
+                            , btn: '确定'
+                        });
+                    },
+                    cancel: function () {
+                        //$('#btnSys').attr('class', "search-btn ms-btn-org");
+                    }
+                });
+                wx.error(function (res) {
+                    layer.msg(res.errMsg);
+                });
+            });
+        }
+        function changeLiActive(TabName, IndexCol) {
+
+            //localStorage.setItem("TabName", TabName);
+            //localStorage.setItem("Itemno", Itemno);
+            //layer.msg(TabName + ':' + itemno);
+
+            //$("#" + Itemno).addClass("active");
+        }
+        function GTDETAIL(TabName, UnitOwner, SqlString, StortedSet, Caption, IndexCol, IndexColValue, Size_fld, Size_cmd) {
+            window.location.href = "order_mode.html?SqlString=" + encodeURIComponent(SqlString)
+                + "&UnitOwner=" + UnitOwner
+                + "&Storted_set=" + StortedSet
+                + "&Caption=" + Caption
+                + "&IndexCol=" + IndexCol
+                + "&IndexColValue=" + IndexColValue
+                + "&Size_fld=" + Size_fld
+                + "&Size_cmd=" + Size_cmd;
+
+            //layer.msg(IndexCol);
+            //if (!TabName || !Itemno) {
+            //    layer.msg('请选择数据');
+            //    return;
+            //}
+            //localStorage.setItem("TabName", TabName);
+            //localStorage.setItem("Itemno", Itemno);
+            //GetMainUnit();
+            //window.location.href = "order_change.html";
+            //layer.msg(TabName + ':' + itemno);
+        }
+        function AppendContent(UnitOwner, SqlString, Caption, StortedSet, Size_fld, Size_cmd, is_grid) {
+
+            $("#QueryItems").empty();
+            //localStorage.setItem("SqlString", item.SqlString);
+            //localStorage.setItem("TabType", item.Caption);
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            //var SqlString = localStorage.getItem("SqlString");
+            var Itemno = localStorage.getItem("Itemno");
+            //var TabType = localStorage.getItem("TabType");
+            var TabName = localStorage.getItem("TabName");
+            var IndexCol = localStorage.getItem("IndexCol");
+            var IndexColValue = localStorage.getItem("IndexColValue");
+            var UntOwn = localStorage.getItem("UntOwn");
+
+            if (Caption == "parenttab") {
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "OrderDetail/OrderDetail" + Common.jsNC2(),
+                    data: { 'UserName': userr, 'Datasetown': UnitOwner, 'SqlString': SqlString, 'Storted_set': StortedSet, 'Caption': Caption, 'IndexCol': IndexCol, 'IndexColValue': IndexColValue },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 1) {
+
+                            if (returnValue.Imgs != "") {
+                                if (returnValue.Imgs.length > 0) {
+                                    $.each(returnValue.Imgs, function (n, item) {
+                                        var divImg = $("<img src=\"" + Common.getRemotePort() + "OrderDetail/Image?ImageID=" + item + "\" alt=\"\">");
+                                        var shoesDiv = $("<div style=\"margin-bottom:20px;margin-top:10px\" class=\"img_box\"></div>");
+                                        shoesDiv.append(divImg);
+                                        $("#QueryItems").append(shoesDiv);
+                                    });
+                                }
+                            }
+                            $.each(returnValue.UnitFields, function (n, item) {
+
+                                var divParent = $("<div class=\"input_box\"></div>");
+                                var spanChild = $("<span class=\"input_name\">" + item.Fld_cap + "</span>");
+
+                                var divChild = $("<div class=\"input_right clearfix\"></div>");
+
+                                var inputChild = $("<input type=\"text\" id=" + item.Fieldnam + " value='" + item.Value + "' />");
+                                divChild.append(inputChild);
+                                divParent.append(spanChild);
+                                divParent.append(divChild);
+                                $("#QueryItems").append(divParent);
+
+                                //var i = 1;
+                                //$("#QueryItems").append("<li id='" + item.Mud_own + "'><a href=\"javascript:OnLoadMenus('" + userr + "','" + item.Mud_own + "');\">" + item.Caption + "</a></li>");
+                            });
+
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            }
+            else {
+
+                //is_grid == "true"
+                if ($("#liaJZ").attr("class") != "active") {
+                    $.ajax({
+                        type: "Get",
+                        url: Common.getRemotePort() + "OrderDetail/OrderChildGrid" + Common.jsNC2(),
+                        data: { 'UserName': userr, 'Datasetown': UnitOwner, 'UntOwn': UntOwn, 'SqlString': SqlString, 'Storted_set': StortedSet, 'Caption': Caption, 'Itemno': Itemno },
+                        headers: {
+                            'Authorization': 'Bearer ' + authorization,
+                            'STToken': STToken
+                        },
+                        success: function (data) {
+          
+                            var returnValue = eval(data);
+                            if (returnValue.Code == 1) {
+                                var divTable = $("<table class=\"layui-hide\" id=\"test\"></table>");
+                                $("#QueryItems").append(divTable);
+                                var table = layui.table;
+                                var Titles = eval(returnValue.Paramcols);
+                                table.render({
+                                    elem: '#test'
+                                    , data: eval(returnValue.ListJson)
+                                    , limit: 530
+                                    , even: true
+                                    , height: 528
+                                    , cellMinWidth: 50
+                                    , cols: [Titles]
+                                    , totalRow: true
+                                    , done: function (res, curr, count) {
+                                       // $("th").hide();
+                                    }
+                                });
+                            }
+                            else {
+                                layer.msg(returnValue.Message);
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            if (textStatus == "error") {
+                                layer.msg("网络异常:" + XMLHttpRequest.status);
+                            }
+                        }
+                    });
+                }
+                else {
+
+                    var divTop = $("<div class=\"top\"></div>");
+                    var ulTop = $("<ul></ul>");
+                    var liTop = $("<li><input type=\"text\" placeholder=\"查询关键字\"></li>");
+                    var liTopBtn1 = $("<li><a href=\"#\"><img src=\"image/change.png\"><p>确定</p></a></li>");
+                    var liTopBtn2 = $("<li><a href=\"javascript:SYS();\"><img src=\"image/saomiao.png\"><p>扫描</p></a></li>");
+                    var liTopBtn3 = $("<li><a href=\"#\"><img src=\"image/order_icon%20(2).png\"><p>添加</p></a></li>");
+                    var liTopBtn4 = $("<li><a href=\"#\"><img src=\"image/shanchu.png\"><p>删除</p></a></li>");
+                    var liTopBtn5 = $("<li><a href=\"#\"><img src=\"image/tiaoma.png\"><p>条码</p></a></li>");
+
+                    ulTop.append(liTop);
+                    ulTop.append(liTopBtn1);
+                    ulTop.append(liTopBtn2);
+                    ulTop.append(liTopBtn3);
+                    ulTop.append(liTopBtn4);
+                    ulTop.append(liTopBtn5);
+                    divTop.append(ulTop);
+
+                    $("#QueryItems").append(divTop);
+
+                    $.ajax({
+                        type: "Get",
+                        url: Common.getRemotePort() + "OrderDetail/OrderChildList" + Common.jsNC2(),
+                        data: { 'UserName': userr, 'Datasetown': UnitOwner, 'UntOwn': UntOwn, 'SqlString': SqlString, 'Storted_set': StortedSet, 'Caption': Caption, 'Itemno': Itemno },
+                        headers: {
+                            'Authorization': 'Bearer ' + authorization,
+                            'STToken': STToken
+                        },
+                        success: function (data) {
+
+                            var returnValue = eval(data);
+                            if (returnValue.Code == 1) {
+                                var ListData = eval(returnValue.ListJson);
+                                var ColTitles = eval(returnValue.ColTitles);
+                                var TabName = returnValue.TabName;
+                                //$("#divTotal").append(returnValue.ColTotals);
+                                $.each(ListData, function (n, item) {
+                                    var divDataList = $("<div class=\"list\"></div>")
+                                    var ulList = $("<ul></ul>");
+                                    var liList = $("<li ondblclick=\"GTDETAIL('" + TabName + "','" + UnitOwner + "','" + SqlString + "','" + StortedSet + "','" + Caption + "','" + returnValue.IndexCol + "','" + item[returnValue.IndexCol] + "','" + Size_fld + "','" + Size_cmd + "')\" onclick=\"changeLiActive('" + TabName + "','" + item[returnValue.IndexCol] + "')\" id=" + item[returnValue.IndexCol] + "></li>");
+                                    var aList = $("<a href=\"javascript:;\"></a>");
+                                    var divList;
+                                    $.each(ColTitles, function (m, itemTitle) {
+                                        if (itemTitle.Name != returnValue.IndexCol) {
+
+                                            if (m % 2 == 1) {
+                                                //if (itemTitle.Name == returnValue.IndexCol) {
+                                                //    divList = $("<div class=\"num clearfix\"></div>")
+                                                //    var divItemList = $("<div style=\"display:none\" class=\"pull-left\">" + item[itemTitle.Name] + "</div>")
+                                                //    divList.append(divItemList);
+                                                //}
+                                                //else {
+                                                divList = $("<div class=\"num clearfix\"></div>")
+                                                var divItemList = $("<div class=\"pull-left\" style=\"text-overflow: ellipsis;width: 3.1rem;white-space: nowrap;overflow: hidden\">" + itemTitle.DisplayName + "：" + item[itemTitle.Name] + "</div>")
+                                                divList.append(divItemList);
+                                                //}
+                                            }
+                                            else {
+                                                if (itemTitle.Name == returnValue.IndexCol) {
+                                                    var divItemList = $("<div style=\"display:none\" class=\"pull-right\">" + item[itemTitle.Name] + "</div>")
+                                                    divList.append(divItemList);
+                                                }
+                                                else {
+                                                    var divItemList = $("<div class=\"pull-right\" style=\"text-overflow: ellipsis;width: 3.1rem;white-space: nowrap;overflow: hidden\">" + itemTitle.DisplayName + "：" + item[itemTitle.Name] + "</div>")
+                                                    divList.append(divItemList);
+                                                }
+                                                //aList.append(divList);
+                                            }
+                                        }
+                                        if (m % 2 == 1 || ColTitles.length - 1 == m) {
+                                            aList.append(divList);
+                                        }
+                                    });
+                                    liList.append(aList);
+                                    ulList.append(liList);
+                                    divDataList.append(ulList);
+                                    $("#QueryItems").append(divDataList);
+
+                                    var divTotals = $("<div class=\"count clearfix bottom-fixed\" id=\"divTotal\"></div>");
+                                    divTotals.append(returnValue.ColTotals);
+                                    $("#QueryItems").append(divTotals);
+
+                                    touch.on(".order_change .bottom_input2 .list li", 'tap', function () {
+                                        $(".order_change .bottom_input2 .list li").removeClass("active");
+                                        $(this).parents("li").addClass("active");
+                                    })
+                                });
+
+                            }
+                            else {
+                                layer.msg(returnValue.Message);
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            if (textStatus == "error") {
+                                layer.msg("网络异常:" + XMLHttpRequest.status);
+                            }
+                        }
+                    });
+                }
+            }
+        }
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            window.location.href = "login.html";
+        }
+        layer.ready(function () {
+
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var Caption = localStorage.getItem("Caption");
+            $("#oTitle").html(Caption + '-修改');
+            var Itemno = localStorage.getItem("Itemno");
+            var TabName = localStorage.getItem("TabName");
+            var IndexCol = localStorage.getItem("IndexCol");
+            var IndexColValue = localStorage.getItem("IndexColValue");
+
+            if (!TabName || !Itemno) {
+                layer.msg('请选择数据');
+                return;
+            }
+            var UnitItems = localStorage.getItem("UnitItems");
+
+            var UnitOwner;
+            var Caption;
+            var SqlString;
+            var StortedSet;
+            var Size_fld;
+            var Size_cmd;
+            var Is_grid;
+            var units = eval(UnitItems);
+            $.each(units, function (n, item) {
+                if (item.Caption == "parenttab") {
+                    UnitOwner = item.Owner;
+                    SqlString = item.SqlString;
+                    Caption = item.Caption;
+                    StortedSet = item.Storted_set;
+                    Size_fld = item.Size_fld;
+                    Is_grid = item.Is_grid;
+                    Size_cmd = encodeURIComponent(item.Size_cmd);
+                    //return false;
+                }
+                var liParent = $("<li id=" + item.Owner + " onclick=\"changeActiveTab('" + item.Owner + "','" + item.SqlString + "','" + item.Caption + "','" + item.Storted_set + "','" + item.Size_fld + "','" + encodeURIComponent(item.Size_cmd) + "','" + item.Is_grid + "');\"><a href=\"#\">" + item.DisplayName + "</a></li>");
+                $("#ulOrderData").append(liParent);
+            });
+            $.ajax({
+                type: "Get",
+                url: Common.getRemotePort() + "OrderDetail/GetAuditStatus" + Common.jsNC2(),
+                data: { 'UserName': userr, 'OrderNo': IndexColValue, },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        //gt_wn = "s005097098075"
+                        //itm_n = "QM200227004"
+                        //itm_st = "《反核准"
+                        localStorage.setItem("v_gt_wn", returnValue.Item.gt_wn);
+                        localStorage.setItem("v_itm_n", returnValue.Item.itm_n);
+                        localStorage.setItem("v_itm_st", returnValue.Item.itm_st);
+                        $("#liAudit").show();
+                        $("#pAudit").html(returnValue.Item.itm_st);
+                    }
+                    else {
+                        $("#liAudit").hide();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+            changeActiveTab(UnitOwner, SqlString, Caption, StortedSet, Size_fld, Size_cmd, Is_grid);
+
+
+
+
+            var Itemno = localStorage.getItem("Itemno");
+            var ImagePathURL = localStorage.getItem(Itemno);
+            var ISLoadImage = localStorage.getItem("ISLoadImage");
+            if (ImagePathURL && ISLoadImage == "Yes") {
+                LoadImage(ImagePathURL);
+                return;
+            }
+        });
+        function BBDY() {
+
+            var Prntown = localStorage.getItem("Prntown");
+
+            if (!Prntown || Prntown == '') {
+                layer.msg('请联系管理员，未设置打印格式。');
+                return;
+            }
+
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var Itemno = localStorage.getItem("Itemno");
+            var ImagePathURL = localStorage.getItem(Itemno);
+            var loadIndex = -1;
+            if (ImagePathURL) {
+                layer.confirm('文件已经存在...您是否重新生成？', {
+                    btn: ['是的', '取消'] //按钮
+                }, function () {
+                    layer.msg('努力加载中...', { time: 200 });
+                    $.ajax({
+                        type: "Get",
+                        url: Common.getRemotePort() + "Audit/ReportImage" + Common.jsNC2(),
+                        data: { 'UserName': userr, 'Param': Itemno, 'Shwn': Prntown },
+                        headers: {
+                            'Authorization': 'Bearer ' + authorization,
+                            'STToken': STToken
+                        },
+                        beforeSend: function (request) {
+                            loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                        },
+                        complete: function () {
+                            layer.close(loadIndex);
+                        },
+                        success: function (data) {
+                            var returnValue = eval(data);
+                            if (returnValue.Code == 0) {
+                                localStorage.setItem(Itemno, returnValue.ImagePath);
+                                LoadImage(returnValue.ImagePath);
+                                //window.location.href = "ah.html?ImagePath=" + encodeURIComponent(returnValue.ImagePath)
+                                //+ "&Title=" + Common.getUrlParam("Title")
+                                //+ "&item_st=" + Common.getUrlParam("item_st")
+                                //+ "&itm_wn=" + Common.getUrlParam("itm_wn")
+                                //+ "&gat_wn=" + Common.getUrlParam("gat_wn")
+                                //+ "&item_n=" + Common.getUrlParam("item_n")
+                                //+ "&itm_mak=" + Common.getUrlParam("itm_mak")
+                                //+ "&oth_sql=" + Common.getUrlParam("oth_sql");
+                            }
+                            else {
+                                layer.msg(returnValue.Message);
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            if (textStatus == "error") {
+                                layer.msg("网络异常:" + XMLHttpRequest.status);
+                            }
+                            layer.close(loadIndex);
+                        }
+                    });
+                }, function () {
+                    localStorage.setItem("ISLoadImage", "Yes");
+                    location.reload();
+                    return;
+                });
+            }
+            else {
+
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Audit/ReportImage" + Common.jsNC2(),
+                    data: { 'UserName': userr, 'Param': Itemno, 'Shwn': Prntown },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    beforeSend: function (request) {
+                        loadIndex = layer.load(1, { shade: [0.8, '#393D49'] });
+                    },
+                    complete: function () {
+                        layer.close(loadIndex);
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+                            localStorage.setItem(Itemno, returnValue.ImagePath);
+                            LoadImage(returnValue.ImagePath);
+                            //window.location.href = "ah.html?ImagePath=" + encodeURIComponent(returnValue.ImagePath)
+                            //+ "&Title=" + Common.getUrlParam("Title")
+                            //+ "&item_st=" + Common.getUrlParam("item_st")
+                            //+ "&itm_wn=" + Common.getUrlParam("itm_wn")
+                            //+ "&gat_wn=" + Common.getUrlParam("gat_wn")
+                            //+ "&item_n=" + Common.getUrlParam("item_n")
+                            //+ "&itm_mak=" + Common.getUrlParam("itm_mak")
+                            //+ "&oth_sql=" + Common.getUrlParam("oth_sql");
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                        layer.close(loadIndex);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

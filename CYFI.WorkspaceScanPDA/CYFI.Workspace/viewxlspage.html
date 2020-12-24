@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C/3移动平台</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/jdate.min.js"></script>
+    <script src="js/touch.min.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script src="js/genericScript.js"></script>
+    <link href="default.css" rel="stylesheet" />
+    <script>
+        String.prototype.endWith = function (s) {
+            if (s == null || s == "" || this.length == 0 || s.length > this.length)
+                return false;
+            if (this.substring(this.length - s.length) == s)
+                return true;
+            else
+                return false;
+            return true;
+        }
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            localStorage.removeItem("Mudown");
+            localStorage.removeItem("UntOwn");
+            localStorage.removeItem("Prntown");
+            localStorage.removeItem("Caption");
+            window.location.href = "login.html";
+        }
+
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+            window.location.href = "ReportQuery.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+
+
+        function LoadImage(ImagePath) {
+
+            var UntOwn = localStorage.getItem("UntOwn");
+
+            try {
+                $('#Gallery').empty();
+                var authorization = localStorage.getItem("authorization");
+                var STToken = localStorage.getItem("STToken");
+                var userr = localStorage.getItem("userr");
+
+                var loadIndex = -1;
+                $.ajax({
+                    type: "Get",
+                    url: Common.getRemotePort() + "Audit/ImageList" + Common.jsNC2(),
+                    data: { 'UserName': userr, "ImagePath": ImagePath },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    success: function (data) {
+                        var returnValue = eval(data);
+                        if (returnValue.Code == 0) {
+                            $.each(returnValue.FileNames, function (n, item) {
+                                document.getElementById("xlsIframe").src = 'https://view.officeapps.live.com/op/view.aspx?src=' + item ;
+                                //$("#xlsIframe").attr('src', 'https://view.officeapps.live.com/op/view.aspx?src=' + item );
+                                //$('#Gallery').append("<li style='height:155px'><img  src='" + item + "' /></li>");
+                                //$('#before').before("<li ><a style='height:150px'  href='" + item + "' rel='external' class='ui-link' style='display: block;'><img  src='" + item + "' rel='external' class='ui-link' style='display: block;' /></a></li>");
+                            });
+                        }
+                        else {
+                            layer.msg(returnValue.Message);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            } catch (e) {
+                alert(e);
+            }
+        }
+
+        function GoBack() {
+            window.location.href = "ReportQuery.html";
+        }
+    </script>
+</head>
+<body class="main" style="white-space: nowrap;overflow-x: scroll;overflow-y: hidden;">
+    <iframe id="xlsIframe" width='100%' height='100%' frameborder='1'></iframe>
+    <nav>
+        <ul class="clearfix">
+            <li>
+                <a href="javascript:MUSY();">
+                    <img src="image/nav_icon1_active.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="javascript:MULB();">
+                    <img src="image/nav_icon3.png" alt="">
+                    <p>列表</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUXX();">
+                    <img src="image/nav_icon2.png" alt="">
+                    <p>消息</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUWD();">
+                    <img src="image/nav_icon4.png" alt="">
+                    <p>我的</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <script>
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        function selectDate(id) {
+            new Jdate({
+                el: id,
+                format: 'YYYY/MM/DD',
+                beginYear: 2000,
+                endYear: 2100
+            })
+        }
+        function OpenFile(fileName) {
+            layer.msg(fileName);
+        }
+        layer.ready(function () {
+            Common.CheckUserLogin();
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var Caption = localStorage.getItem("Caption");
+            $("#oTitle").html(Caption);
+
+
+            var BBImagePath = localStorage.getItem("BBImagePath");
+            LoadImage(BBImagePath);
+        });
+    </script>
+</body>
+</html>

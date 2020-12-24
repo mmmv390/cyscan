@@ -1,0 +1,13 @@
+*[hidefocus]{outline:none;}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0;}
+body,input,textarea,select,button,table{font-size:1em;line-height:1em;}
+body{min-width:320px;font-size:1em;font-family:'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;color:#000;-webkit-text-size-adjust:none;background-color:#fff;}
+img,fieldset{border:0;}
+img {max-width: 100%;height: auto; }
+ul,ol{list-style:none;}
+em,address{font-style:normal;}
+a{color:#000;text-decoration:none;}
+table{border-collapse:collapse;}
+header,footer{display: block;}
+.clear{clear:both;}
+.clear:after{display:block;clear:both;height:1px;margin-top:-1px;content:'';}

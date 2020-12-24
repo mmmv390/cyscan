@@ -1,0 +1,44 @@
+.agentSaleSettleInfo-box{margin:0px auto;}
+
+.table-box{border:1px solid #999;border-bottom:0px solid #999;margin:10px;}
+.table-box .tbl-head{border-bottom:1px solid #999;text-align:center;font-size:14px;font-weight:700;color:#666;}
+.table-box .tbl-row{border-bottom:1px solid #999;text-align:center;font-size:14px;color:#999;}
+
+.table-box .tDate{border-right:1px solid #999;}
+.table-box .tAmount{border-right:1px solid #999;}
+.table-box .tType{border-right:1px solid #999;}
+.table-box .tDate{}
+
+.table-box .tDate span{display:block;padding:3px 0;}
+.table-box .tDate a{display:block;padding:3px 0;color:#36c;line-height:22px;text-decoration:underline;}
+.table-box .tAmount span{display:block;padding:3px 0;}
+.table-box .tType span{display:block;padding:3px 0;}
+.table-box .tNum span{display:block;padding:3px 0;}
+.table-box .tNum a{display:block;padding:3px 0;color:#36c;line-height:22px;text-decoration:underline;}
+
+
+
+/* manage */
+.agentSaleSettleInfoList{padding:0 10px;}
+.agentSaleSettleInfoDetail{padding:0 10px;}
+
+.agentSaleSettleInfo-box{margin:0px auto;}
+.agentSaleSettleInfo-box .agentSaleSettleInfo-List{border:1px solid #999;margin:10px 0 0 0;}
+.agentSaleSettleInfo-box .agentSaleSettleInfo-Detail{border:1px solid #999;margin:10px 0 0 0;}
+
+.agentSaleSettleInfo-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.agentSaleSettleInfo-box .new-txt{font-size:16px;color:#333;}
+.agentSaleSettleInfo-box .state-info{padding:12px;}
+.agentSaleSettleInfo-box .state-info p{font-size:14px;line-height:22px;color:#666;}
+
+.agentSaleSettleInfo-box .cart-list{padding:5px 10px;}
+.agentSaleSettleInfo-box .cart-list p{color:#666;line-height:22px;font-size:14px;}
+.agentSaleSettleInfo-box .cart-list a{color:#36c;}
+
+.agentSaleSettleInfo-box .cart-list .bdr-bottom{border-bottom:1px dashed #ccc;padding:0 0 10px 0;}
+
+
+
+
+
+.detailBtn{display:block;position:absolute;top:1px;right:10px;height:26px;line-height:26px;margin:5px 5px 0 0;padding:0px 10px;text-align:center;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;font-size:14px;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#e2d7c5));background:-moz-linear-gradient(top,#fff,#e2d7c5);border:1px solid #baac9d;}

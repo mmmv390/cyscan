@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <title>C/3移动平台</title>
+    <link rel="stylesheet" href="css/bx-cover.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/jdate.min.js"></script>
+    <script src="js/touch.min.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js"></script>
+    <script src="js/genericScript.js"></script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left" id="oTitle">
+
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul>
+                    <li><a href="#">订货会</a></li>
+                    <li><a href="#">e鲸鱼</a></li>
+                    <li><a href="#">用户参数</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="#">重新登录</a></li>
+                    <li><a href="#">升级</a></li>
+                    <li><a href="#">注册信息</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder order_add">
+        <div class="top">
+            <ul class="clearfix">
+                <li>
+                    <a href="order_change.html">
+                        <img src="image/save.png" alt="">
+                        <p>保存</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="image/more.png" alt="">
+                        <p>更多</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="image/order_close.png" alt="">
+                        <p>关闭</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="image/order_icon%20(2).png" alt="">
+                        <p>继续添加</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <div class="bottom_input" id="unitItems">
+
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul class="clearfix">
+            <li class="active">
+                <a href="javascript:MUSY();">
+                    <img src="image/nav_icon1_active.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MULB();">
+                    <img src="image/nav_icon3.png" alt="">
+                    <p>列表</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUXX();">
+                    <img src="image/nav_icon2.png" alt="">
+                    <p>消息</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:MUWD();">
+                    <img src="image/nav_icon4.png" alt="">
+                    <p>我的</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <script>
+        $("body").on("click", ".lab", function () {
+            $(this).attr("class", "lab onCheck");
+            $(this).siblings().attr("class", "lab");
+        });
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+        function MULB() {
+            window.location.href = "buyorder.html";
+        }
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+        function selectDate(id) {
+            new Jdate({
+                el: id,
+                format: 'YYYY/MM/DD',
+                beginYear: 2000,
+                endYear: 2100
+            })
+        }
+
+        var form = layui.form
+            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
+        layer.ready(function () {
+            Common.CheckUserLogin();
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            var UnitItems = localStorage.getItem("UnitItems");
+
+            var UnitOwner;
+            var units = eval(UnitItems);
+            $.each(units, function (n, item) {
+                if (item.Caption == "parenttab") {
+                    UnitOwner = item.Owner;
+                    return false;
+                }
+            });
+
+            $.ajax({
+                type: "Get",
+                url: Common.getRemotePort() + "Unit/AppendItems" + Common.jsNC2(),
+                data: { 'UserName': userr, 'Datasetown': UnitOwner },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function (data) {
+
+                    var unitData = eval(data);
+                    if (unitData.Code == 1) {
+                        $.each(unitData.UnitFields, function (n, item) {
+                            if (item.Fieldstyle == "smalldatetime" || item.Fieldstyle == "datetime") {
+                                var divParent = $("<div class=\"input_box\"></div>");
+                                var spanChild = $("<span class=\"input_name\">" + item.Fld_cap + "</span>");
+                                var divChild = $("<div class=\"input_right clearfix\"></div>");
+                                var inputChild = $("<input readonly=\"readonly\" type=\"text\" onfocus=\"selectDate(" + item.Fieldnam + ")\"  name=" + item.Fieldnam + " id=" + item.Fieldnam + " value=\"\" />");
+                                var tempLick = $("<a href=\"#\" class=\"pull-right\"><img src=\"image/ordersearch_icon2.png\"></a>");
+
+                                divChild.append(tempLick);
+                                divChild.append(inputChild);
+                                divParent.append(spanChild);
+                                divParent.append(divChild);
+                                $("#unitItems").append(divParent);
+                            }
+                            else {
+                                var divParent = $("<div class=\"input_box\"></div>");
+                                var spanChild = $("<span class=\"input_name\">" + item.Fld_cap + "</span>");
+                                var divChild = $("<div class=\"input_right clearfix\"></div>");
+                                var inputChild = $("<input type=\"text\"  name=" + item.Fieldnam + " id=" + item.Fieldnam + " value=\"\" />");
+                                divChild.append(inputChild);
+                                divParent.append(spanChild);
+                                divParent.append(divChild);
+                                $("#unitItems").append(divParent);
+                            }
+                        });
+                    }
+                    else {
+                        layer.msg(unitData.Message);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

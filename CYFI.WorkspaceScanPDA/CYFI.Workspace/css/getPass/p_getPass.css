@@ -1,0 +1,51 @@
+.getPass-box{margin:10px auto;overflow:auto;}
+
+/* getPass */
+.input-info{padding:0px 20px;text-align:center;}
+.input-info span{display:block;padding:10px;font-size:1em;line-height:25px;background-color:#e1e1e1;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;}
+
+.input-area{padding:0px 20px;}
+.input-area .tTitle{padding:10px 10px 5px 0px;line-height:25px;font-size:1.2em;color:#333;}
+
+.input-area .getPass-input-span{display:block;height:45px;border:1px solid #ccc;}
+.input-area .getPass-input{width:99.9%;height:45px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:44px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;}
+
+.input-area .getPass-code-span{display:block;position:relative;}
+.input-area .getPass-code{width:140px;height:45px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:44px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+.input-area .getPass-code-span img{height:44px;border:1px solid #ccc;position:absolute;top:0;right:0;}
+
+.input-area .getPass-select-span{display:block;height:40px;}
+.input-area .getPass-select{width:99.9%;height:40px;border:0;border-radius:0;background:#fff;font-size:1em;line-height:39px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+
+.input-area .getPass-txt-span{display:block;height:45px;font-size:1.2em;line-height:44px;}
+
+.input-area .getPass-btn-span{display:block;height:40px;}
+.input-area .getPass-btn{width:100%;height:40px;border:0;font-size:1.2em;}
+
+.input-area .mChk{vertical-align:middle;display:inline;margin-right:3px;}
+
+.getPass-sec{padding:10px 20px;overflow:hidden;}
+.getPass-sec .secTxt{color:#333;}
+.getPass-sec a{color:#333;display:inline-block;}
+.getPass-sec a:hover{color:#f60;display:inline-block;}
+.getPass-sec .mChk{vertical-align:middle;display:inline;margin-right:3px;}
+
+
+/* mobile */
+.input-area .getPass-active-span{display:block;height:45px;position:relative;}
+.input-area .getPass-active{width:160px;height:45px;border:0;border-radius:0;background:#fff;font-size:1.2em;line-height:44px;font-weight:normal;color:#bdbdbd;text-indent:1px;vertical-align:top;-webkit-appearance:none;font-family:"Microsoft Yahei",simsun;color:#333;border:1px solid #ccc;}
+.input-area .getPass-active-span .active-aBtn{height:25px;border:0px;outline:0px;background:none;position:absolute;bottom:0;right:0;font-family:"Microsoft Yahei",simsun;cursor:pointer;color:#03c;border-bottom:1px solid;}
+.input-area .getPass-active-span .active-aBtn:hover{color:#f00;text-decoration:none;border-bottom:1px solid #f1f1f1;}
+
+
+/* active mobile */
+
+
+
+
+/* complate */
+.input-icon{padding:10px 0 0 0;text-align:center;}
+.input-icon img{}
+
+.input-msg{padding:30px;text-align:center;}
+.input-msg h2{height:28px;line-height:28px;}

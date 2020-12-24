@@ -1,0 +1,137 @@
+.user-bg{height:156px;z-index:-1;position:absolute;left:0;width:100%;background:url(../../img/buyer/myShop_bg1.jpg) no-repeat;background-size:cover;}
+
+.user-wrapper{overflow:hidden;}
+.user{height:90px;margin-top:15px;}
+.user-avatar{-webkit-border-radius:35px;float:left;display:block;width:55px;height:55px;border:3px solid #fff;margin-left:15px;margin-top:5px;}
+
+.user-info{float:left;margin-left:15px;}
+.user-name,.user-account,.user-mobile{display:block;color:#fff;line-height:22px;font-size:0.9em;}
+.user-account span,.user-mobile{opacity:.7;}
+.user-account .logout-btn{border:0px;outline:0;background:none;padding:3px;5px;font-family:"Microsoft Yahei",simsun;color:#fff;}
+
+.msg{position:absolute;display:block;padding-top:68px;right:10px;color:#fff;}
+.msg .msg_icon{display:inline-block;}
+.msg .msg_txt{display:inline-block;font-size:0.8em;}
+
+.signIn{position:absolute;display:block;padding-top:68px;right:60px;color:#fff;}
+.signIn .signIn_icon{display:inline-block;}
+.signIn .signIn_txt{display:inline-block;font-size:0.8em;}
+
+.isSignIn{position:absolute;display:block;padding-top:68px;right:60px;color:#ccc;}
+.isSignIn .isSignIn_icon{display:inline-block;}
+.isSignIn .isSignIn_txt{display:inline-block;font-size:0.8em;}
+
+.vip{height:51px;background-color: rgba(0, 0, 0, 0.4)}
+.vip .list-tbl-type{display:table;width:100%;}
+.vip .list-tbl-border{border-right:1px solid rgba(255, 255, 255, 0.4)}
+.vip .list-tbl-cell{display:inline-block;width:33%;margin:5px auto;color:#949494;text-align:center;}
+
+.vip .list-tbl-cell .name{display:block;line-height:24px;color:#fff;font-size:0.95em;}
+.vip .list-tbl-cell .amount{display:block;color:#fff;font-size:0.95em;}
+
+.func-wrapper{background-color:#f0f0f0;}
+
+.funcList{display:block;background-color:#fff;border-bottom:1px solid #e3e3e3;margin:0 0 5px 0;position:relative;padding:10px 0 10px 10px;}
+.orderList{padding:10px 0 5px 10px;}
+.funcIcon,.funcName{display:inline-block;color:#00a73c;}
+.funcIcon{display:inline-block;width:20px;}
+.funcName{font-size:1em;}
+.funcIcon-r{position: absolute;right:10px;}
+
+
+.orderDetail{margin:5px auto;padding:0 0 0 20px;}
+.orderDetail .dList{display:inline-block;font-size:0.9em;padding:0 0 0 5px;color:#444;}
+.orderDetail .dList b{color:#c00;}
+
+.setDetail{margin:5px auto;padding:0 0 0 10px;}
+.setDetail .dList{display:inline-block;font-size:0.9em;padding:0 0 0 15px;color:#444;line-height:23px;}
+
+.openSingInBox{position:absolute;padding:10px 20px; left:50%;top:45%;margin:0 0 0 -70px;width:120px;background:rgba(0,0,0,0.5);color:#fff;z-index:99998;text-align:left;border-radius:6px;-webkit-border-radius:6px;-moz-border-radius:6px;text-align:center;}
+.openSingInBox h1{font-size:0.9em;font-weight:normal;}
+
+
+
+@font-face {
+	font-family: 'myShopIcon';
+	src:url('../../fonts/myShopIcon.eot?-t7va35');
+	src:url('../../fonts/myShopIcon.eot?#iefix-t7va35') format('embedded-opentype'),
+		url('../../fonts/myShopIcon.woff?-t7va35') format('woff'),
+		url('../../fonts/myShopIcon.ttf?-t7va35') format('truetype'),
+		url('../../fonts/myShopIcon.svg?-t7va35#myShopIcon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="myShopIcon-"], [class*=" myShopIcon-"] {
+	font-family: 'myShopIcon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.myShopIcon-1:before {
+	content: "\e900";
+}
+
+.myShopIcon-2:before {
+	content: "\e901";
+	font-size:1em;
+}
+
+.myShopIcon-3:before {
+	content: "\e902";
+	font-size:1.2em;
+}
+
+.myShopIcon-4:before {
+	content: "\e903";
+	font-size:1.2em;
+}
+
+.myShopIcon-5:before {
+	content: "\e904";
+	font-size:1.2em;
+}
+
+.myShopIcon-6:before {
+	content: "\e905";
+	font-size:1.2em;
+}
+
+.myShopIcon-7:before {
+	content: "\e906";
+	font-size:1.2em;
+	padding:0 0 0 1px;
+}
+
+.myShopIcon-8:before {
+	content: "\e907";
+	font-size:1.2em;
+}
+
+.myShopIcon-9:before {
+	content: "\e908";
+	font-size:1.2em;
+}
+
+.myShopIcon-10:before {
+	content: "\e909";
+	font-size:1.2em;
+}
+
+.myShopIcon-11:before {
+	content: "\e90a";
+	font-size:0.9em;
+}
+
+.myShopIcon-12:before {
+	content: "\e90b";
+	font-size:0.9em;
+}

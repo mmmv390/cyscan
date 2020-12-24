@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>件资统计</title>
+    <link rel="stylesheet" type="text/css" href="css/bx-covero.css">
+    <link rel="stylesheet" type="text/css" href="css/baseo.css">
+    <link rel="stylesheet" type="text/css" href="css/headero.css">
+    <link rel="stylesheet" type="text/css" href="css/me.css">
+    <link rel="stylesheet" type="text/css" href="css/weui.css" />
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <style>
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+        .weui-tab__panel tr:nth-child(1n) {
+            background: #dddddd;
+        }
+        .weui-tab__panel tr:nth-child(2n) {
+            background: #0094ff;
+            /*background: #0094ff;*/
+        }
+        td {
+            border: 1px solid #000000;
+            text-align: center;
+            height: 0.7rem;
+            padding: 2px;
+            font-size: 0.2rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        body {
+            --weui-BRAND: #ffffff;
+            --weui-BG-COLOR-ACTIVE: #0094ff;
+        }
+        .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+            color: #ffffff;
+            color: var(--weui-BRAND);
+        }
+        .weui-navbar__item.weui-bar__item_on {
+            color: #ffffff;
+            background-color: #ffffff;
+            background-color: var(--weui-BG-COLOR-ACTIVE);
+        }
+    </style>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left">
+                <a href="#" onclick="javascript :history.back(-1);"><img width="28" style="margin-top:-0.08rem" height="28" src="image/reback200.png" /></a>
+            </div>
+            <div class="pull-left">
+                &nbsp;件资统计
+            </div>
+            <div id="showDatePicker" class="pull-right">
+                <a href="#"><img src="image/header_tr2.png" alt=""></a>
+            </div>
+        </div>
+    </header>
+    <div class="content buyorder" style="padding:0.05rem">
+        <div class="bottom">
+            <div class="page">
+                <div class="page__bd" style="height: 100%; margin-top:0.11rem;">
+                    <div class="weui-tab">
+                        <div class="weui-navbar" style="border:1px solid #0026ff">
+                            <div class="weui-navbar__item weui-bar__item_on">
+                                今天
+                            </div>
+                            <div class="weui-navbar__item">
+                                昨天
+                            </div>
+                            <div class="weui-navbar__item">
+                                本月
+                            </div>
+                            <div class="weui-navbar__item">
+                                上个月
+                            </div>
+                            <div class="weui-navbar__item">
+                                近3个月
+                            </div>
+                            <div class="weui-navbar__item">
+                                今年
+                            </div>
+                        </div>
+                        <div class="weui-tab__panel" style="padding-top:0.1rem">
+                            <div class="pull-left" style="margin-bottom:0.1rem">
+                                <img width="24" style="margin-top:-0.02rem; margin-left:-0.16rem" height="16" src="img/split.png" /><b style="color:black;margin-left:-0.05rem;font-size:0.22rem">2020.03.01 - 2020.03.31</b>
+                            </div>
+                            <table>
+                                <tr style="background-color:aliceblue"><td><b style="color:black;font-size:0.36rem">杨庆福</b></td><td>ws0937192394/32231f4</td></tr>
+                                <tr style="background-color:aliceblue"><td>冲床车间/冲床车道/员工</td><td>生产员工、计件</td></tr>
+                            </table>
+                            <table>
+                                <tr style="background-color: #0a0989;color:#fff;"><td><b>计件类型</b></td><td><b>总数量</b></td><td><b>总金额</b></td></tr>
+                                <tr><td>正常计件</td><td>1</td><td style="color:red">2000</td></tr>
+                                <tr><td>试做件资</td><td>34</td><td style="color:red">68000</td></tr>
+                                <tr><td>补料件资</td><td>21</td><td style="color:red">42000</td></tr>
+                                <tr><td>返修计件</td><td>22</td><td style="color:red">44000</td></tr>
+                                <tr style=" background-color: #ffd800; "><td><b>合计</b></td><td><b>78</b></td><td><b style="color:red">174000</b></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.weui-navbar__item').on('click', function () {
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            });
+        });
+    </script>
+</body>
+</html>

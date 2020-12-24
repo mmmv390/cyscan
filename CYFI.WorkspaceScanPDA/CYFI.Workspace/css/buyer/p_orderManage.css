@@ -1,0 +1,40 @@
+.orderManage-box{margin:0px auto;}
+
+.order-box{padding:0px 10px;}
+.order-box .order-state,.order-box .buyer-info,.order-box .productList{border:1px solid #999;margin:10px 0 0 0;}
+
+.order-box .new-tit{padding:12px;border-bottom:1px solid #999;font-size:14px;}
+.order-box .new-txt{font-size:14px;color:#333;}
+.order-box .state-info{padding:12px;}
+.order-box .state-info p{font-size:14px;line-height:22px;color:#666;}
+
+.order-box .memo-info{padding:12px;background-color:#f3ece5;}
+.order-box .memo-info p{font-size:14px;line-height:22px;color:#666;}
+
+
+
+.productList .tList{border:1px solid #999;margin:10px 0 0 0;}
+.productList .tList .new-tit{padding:12px 5px;border-bottom:1px solid #999;font-size:14px;}
+.productList .tList .new-txt{font-size:14px;color:#6e6e6e;}
+.productList .btn-area-rt{position:absolute;top:12px;right:10px;}
+
+
+.productList .fl{width:240px;text-align:left;}
+.productList .p-img{width:50px;margin:10px;}
+.productList .p-img-v1{width:65px;margin-bottom:-9999px;}
+.productList .p-img img{width:50px;height:50px;}
+.productList .pay-img{vertical-align:middle;}
+.productList .fl-v1,.productList .fl-v2{margin-left:75px;padding:5px;}
+.productList p{padding:0 0 6px 0;font-size:14px;}
+.productList .p-name{line-height:21px;font-size:16px;}
+.productList .p-num{color:#999;}
+.productList .pd-list{padding:5px 0;}
+.productList .pd-bd{border-bottom:1px solid #ccc;}
+
+
+.productList .btn{display:inline-block;height:26px;cursor:pointer;line-height:26px;margin:10px 5px 0 0;padding:0px 10px;text-align:center;font-size:1em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;font-size:14px;}
+.input-chk{padding:0 5px;vertical-align:top;}
+
+.orderManage-textarea{display:block;width:99.9%;height:50px;border:0;font-size:1em;line-height:20px;color:#6e6e6e;-webkit-appearance:none;border:1px solid #ccc;}
+
+.orderManage-box .btn-type{padding:5px 10px;margin:10px 10px 0 0;font-size:1em;border:0;font-family:"Microsoft Yahei",simsun;font-size:14px;}
