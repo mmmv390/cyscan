@@ -1,20 +1,20 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>C/3移动平台</title>
     <style>
-
         .bottomHistory {
             height: calc(100% - 0.75rem);
             overflow-y: scroll;
             overflow-x: hidden;
         }
-
-            .bottomHistory::-webkit-scrollbar {
-                display: none;
-            }
+        
+        .bottomHistory::-webkit-scrollbar {
+            display: none;
+        }
     </style>
     <link rel="stylesheet" href="css/bx-cover.css">
     <link rel="stylesheet" href="css/base.css">
@@ -26,6 +26,7 @@
     <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script type="text/javascript">
         var localStorage = window.localStorage;
+
         function LXWM() {
             layer.msg('020-62830006');
         }
@@ -34,6 +35,7 @@
             //cordova.InAppBrowser.open('http://www.cyerp19.com/download/cyfi.scan.v6.apk', '_system', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
             console.log("呀");
         }
+
         function QHYG() {
             //$.cookie("STToken", "", { expires: -1 });
             //$.cookie("authorization", "", { expires: -1 });
@@ -47,37 +49,39 @@
             localStorage.removeItem("Caption");
             window.location.href = "login.html";
         }
+
         function MUSY() {
             window.location.href = "index.html";
         }
+
         function MULB() {
 
             var UntOwnlevel = localStorage.getItem("UntOwnlevel");
 
             if (UntOwnlevel == 1) {
                 window.location.href = "yjreport.html";
-            }
-            else if (UntOwnlevel == 2) {
+            } else if (UntOwnlevel == 2) {
                 //window.location.href = "report_query.html";
                 window.location.href = "ReportQuery.html";
-            }
-            else if (UntOwnlevel == 3 || UntOwnlevel == 0) {
+            } else if (UntOwnlevel == 3 || UntOwnlevel == 0) {
                 window.location.href = "buyorder.html";
-            }
-            else {
+            } else {
                 layer.msg('首页双击小图标进入模块');
             }
 
             //window.location.href = "buyorder.html";
         }
+
         function MUXX() {
             window.location.href = "infolist.html";
         }
+
         function MUWD() {
             window.location.href = "me.html";
         }
     </script>
 </head>
+
 <body class="main">
     <header class="clearfix bg">
         <div class="top clearfix">
@@ -101,21 +105,21 @@
     <link href="layui/css/layui.css" rel="stylesheet" />
     <script src="layui/layui.all.js"></script>
     <script type="text/javascript">
-        var form = layui.form
-            , layedit = layui.layedit, laydate = layui.laydate, $ = layui.$;
-        layer.ready(function () {
-            
+        var form = layui.form,
+            layedit = layui.layedit,
+            laydate = layui.laydate,
+            $ = layui.$;
+        layer.ready(function() {
+
             localStorage.setItem("ISLoadImage", "No");
             var authorization = localStorage.getItem("authorization");
             var STToken = localStorage.getItem("STToken");
             var userr = localStorage.getItem("userr");
             if (!authorization || !STToken) {
                 window.location.href = "login.html";
-            }
-            else if (authorization == '' || STToken == '') {
+            } else if (authorization == '' || STToken == '') {
                 window.location.href = "login.html";
-            }
-            else {
+            } else {
 
             }
             //var DEVICEUUID = localStorage.getItem("DEVICEUUID");
@@ -129,6 +133,7 @@
             var ord_cap = '2026扫描管理';
             OnLoadMenus(userr, Mudown, ord_cap);
         });
+
         function MasterSub(Caption, UntOwn, Sty, Prnt_own, FdMenu, Formnam) {
             if (Caption == '') {
                 layer.open({
@@ -136,8 +141,8 @@
                         '操作失败',
                         'background-color: #F9F900; color:#000000;'
                     ],
-                    content: '无效模块。'
-                    , btn: '确定'
+                    content: '无效模块。',
+                    btn: '确定'
                 });
                 return;
             }
@@ -147,8 +152,8 @@
                         '操作失败',
                         'background-color: #F9F900; color:#000000;'
                     ],
-                    content: '无效模块。'
-                    , btn: '确定'
+                    content: '无效模块。',
+                    btn: '确定'
                 });
                 return;
             }
@@ -163,49 +168,41 @@
 
             if (Sty == 1) {
                 window.location.href = "yjreport.html";
-            }
-            else if (Sty == 2) {
+            } else if (Sty == 2) {
                 //window.location.href = "report_query.html";
                 window.location.href = "ReportQuery.html";
-            }
-            else if (Sty == 5) {
+            } else if (Sty == 5) {
                 //window.location.href = "report_query.html";
                 window.location.href = "singlesearch.html";
-            }
-            else if (Formnam == 1) {
+            } else if (Formnam == 1) {
                 //window.location.href = "report_query.html";
-                window.location.href = "scangrid.html";
-            }
-            else if (Formnam == 2) {
+                window.location.href = "scangrid_nw.html";
+            } else if (Formnam == 2) {
                 //window.location.href = "report_query.html";
                 window.location.href = "scan.html";
-            }
-            else if (Formnam == 30) {
+            } else if (Formnam == 30) {
                 //localStorage.setItem("ISSysCheck", false);
                 window.location.href = "report00.html";
-            }
-            else if (Formnam == 31) {
+            } else if (Formnam == 31) {
                 //localStorage.setItem("ISSysCheck", false);
                 window.location.href = "report1.html";
-            }
-            else if (Formnam == 32) {
+            } else if (Formnam == 32) {
                 //localStorage.setItem("ISSysCheck", false);
                 window.location.href = "report2.html";
-            }
-            else if (Formnam == 33) {
+            } else if (Formnam == 33) {
                 //localStorage.setItem("ISSysCheck", false);
                 window.location.href = "report3.html";
-            }
-            else {
+            } else {
                 window.location.href = "buyorder.html";
             }
         }
+
         function OnLoadMenus(userr, Mudown, ord_cap) {
             localStorage.setItem("Mudown", Mudown);
             localStorage.setItem("Ord_cap", ord_cap);
             var authorization = localStorage.getItem("authorization");
             var STToken = localStorage.getItem("STToken");
-            $(".home_nav li").each(function () {
+            $(".home_nav li").each(function() {
                 $(this).removeClass("active");
             });
             $("#" + Mudown).addClass("active");
@@ -215,21 +212,23 @@
                 type: "Get",
                 async: false,
                 url: Common.getRemotePort() + "Menu/CustomMenus" + Common.jsNC2(),
-                data: { 'UserName': userr, 'ord_cap': ord_cap },
+                data: {
+                    'UserName': userr,
+                    'ord_cap': ord_cap
+                },
                 headers: {
                     'Authorization': 'Bearer ' + authorization,
                     'STToken': STToken
                 },
-                success: function (data) {
+                success: function(data) {
                     var returnValue = eval(data);
                     if (returnValue.Code == 1) {
                         Ordcaps = returnValue.Menus;
-                    }
-                    else {
+                    } else {
                         layer.msg(returnValue.Message);
                     }
                 },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
                     if (textStatus == "error") {
                         layer.msg("网络异常:" + XMLHttpRequest.status);
                     }
@@ -245,21 +244,25 @@
             $.ajax({
                 type: "Get",
                 url: Common.getWeChatRemotePort() + "Menu/MainMenu" + Common.jsNC2(),
-                data: { 'UserName': Common.getDefaultUser(), 'Mudown': Mudown, 'Ordcaps': Ordcaps },
+                data: {
+                    'UserName': Common.getDefaultUser(),
+                    'Mudown': Mudown,
+                    'Ordcaps': Ordcaps
+                },
                 headers: {
                     'Authorization': 'Bearer ' + authorization,
                     'STToken': STToken
                 },
-                success: function (data) {
+                success: function(data) {
                     var returnValue = eval(data);
                     if (returnValue.Code == 1) {
                         $("#MainMenus").empty();
                         var divList = $("<div class=\"home_item\" />");
-                        $.each(returnValue.Menus, function (n, item) {
+                        $.each(returnValue.Menus, function(n, item) {
                             var divItem = $("<div class=\"item\" />");
                             var hi = $("<h1 class=\"title\">" + item.Caption + "</h1>");
                             var ul = $("<ul class=\"ul-3 clearfix\">");
-                            $.each(item.Menus, function (n, item2) {
+                            $.each(item.Menus, function(n, item2) {
                                 var li = $("<li><a href=\"javascript:MasterSub('" + item2.Caption + "','" + item2.Unt_own + "','" + item2.Sty + "','" + item2.Prnt_own + "','" + item2.FdMenu + "','" + item2.Formnam + "');\"><img src=\"image/home" + item2.Ico_id + ".png\" alt=\"\"><p>" + item2.Caption + "</p></a></li>");
                                 ul.append(li);
                             });
@@ -277,12 +280,11 @@
 
                         $("#MainMenus").append(divList);
 
-                    }
-                    else {
+                    } else {
                         layer.msg(returnValue.Message);
                     }
                 },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
                     if (textStatus == "error") {
                         layer.msg("网络异常:" + XMLHttpRequest.status);
                     }
@@ -294,4 +296,5 @@
         }
     </script>
 </body>
+
 </html>

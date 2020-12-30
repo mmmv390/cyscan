@@ -1,0 +1,826 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        ul li {
+            list-style: none
+        }
+        
+        img {
+            max-width: 100%;
+            transition: all 0.5s ease;
+            vertical-align: top;
+        }
+        /*行集元素垂直居中*/
+        
+        .bx-text-vertical {
+            display: flex;
+            text-justify: center;
+            align-items: center;
+            height: 100%;
+        }
+        /*块集元素垂直居中*/
+        
+        .bx-div-vertical {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .input_right2 {
+            width: calc(50% - 1.2rem);
+            display: inline-block;
+            font-size: 0;
+            height: 0.7rem;
+            border: 1px solid #e6ebf2;
+            vertical-align: middle;
+            padding: 0 0.2rem;
+            border-radius: 0.15rem;
+            position: relative;
+        }
+        
+        .input_name2 {
+            width: 1.2rem;
+            font-size: 0.28rem;
+            color: #818da1;
+            display: inline-block;
+            line-height: 0.7rem;
+            vertical-align: middle;
+        }
+        
+        .input_right2 input {
+            height: 0.65rem;
+            border: none;
+            vertical-align: top;
+            width: calc(100%);
+            outline: none;
+            color: #818da1;
+            font-size: 0.28rem;
+        }
+        
+        .infolist2 {
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
+            height: calc(100% - 3.5rem);
+        }
+        
+        .infolist2 .btn {
+            margin-bottom: 0.3rem;
+        }
+        
+        .infolist2 .btn li {
+            float: left;
+            width: 50%;
+            padding: 0 0.225rem;
+        }
+        
+        .infolist2 .btn li a {
+            display: inline-block;
+            width: 100%;
+            line-height: 0.7rem;
+            background: #bec7d4;
+            text-align: center;
+            font-size: 0.28rem;
+            color: #fff;
+            border-radius: 0.18rem;
+        }
+        
+        .infolist2 .btn li.active a {
+            background: #2a9efc;
+        }
+        
+        header .search-box2 {
+            font-size: 0;
+            width: 3.8rem;
+            background: #fff;
+            height: 0.7rem;
+            border-radius: 0.2rem;
+            margin: 0 auto;
+            padding: 0 0.25rem;
+        }
+        
+        header .search-box3 {
+            font-size: 0;
+            width: 1.3rem;
+            height: 0.7rem;
+            margin: 0 auto;
+            padding: 0 0.25rem;
+        }
+        
+        header .search-box3 a img {
+            width: 0.78rem;
+            vertical-align: middle;
+            margin-top: -0.05rem;
+        }
+        
+        header .search-box2 input {
+            font-size: 0.28rem;
+            height: 0.7rem;
+            border: 0;
+            outline: none;
+            vertical-align: top;
+            width: calc(100% - 0.8rem);
+            color: #bec7d4;
+        }
+        
+        header .search-box2 input::-moz-placeholder {
+            color: #BEC7D4;
+        }
+        
+        header .search-box2 input::-webkit-input-placeholder {
+            color: #BEC7D4;
+        }
+        
+        header .search-box2 a {
+            display: inline-block;
+            height: 0.5rem;
+            line-height: 0.7rem;
+            vertical-align: top;
+        }
+        
+        header .search-box2 a img {
+            width: 0.28rem;
+            vertical-align: middle;
+            margin-top: -0.05rem;
+        }
+        
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+        
+        td {
+            border: 1px solid #818da1;
+            text-align: center;
+            color: #000;
+            padding: 2px;
+            font-size: 0.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+    <link rel="stylesheet" href="css/infolist.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/buyorder.css">
+    <script src="js/genericScript.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/base.js"></script>
+    <script src="layui/layui.all.js"></script>
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script>
+        String.prototype.endWith = function(s) {
+            if (s == null || s == "" || this.length == 0 || s.length > this.length)
+                return false;
+            if (this.substring(this.length - s.length) == s)
+                return true;
+            else
+                return false;
+            return true;
+        }
+
+        function LXWM() {
+            layer.msg('020-62830006');
+        }
+
+        function ZXGX() {
+            //cordova.InAppBrowser.open('http://www.cyerp19.com/download/cyfi.scan.v6.apk', '_system', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
+            console.log("最新版本")
+        }
+
+        function QHYG() {
+            //$.cookie("STToken", "", { expires: -1 });
+            //$.cookie("authorization", "", { expires: -1 });
+            localStorage.removeItem("authorization");
+            localStorage.removeItem("STToken");
+            localStorage.removeItem("userr");
+            localStorage.removeItem("Mudown");
+            localStorage.removeItem("UntOwn");
+            localStorage.removeItem("Prntown");
+            localStorage.removeItem("Caption");
+            window.location.href = "login.html";
+        }
+
+        function MUSY() {
+            window.location.href = "index.html";
+        }
+
+        function MULB() {
+            var UntOwnlevel = localStorage.getItem("UntOwnlevel");
+            if (UntOwnlevel == 1) {
+                window.location.href = "yjreport.html";
+            } else if (UntOwnlevel == 2) {
+                //window.location.href = "report_query.html";
+                window.location.href = "ReportQuery.html";
+            } else if (UntOwnlevel == 3 || UntOwnlevel == 0) {
+                window.location.href = "buyorder.html";
+            } else {
+                layer.msg('首页双击小图标进入模块');
+            }
+            //window.location.href = "buyorder.html";
+            //window.location.href = "ReportQuery.html";
+        }
+
+        function MUXX() {
+            window.location.href = "infolist.html";
+        }
+
+        function MUWD() {
+            window.location.href = "me.html";
+        }
+
+        function Reset() {
+            //var UntOwn = localStorage.getItem("UntOwn");
+            location.reload();
+        }
+    </script>
+</head>
+
+<body class="main">
+    <header class="clearfix bg">
+        <div class="top clearfix">
+            <div class="pull-left">
+                C/3移动平台
+            </div>
+            <div class="pull-right">
+                <a href="#"><img src="image/header_tr.png" alt=""></a>
+                <ul id="ulpullright">
+                    <li><a href="javascript:QHYG();">重新登录</a></li>
+                    <li><a href="javascript:LXWM();">联系我们</a></li>
+                    <li><a href="javascript:ZXGX();">下载最新版本</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="float:left;margin:0.2rem;" class="search-box2 clearfix">
+            <input type="text" id="txtScanCode">
+            <a class="pull-right"><img src="image/saomiao.png" alt=""></a>
+        </div>
+        <div style="float:right;margin-top:0.22rem;" class="search-box3 clearfix">
+            <a class="pull-right">
+                <img onclick="Audit()" src="image/submit.png" />
+            </a>
+        </div>
+        <div style="float:right;margin-top:0.18rem;" class="search-box3 clearfix">
+            <a class="pull-right">
+                <img onclick="Clear()" src="image/clear.png" />
+            </a>
+        </div>
+        <ul class="home_nav"></ul>
+    </header>
+    <div class="content buyorder infolist2" style="height: calc(100% - 2rem);padding-top:0.2rem;">
+        <div class="bottom" style="height: calc(100% - 1rem);margin-top:0rem ">
+            <div class="item" id="QueryItems">
+            </div>
+
+            <div class="item" id="HisScan">
+                <table>
+                    <tbody id="tabList">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function GetMainUnit() {
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var UntOwn = localStorage.getItem("UntOwn");
+            //var Caption = localStorage.getItem("Caption");
+            //var queryCriteria = localStorage.getItem("QueryCriteria");
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getWeChatRemotePort() + "Unit/MainUnit" + Common.jsNC2(),
+                data: {
+                    'UserName': userr,
+                    'Untown': UntOwn
+                },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                success: function(data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        localStorage.setItem("UnitItems", returnValue.JsonList);
+                        //var ListData = eval(returnValue.ListJson);
+                    } else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+        }
+        var form = layui.form,
+            layedit = layui.layedit,
+            laydate = layui.laydate,
+            $ = layui.$;
+        layer.ready(function() {
+
+            $("#txtScanCode").focus();
+            localStorage.removeItem('ScanItemNo');
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            GetMainUnit();
+            var loadIndex = -1;
+            var ParentStorted_set;
+            var ParentSqlString;
+            var ParentOwn;
+            var ParentCapstring;
+            var ChildStorted_set;
+            var ChildSqlString;
+            var ChildOwn;
+            var ChildCapstring;
+            var units = eval(localStorage.getItem("UnitItems"));
+
+            var ParentFields, ChildFields;
+            $.each(units, function(n, item) {
+                if (item.Caption == "parenttab") {
+                    ParentStorted_set = item.Storted_set;
+                    ParentSqlString = item.SqlString;
+                    ParentOwn = item.Owner;
+                    ParentCapstring = item.Capstring;
+                } else if (item.Caption == "childtab") {
+                    ChildStorted_set = item.Storted_set;
+                    ChildSqlString = item.SqlString;
+                    ChildOwn = item.Owner;
+                    ChildCapstring = item.Capstring;
+                    localStorage.setItem("ChildStorted_set", ChildStorted_set);
+                    localStorage.setItem("ChildSqlString", ChildSqlString);
+                } else {}
+            });
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getWeChatRemotePort() + "OrderDetail/Fields" + Common.jsNC2(),
+                data: {
+                    'UserName': userr,
+                    'Datasetown': ParentOwn
+                },
+                beforeSend: function(request) {
+                    loadIndex = layer.load(1, {
+                        shade: [0.8, '#393D49']
+                    });
+                },
+                complete: function() {
+                    layer.close(loadIndex);
+                },
+                success: function(data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        ParentFields = returnValue.Fields;
+                        localStorage.setItem('ParentFields', returnValue.Fields);
+                        localStorage.setItem('ParentIndexCol', returnValue.IndexCol);
+                    } else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+            $.ajax({
+                type: "Get",
+                async: false,
+                url: Common.getWeChatRemotePort() + "OrderDetail/ChildFields" + Common.jsNC2(),
+                data: {
+                    'UserName': userr,
+                    'Datasetown': ChildOwn
+                },
+                beforeSend: function(request) {
+                    loadIndex = layer.load(1, {
+                        shade: [0.8, '#393D49']
+                    });
+                },
+                complete: function() {
+                    layer.close(loadIndex);
+                },
+                success: function(data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 1) {
+                        ChildFields = returnValue.Fields
+                        localStorage.setItem("ChildFields", returnValue.Fields);
+                    } else {
+                        layer.msg(returnValue.Message);
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+
+
+
+            var scanCode = $("#txtScanCode").val();
+            DrawParentConpent(ParentFields);
+            DrawChildConpent(ChildFields);
+
+            //默认加载一次子表
+            loadData(false, scanCode);
+        });
+
+        //绘制主表
+        function DrawParentConpent(ParentFields) {
+            ParentFields = eval(ParentFields)
+            if (ParentFields) {
+                var divParent;
+
+                $.each(ParentFields, function(n, item) {
+                    // console.log(item.Fieldnam);
+                    if (n % 2 == 0) {
+                        divParent = $("<div class=\"input_box\"></div>");
+                        var spanChild = $("<span class=\"input_name2\">" + item.Fld_cap + "</span>");
+                        var divChild = $("<div class=\"input_right2 clearfix\"></div>");
+                        var inputChild = $("<input readonly=\"readonly\"  type=\"text\" id=" + item.Fieldnam + " value='" + item.Value + "' />");
+                        divChild.append(inputChild);
+                        divParent.append(spanChild);
+                        divParent.append(divChild);
+                        $("#QueryItems").append(divParent);
+                    } else {
+                        var spanChild = $("<span class=\"input_name2\">" + item.Fld_cap + "</span>");
+                        var divChild = $("<div class=\"input_right2 clearfix\"></div>");
+                        var inputChild = $("<input readonly=\"readonly\"  type=\"text\" id=" + item.Fieldnam + " value='" + item.Value + "' />");
+                        divChild.append(inputChild);
+                        divParent.append(spanChild);
+                        divParent.append(divChild);
+                    }
+                });
+            } else {
+                if (returnValue.Message != '') {
+                    layer.msg(returnValue.Message);
+                }
+            }
+        }
+
+        //绘制子表
+        function DrawChildConpent(ChildFields) {
+            // console.log("绘制子表");
+            // console.log(ChildFields);
+
+            var trTitle = $("<tr></tr>");
+
+            //$("#divTotal").append(returnValue.ColTotals);
+            ChildFields = eval(ChildFields);
+            $.each(ChildFields, function(m, itemTitle) {
+                // console.log(itemTitle);
+                var tdTitle = $("<th style='font-size:0.2rem;'>" + itemTitle.Fld_cap + "</th>");
+                trTitle.append(tdTitle);
+            });
+            $("#tabList").append(trTitle);
+        }
+
+        $("#txtScanCode").bind("input propertychange", function() {
+            var scanCode = $("#txtScanCode").val();
+            if (scanCode && scanCode != null && scanCode != undefined && scanCode != '') {
+                loadData(true, scanCode);
+            }
+        });
+        $(document).keydown(function(event) {
+            if (event.keyCode == 13 || event.keyCode == 0) {
+                $("#txtScanCode").val('');
+                $("#txtScanCode").focus();
+            }
+        });
+
+        function loadData(scan, scanCode) {
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var ParentStorted_set;
+            var ParentSqlString;
+            var ParentOwn;
+            var ParentCapstring;
+            var ChildStorted_set;
+            var ChildSqlString;
+            var ChildOwn;
+            var ChildCapstring;
+            var loadIndex = -1;
+            var ParentFields = localStorage.getItem("ParentFields");
+            var ParentIndexCol = localStorage.getItem("ParentIndexCol");
+            var ChildFields = localStorage.getItem("ChildFields");
+            var ScanItemNo = localStorage.getItem('ScanItemNo');
+            if (!ScanItemNo) {
+                ScanItemNo = '';
+            }
+            var units = eval(localStorage.getItem("UnitItems"));
+            $.each(units, function(n, item) {
+                if (item.Caption == "parenttab") {
+                    ParentStorted_set = item.Storted_set;
+                    ParentSqlString = item.SqlString;
+                    ParentOwn = item.Owner;
+                    ParentCapstring = item.Capstring;
+                } else if (item.Caption == "childtab") {
+                    ChildStorted_set = item.Storted_set;
+                    ChildSqlString = item.SqlString;
+                    ChildOwn = item.Owner;
+                    ChildCapstring = item.Capstring;
+                } else {}
+            });
+            var Flag = false;
+            $.ajax({
+                type: "Post",
+                async: false,
+                url: Common.getRemotePort() + "OrderDetail/OrderScanFSChd" + Common.jsNC2(),
+                data: {
+                    'UserName': userr,
+                    'SqlString': ChildSqlString,
+                    'Storted_set': ChildStorted_set,
+                    'ItemNo': ScanItemNo,
+                    'Tiao_ma': scanCode,
+                    'Fields': ChildFields
+                },
+                headers: {
+                    'Authorization': 'Bearer ' + authorization,
+                    'STToken': STToken
+                },
+                beforeSend: function(request) {
+                    loadIndex = layer.load(1, {
+                        shade: [0.8, '#393D49']
+                    });
+                },
+                complete: function() {
+                    layer.close(loadIndex);
+                },
+                success: function(data) {
+                    var returnValue = eval(data);
+                    if (returnValue.Code == 0) {
+                        Flag = returnValue.Flag;
+                        ScanItemNo = returnValue.Itemno;
+                        var Message = returnValue.Message;
+                        var Flash = returnValue.Flash;
+                        var Err_text = returnValue.Err_text;
+                        var Open_file = returnValue.Open_file;
+
+                        if (Err_text && Err_text != '') {
+                            layer.msg(returnValue.Err_text);
+                        }
+                        if (Open_file && Open_file != '') {
+
+                            var hav_rep_msc = "mp3/" + Open_file
+                            console.log(hav_rep_msc);
+                            var hav_rep_msc_play = new Audio(hav_rep_msc);
+                            hav_rep_msc_play.play();
+                        }
+
+                        localStorage.setItem('ScanItemNo', ScanItemNo);
+                        if (ScanItemNo && ScanItemNo != '' && Flash) {
+                            var ListData = eval(returnValue.ListJson);
+                            var ColTitles = eval(returnValue.ColTitles);
+                            var TabName = returnValue.TabName;
+
+                            $.each(ListData, function(n, item) {
+                                var trData = $("<tr></tr>");
+                                $.each(ColTitles, function(m, itemTitle) {
+
+                                    var tdData = $("<td>" + item[itemTitle.Fieldnam] + "</td>");
+                                    trData.append(tdData);
+                                });
+
+                                $("#tabList").append(trData);
+                            });
+                        }
+                        return;
+                        if (returnValue.Message == '已清除' || returnValue.Message == '已清除!') {
+
+
+                            layer.msg(returnValue.Message);
+                        }
+
+                        //$("#divTotal").append(returnValue.ColTotals);
+                    } else {
+
+                        Flag = returnValue.Flag;
+                        ScanItemNo = returnValue.Itemno;
+                        localStorage.setItem('ScanItemNo', ScanItemNo);
+                        if (returnValue.Message != '') {
+                            layer.msg(returnValue.Message);
+                        }
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus == "error") {
+                        layer.msg("网络异常:" + XMLHttpRequest.status);
+                    }
+                }
+            });
+
+            console.log(Flag);
+            //刷新主表值 Flag
+            if (Flag) {
+                $.ajax({
+                    type: "Get",
+                    async: false,
+                    url: Common.getRemotePort() + "OrderDetail/OrderScanDetail" + Common.jsNC2(),
+                    data: {
+                        'UserName': userr,
+                        'Datasetown': ParentOwn,
+                        'SqlString': ParentSqlString,
+                        'Storted_set': ParentStorted_set,
+                        'Caption': ParentCapstring,
+                        'IndexCol': ParentIndexCol,
+                        'IndexColValue': ScanItemNo,
+                        'Fields': ParentFields
+                    },
+                    headers: {
+                        'Authorization': 'Bearer ' + authorization,
+                        'STToken': STToken
+                    },
+                    beforeSend: function(request) {
+                        loadIndex = layer.load(1, {
+                            shade: [0.8, '#393D49']
+                        });
+                    },
+                    complete: function() {
+                        layer.close(loadIndex);
+                    },
+                    success: function(data) {
+                        // $("#QueryItems").empty();
+                        var returnValue = eval(data);
+                        console.log(data);
+                        if (returnValue.Code == 1) {
+                            var divParent;
+                            $.each(returnValue.UnitFields, function(n, item) {
+                                $("#" + item.Fieldnam).val(item.Value)
+                            });
+                        } else {
+                            if (returnValue.Message != '') {
+                                layer.msg(returnValue.Message);
+                            }
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "error") {
+                            layer.msg("网络异常:" + XMLHttpRequest.status);
+                        }
+                    }
+                });
+            }
+        }
+
+        function Audit() {
+
+            var ScanItemNo = localStorage.getItem('ScanItemNo'); //'PH200512003';
+            if (!ScanItemNo) {
+                //layer.msg('未找到审核内容！');
+                //return;
+            }
+            var ParentStorted_set;
+            var ParentSqlString;
+            var units = eval(localStorage.getItem("UnitItems"));
+            $.each(units, function(n, item) {
+                if (item.Caption == "act_exec") {
+                    ParentStorted_set = item.Storted_set;
+                    ParentSqlString = item.SqlString;
+                }
+            });
+
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            layer.msg('您确定提交核准吗？', {
+                time: 0,
+                btn: ['确定', '取消'],
+                yes: function(index) {
+                    layer.close(index);
+
+                    var loadIndex = -1;
+                    $.ajax({
+                        type: "Post",
+                        url: Common.getRemotePort() + "OrderDetail/ScanAudit" + Common.jsNC2(),
+                        data: {
+                            'UserName': userr,
+                            'ItemNo': ScanItemNo,
+                            'SqlString': ParentSqlString,
+                            'Storted_set': ParentStorted_set
+                        },
+                        headers: {
+                            'Authorization': 'Bearer ' + authorization,
+                            'STToken': STToken
+                        },
+                        beforeSend: function(request) {
+                            loadIndex = layer.load(1, {
+                                shade: [0.8, '#393D49']
+                            });
+                        },
+                        complete: function() {
+                            layer.close(loadIndex);
+                        },
+                        success: function(data) {
+                            var returnValue = eval(data);
+                            if (returnValue.Code == 0) {
+                                layer.msg('操作成功！');
+                                localStorage.removeItem('ScanItemNo');
+                                $("#txtScanCode").val('');
+                                $("#tabList").empty();
+                                loadData(false, '');
+                            } else {
+                                if (returnValue.Message != '') {
+                                    layer.msg(returnValue.Message);
+                                }
+                            }
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            if (textStatus == "error") {
+                                layer.msg("网络异常:" + XMLHttpRequest.status);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        function SYS() {
+
+        }
+
+        function Clear() {
+            var ScanItemNo = localStorage.getItem('ScanItemNo'); //'PH200512003';
+            if (!ScanItemNo) {
+                layer.msg('未找到删除内容！');
+                return;
+            }
+            var ParentStorted_set;
+            var ParentSqlString;
+            var units = eval(localStorage.getItem("UnitItems"));
+            $.each(units, function(n, item) {
+                if (item.Caption == "act_exec") {
+                    ParentStorted_set = item.Storted_set;
+                    ParentSqlString = item.SqlString;
+                } else if (item.Caption == "delt_set") {
+                    ParentStorted_set = item.Storted_set;
+                    ParentSqlString = item.SqlString;
+                } else {}
+            });
+            var authorization = localStorage.getItem("authorization");
+            var STToken = localStorage.getItem("STToken");
+            var userr = localStorage.getItem("userr");
+            var loadIndex = -1;
+            layer.msg('您确定删除吗？', {
+                time: 0,
+                btn: ['确定', '取消'],
+                yes: function(index) {
+                    layer.close(index);
+
+                    $.ajax({
+                        type: "Post",
+                        url: Common.getRemotePort() + "OrderDetail/ScanDelete" + Common.jsNC2(),
+                        data: {
+                            'UserName': userr,
+                            'ItemNo': ScanItemNo,
+                            'SqlString': ParentSqlString,
+                            'Storted_set': ParentStorted_set
+                        },
+                        headers: {
+                            'Authorization': 'Bearer ' + authorization,
+                            'STToken': STToken
+                        },
+                        beforeSend: function(request) {
+                            loadIndex = layer.load(1, {
+                                shade: [0.8, '#393D49']
+                            });
+                        },
+                        complete: function() {
+                            layer.close(loadIndex);
+                        },
+                        success: function(data) {
+                            var returnValue = eval(data);
+                            if (returnValue.Code == 0) {
+                                layer.msg('操作成功！');
+                                localStorage.removeItem('ScanItemNo');
+                                $("#txtScanCode").val('');
+                                $("#tabList").empty();
+                                loadData(false, '');
+                            } else {
+                                layer.msg(returnValue.Message);
+                            }
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            if (textStatus == "error") {
+                                layer.msg("网络异常:" + XMLHttpRequest.status);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
