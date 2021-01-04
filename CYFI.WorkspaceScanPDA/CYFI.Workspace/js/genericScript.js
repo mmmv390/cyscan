@@ -1,7 +1,7 @@
 ﻿var Common = {
     getRemotePort: function() {
-        // return localStorage.getItem("GatewayUrl");
-        return "http://localhost:5028/";
+        return localStorage.getItem("GatewayUrl");
+        // return "http://localhost:5028/";
         // return "http://27.150.175.215:5028/";
     },
     getWeChatRemotePort: function() {

@@ -162,6 +162,14 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        
+        .testActive {
+            display: inline;
+        }
+        
+        #div_sptest {
+            display: none;
+        }
     </style>
     <link rel="stylesheet" href="css/infolist.css">
     <link rel="stylesheet" href="css/base.css">
@@ -188,6 +196,13 @@
 
         function LXWM() {
             layer.msg('020-62830006');
+        }
+
+        var flg_sp_tst = 0;
+
+        function SPTST() {
+
+            $("#div_sptest").css("display", "block");
         }
 
         function ZXGX() {
@@ -255,6 +270,7 @@
                     <li><a href="javascript:QHYG();">重新登录</a></li>
                     <li><a href="javascript:LXWM();">联系我们</a></li>
                     <li><a href="javascript:ZXGX();">下载最新版本</a></li>
+                    <li><a href="javascript:SPTST();">测试速度</a></li>
                 </ul>
             </div>
         </div>
@@ -279,11 +295,15 @@
             <div class="item" id="QueryItems">
             </div>
 
-            <div class="item" id="HisScan">
+            <div class="item" id="HisScan" style="height: 200px;">
                 <table>
                     <tbody id="tabList">
                     </tbody>
                 </table>
+            </div>
+            <div id="div_sptest">
+                <div><span>外箱</span> <input type="text" id="txt_wx"> <button id="btn_wx">外箱</button></div>
+                <div><span>内箱</span> <input type="text" id="txt_nh"> <button id="btn_nh">内盒</button></div>
             </div>
         </div>
     </div>
@@ -434,6 +454,21 @@
 
             //默认加载一次子表
             loadData(false, scanCode);
+
+            $("#btn_wx").on("click", function() {
+                var scanCode = $("#txt_wx").val();
+                $("#txtScanCode").val(scanCode);
+                $("#txtScanCode").change();
+                loadData(true, scanCode);
+            })
+
+            $("#btn_nh").on("click", function() {
+                var scanCode = $("#txt_nh").val();
+                $("#txtScanCode").val(scanCode);
+                $("#txtScanCode").change();
+                loadData(true, scanCode);
+            })
+
         });
 
         //绘制主表
@@ -443,7 +478,7 @@
                 var divParent;
 
                 $.each(ParentFields, function(n, item) {
-                    // console.log(item.Fieldnam);
+
                     if (n % 2 == 0) {
                         divParent = $("<div class=\"input_box\"></div>");
                         var spanChild = $("<span class=\"input_name2\">" + item.Fld_cap + "</span>");
@@ -486,14 +521,19 @@
             $("#tabList").append(trTitle);
         }
 
-        $("#txtScanCode").bind("input propertychange", function() {
+        function FSSCAN() {
             var scanCode = $("#txtScanCode").val();
             if (scanCode && scanCode != null && scanCode != undefined && scanCode != '') {
                 loadData(true, scanCode);
             }
-        });
+        }
+
+        // $("#txtScanCode").bind("input propertychange", function() {
+        //     FSSCAN();
+        // });
         $(document).keydown(function(event) {
             if (event.keyCode == 13 || event.keyCode == 0) {
+                FSSCAN();
                 $("#txtScanCode").val('');
                 $("#txtScanCode").focus();
             }
@@ -559,6 +599,13 @@
                     layer.close(loadIndex);
                 },
                 success: function(data) {
+                    $("#tabList td").remove();
+
+                    if ($("#tabList th").length == 0) {
+                        DrawChildConpent(ChildFields);
+                    }
+
+
                     var returnValue = eval(data);
                     if (returnValue.Code == 0) {
                         Flag = returnValue.Flag;
@@ -572,9 +619,10 @@
                             layer.msg(returnValue.Err_text);
                         }
                         if (Open_file && Open_file != '') {
+                            Open_file = Open_file.substring(1, Open_file.length)
+                            var hav_rep_msc = Open_file
 
-                            var hav_rep_msc = "mp3/" + Open_file
-                            console.log(hav_rep_msc);
+
                             var hav_rep_msc_play = new Audio(hav_rep_msc);
                             hav_rep_msc_play.play();
                         }
@@ -609,8 +657,14 @@
                         Flag = returnValue.Flag;
                         ScanItemNo = returnValue.Itemno;
                         localStorage.setItem('ScanItemNo', ScanItemNo);
+                        if (returnValue.Err_text != '') {
+                            layer.msg(returnValue.Err_text);
+                        }
                         if (returnValue.Message != '') {
-                            layer.msg(returnValue.Message);
+                            // layer.msg(returnValue.Message);
+                            // console.log("Message and err_text 616.....");
+                            // console.log(returnValue.Message);
+                            // console.log(returnValue.Err_text);
                         }
                     }
                 },
@@ -621,7 +675,7 @@
                 }
             });
 
-            console.log(Flag);
+
             //刷新主表值 Flag
             if (Flag) {
                 $.ajax({
@@ -653,7 +707,7 @@
                     success: function(data) {
                         // $("#QueryItems").empty();
                         var returnValue = eval(data);
-                        console.log(data);
+                        // console.log(data);
                         if (returnValue.Code == 1) {
                             var divParent;
                             $.each(returnValue.UnitFields, function(n, item) {
@@ -807,6 +861,7 @@
                                 $("#txtScanCode").val('');
                                 $("#tabList").empty();
                                 loadData(false, '');
+
                             } else {
                                 layer.msg(returnValue.Message);
                             }

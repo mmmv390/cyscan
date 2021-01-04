@@ -68,6 +68,7 @@
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="layer.js"></script>
 <script src="js/genericScript.js"></script>
+<script src="js/ping.js"></script>
 <script type="text/javascript">
     var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
     var count = 60;
@@ -151,8 +152,47 @@
             return;
         }
         var RemotePort = '';
-        RemotePort = Common.getRemotePort();
+        // RemotePort = Common.getRemotePort();
+        /**
+                if (RemotePort == "") {
 
+                    $.ajax({
+                        type: "Get",
+                        async: false,
+                        url: Common.getWeChatRemotePort() + "NetLan/GetLANURL" + Common.jsNC2(),
+                        data: {
+                            'ServiceName': Company
+                        },
+                        success: function(data) {
+                            RemotePort = data;
+
+
+                            var ip = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+                            /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+
+                            ip = ip.exec(RemotePort)[0];
+                            console.log("174.............");
+                            var rs;
+                            $.ping({
+                                url: 'http://www.baidu.com',
+                                beforePing: function() {
+                                    RemotePort = ""
+                                },
+                                afterPing: function(ping) {
+                                    $('#msg').html(ping)
+                                },
+                                interval: 0
+                            });
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            if (textStatus == "error") {
+                                layer.msg("网络异常:" + XMLHttpRequest.status);
+                            }
+                        }
+                    });
+                }
+        **/
         if (RemotePort == "") {
 
             $.ajax({
